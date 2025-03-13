@@ -30,6 +30,14 @@ main{
     flex: 1;
 }
 
+.d-none{
+    display: none!important;
+}
+
+.d-flex{
+    display: flex;
+}
+
 @media (max-width: 900px){
     body{
         margin-left: 0px;
