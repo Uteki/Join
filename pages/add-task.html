@@ -1,12 +1,51 @@
-<form>
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title"><br><br>
-    
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
-    
-    <label for="dueDate">Due Date:</label><br>
-    <input type="date" id="dueDate" name="dueDate"><br><br>
+<!DOCTYPE html>
+<html lang="en">
 
-    <input type="submit" value="Absenden">
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add task</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <link rel="stylesheet" href="/styles/header.css">
+</head>
+
+<body>
+    <header class="side-menu">
+        <div class="side-menu-top-container">
+            <img src="/assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+            <nav class="site-navigation">
+                <div class="side-menu-link-container"><a href="/pages/summary.html" class="side-menu-link"><img
+                            src="/assets/svg/summary-icon-selected.svg" alt="">Summary</a></div>
+                <div class="side-menu-link-container side-menu-link-current"><a href="/pages/add-task.html" class="side-menu-link"><img
+                            src="/assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                <div class="side-menu-link-container"><a href="/pages/board.html" class="side-menu-link"><img
+                            src="/assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
+                <div class="side-menu-link-container"><a href="/pages/contacts.html" class="side-menu-link"><img
+                            src="/assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+            </nav>
+        </div>
+        <div class="side-menu-bottom-container">
+            <nav class="footer-navigation">
+                <a href="/pages/privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                <a href="/pages/legal-notice.html" class="footer-navigation-link">Legal notice</a>
+            </nav>
+        </div>
+    </header>
+    <form>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+        
+        <label for="dueDate">Due Date:</label><br>
+        <input type="date" id="dueDate" name="dueDate"><br><br>
+    
+        <input type="submit" value="Absenden">
+    </form>
+</body>
+
+</html>
