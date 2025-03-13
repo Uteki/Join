@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+
+}
+
+:root{
+    --primary-blue: #2A3647;
+    --primary-blue-dark: #091931;
+    --primary-blue-hover: #274268;
+    --secondary-blue: #29ABE2;
+    --unselected-grey: #CDCDCD;
+    --unselected-grey-dark: #A8A8A8;
+
+}
+
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
