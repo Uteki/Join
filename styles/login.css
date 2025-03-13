@@ -1,0 +1,189 @@
+#start-page {
+    margin-left: 0;
+    background: #f6f7f8;
+
+    & header {
+        & div:first-of-type {
+            top: 5%;
+            right: 5%;
+            display: flex;
+            font-size: 20px;
+            position: absolute;
+            align-items: center;
+            height: max-content;
+
+            & button {
+                height: 49px;
+                margin-left: 35px;
+                padding: 15px 16px;
+            }
+        }
+    }
+
+    & main {
+        display: flex;
+        height: 100dvh;
+        align-items: center;
+        justify-content: center;
+
+        & form {
+            inset: 0;
+            margin: auto;
+            display: flex;
+            padding: 40px;
+            background: white;
+            position: absolute;
+            border-radius: 30px;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+            & h1 {
+                margin-top: 0;
+                font-size: 61px;
+                font-weight: bold;
+                margin-bottom: 10px;
+
+                &::after {
+                    height: 3px;
+                    content: "";
+                    display: block;
+                    max-width: 145px;
+                    margin: 15px auto 20px;
+                    background-color: var(--secondary-blue);
+                }
+            }
+
+            input {
+                width: 100%;
+                outline: none;
+                font-size: 16px;
+                border-radius: 8px;
+                max-width: 422px !important;
+                padding: 12px 40px 12px 15px;
+                border: 1px solid var(--placeholder-grey);
+
+                &::placeholder {
+                    color: var(--placeholder-grey);
+                }
+            }
+        }
+    }
+
+    & footer nav {
+        left: 0;
+        right: 0;
+        bottom: 5%;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+
+        & a {
+            cursor: pointer;
+            color: var(--unselected-grey-dark) !important;
+
+            &:first-child {
+                margin-right: 25px;
+            }
+        }
+    }
+}
+
+#signUp-group, #start-page nav, #start-page form {
+    opacity: 0;
+    animation: opacity 2s 250ms ease forwards;
+}
+
+#login-form {
+    display: flex;
+    max-width: 652px;
+    max-height: 449px;
+    justify-content: center;
+}
+
+#signUp-form {
+    display: flex;
+    max-width: 598px;
+    max-height: 630px;
+    justify-content: center;
+
+    #back-arrow {
+        top: 10%;
+        left: 10%;
+        cursor: pointer;
+        margin-top: 10px;
+        position: absolute;
+    }
+
+    & button {
+        height: 48px;
+        line-height: 0;
+        font-size: 21px;
+        margin-top: 40px;
+    }
+}
+
+
+.input-group {
+    width: 100%;
+    max-width: 422px;
+    position: relative;
+    margin-bottom: 20px;
+
+    & i {
+        top: 50%;
+        right: 15px;
+        position: absolute;
+        transform: translateY(-50%);
+        color: var(--unselected-grey-dark);
+    }
+}
+
+.logo {
+    top: 50%;
+    left: 50%;
+    z-index: 50;
+    width: 100.03px;
+    height: 121.97px;
+    position: absolute;
+    transform: translate(-50%, -50%) scale(2);
+    animation: logo 1s 250ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+
+.button-group {
+    font-size: 21px;
+    margin-top: 20px;
+
+    & button {
+        height: 48px;
+        line-height: 0;
+        font-size: 21px;
+
+        &:first-of-type {
+            margin-right: 35px;
+        }
+    }
+}
+
+.checkbox-group {
+    display: flex;
+    margin-top: 20px;
+    max-width: 231px;
+    max-height: 24px;
+
+    & input[type="checkbox"] {
+        cursor: pointer;
+        margin: 0 8px 0 0;
+        width: max-content !important;
+        border: 2px solid var(--primary-blue) !important;
+   }
+
+    & span {
+        color: var(--unselected-grey-dark);
+
+        & a {
+            color: var(--secondary-blue) !important;
+        }
+    }
+}

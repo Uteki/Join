@@ -1,40 +1,40 @@
 @import url(font.css);
 
-*{
+* {
     box-sizing: border-box;
-
 }
 
-:root{
+:root {
     --primary-blue: #2A3647;
     --primary-blue-dark: #091931;
     --primary-blue-hover: #274268;
     --secondary-blue: #29ABE2;
     --unselected-grey: #CDCDCD;
+    --placeholder-grey: #D1D1D1;
     --unselected-grey-dark: #A8A8A8;
 
 }
 
-body{
+body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 232px;
 }
 
-a{
+a {
     text-decoration: none;
     color: white;
 }
 
-main{
+main {
     flex: 1;
 }
 
-.d-none{
+.d-none {
     display: none!important;
 }
 
-.d-flex{
+.d-flex {
     display: flex;
 }
 

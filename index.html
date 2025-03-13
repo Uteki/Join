@@ -1,18 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join </title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
     <link rel="stylesheet" href="./style.css">
 
     <script src="./script.js" defer></script>
+    <script src="./scripts/login.js"></script>
 </head>
 
-<body>
-    <a href="./pages/summary.html" style="color: black;">Login simuliert</a>
+<body id="start-page">
+    <div class="max-limit">
+        <header>
+            <img src="./assets/img/favicon.png" alt="Join" class="logo">
+
+            <div id="signUp-group">
+                <p>Not a Join user?</p>
+                <button class="button dark-bg-btn" onclick="signUp()">Sign up</button>
+            </div>
+        </header>
+
+        <main>
+            <form id="login-form" action="./pages/join.html" method="POST">
+                <h1>Log in</h1>
+
+                <div class="input-group">
+                    <label for="mail-login"></label>
+                    <input type="email" name="email" id="mail-login" placeholder="Email" autocomplete="off" required>
+                    <i><img src="assets/svg/form-icons/mail.svg" alt="Mail"></i>
+                </div>
+
+                <div class="input-group">
+                    <label for="pw-login"></label>
+                    <input type="password" name="password" id="pw-login" placeholder="Password" autocomplete="off" required>
+                    <i><img src="assets/svg/form-icons/lock.svg" alt="Lock"></i>
+                </div>
+
+                <div class="button-group">
+                    <button class="button dark-bg-btn" type="submit">Log in</button>
+                    <button class="button outline-btn" onclick="window.location.href='./pages/summary.html'">Guest Log in</button>
+                </div>
+            </form>
+
+            <form id="signUp-form" class="login-form d-none" action="./pages/..." method="POST">
+                <img id="back-arrow" src="assets/svg/Property%201=Default%20(2).svg" alt="Back-arrow" onclick="signUp()">
+                <h1>Sign up</h1>
+
+                <div class="input-group">
+                    <label for="name"></label>
+                    <input type="text" name="name" id="name" placeholder="Name" autocomplete="off" required>
+                    <i><img src="assets/svg/form-icons/person.svg" alt="Person"></i>
+                </div>
+
+                <div class="input-group">
+                    <label for="email"></label>
+                    <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
+                    <i><img src="assets/svg/form-icons/mail.svg" alt="Mail"></i>
+                </div>
+
+                <div class="input-group">
+                    <label for="pw-sign"></label>
+                    <input type="password" name="password" id="pw-sign" placeholder="Password" autocomplete="off" required>
+                    <i><img src="assets/svg/form-icons/lock.svg" alt="Lock"></i>
+                </div>
+
+                <div class="input-group">
+                    <label for="pw-signUp"></label>
+                    <input type="password" name="password" id="pw-signUp" placeholder="Confirm Password" autocomplete="off" required>
+                    <i><img src="assets/svg/form-icons/lock.svg" alt="Lock"></i>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" name="agreement" id="agreement" required>
+                    <label for="agreement">
+                        <span>
+                            I accept the <a style="color: black" href="pages/privacy-policy.html">Privacy policy</a>
+                        </span>
+                    </label>
+                </div>
+
+                <button type="submit" class="button dark-bg-btn">Sign up</button>
+            </form>
+        </main>
+
+        <footer>
+            <nav>
+                <a href="./pages/privacy-policy.html">Privacy Policy</a>
+                <a href="./pages/legal-notice.html">Legal notice</a>
+            </nav>
+        </footer>
+    </div>
 </body>
 
 </html>

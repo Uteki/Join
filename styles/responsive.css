@@ -1,0 +1,10 @@
+/* Content Begrenzung */
+.max-limit {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    max-width: 1440px;
+    position: relative;
+}
+
+@media (max-width: 333px) { }
