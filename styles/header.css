@@ -119,7 +119,7 @@
     }
 
     .side-menu-link-container{
-        padding: 16px;
+        padding: 12px;
         border-radius: 16px;
         width: 96px;
         gap: 4px;
@@ -166,4 +166,12 @@
         font-size: 12px;
         width: auto;
     }
+}
+
+/* header bar */
+
+.header-bar{
+    width: 100%;
+    height: 96px;
+    background-color: antiquewhite;
 }
