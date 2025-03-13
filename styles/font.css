@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/font/Inter_24pt-Regular.ttf');
+    font-style: normal;
+    font-weight: normal;
+}
+
+* {
+    font-family: 'Inter', serif;
+}
