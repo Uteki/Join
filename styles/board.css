@@ -1,0 +1,70 @@
+.board-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px 60px 40px 60px;
+}
+
+.board-header-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+
+.board-search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-search-input{
+    height: 48px;
+    width: 240px;
+    padding: 8px 16px 8px 16px;
+    background-color: white;
+    border: 1px solid var(--placeholder-grey);
+    border-right: none;
+    outline: none;
+    border-radius: 8px 0px 0px 8px;
+    font-size: 21px;
+}
+
+.board-search-divider{
+    height: 24px;
+    width: 1px;
+    background-color: var(--placeholder-grey);
+}
+
+.board-search-button{
+    height: 48px;
+    width: 80px;
+    background-color: white;
+    border: 1px solid var(--placeholder-grey);
+    border-left: none;
+    border-radius: 0px 8px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.board-search-icon{
+    background-color: white;
+    width: 18px;
+    aspect-ratio: 1/1;
+}
+
+.board-add-task-button{
+    background-color: var(--primary-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 21px;
+    height: 48px;
+    width: 160px;
+}

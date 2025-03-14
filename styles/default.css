@@ -12,6 +12,7 @@
     --unselected-grey: #CDCDCD;
     --placeholder-grey: #D1D1D1;
     --unselected-grey-dark: #A8A8A8;
+    --primary-background-color: #F6F7F8;
 
 }
 
@@ -28,6 +29,20 @@ a {
 
 main {
     flex: 1;
+    background-color: var(--primary-background-color);
+    height: calc(100vh - 96px);
+}
+
+h1{
+    color: black;
+    font-weight: bold;
+    font-size: 61px;
+    margin: 0;
+}
+
+button{
+    border: none;
+    cursor: pointer;
 }
 
 .d-none {
