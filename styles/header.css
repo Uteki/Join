@@ -185,6 +185,10 @@
     width: 56px;
 }
 
+.header-bar-logo img{
+    width: 56px;
+}
+
 .header-bar-menu{
     display: flex;
     justify-content: space-between;
