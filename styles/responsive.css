@@ -2,6 +2,7 @@
 .max-limit {
     width: 100%;
     margin: 0 auto;
+    height: 100dvh;
     padding: 0 15px;
     max-width: 1440px;
     position: relative;

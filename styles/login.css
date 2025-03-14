@@ -1,6 +1,7 @@
 #start-page {
-    margin-left: 0;
+    margin: 0;
     background: #f6f7f8;
+    animation: bg-change 0.9s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
 
     & header {
         & div:first-of-type {
@@ -21,6 +22,7 @@
     }
 
     & main {
+        animation: bg-change 0.9s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
         display: flex;
         height: 100dvh;
         align-items: center;
@@ -103,7 +105,7 @@
         }
     }
 
-    .button-group {
+    .btn-group {
         font-size: 21px;
         margin-top: 20px;
 
@@ -184,4 +186,74 @@
     position: absolute;
     transform: translate(-50%, -50%) scale(2);
     animation: logo 1s 250ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@media (max-width: 700px) {
+    #start-page {
+        background : var(--primary-blue);
+
+        & main {
+            background : var(--primary-blue);
+
+            & form {
+                padding: 20px;
+                margin: auto 20px;
+                max-height: max-content;
+
+                & h1 {
+                    font-size: 47px !important;
+                }
+
+                & button {
+                    font-size: 16px !important;
+                }
+            }
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+
+            & button:first-of-type {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+    }
+
+    #signUp-form {
+        top: 30px !important;
+
+        & img, h1 {
+            margin: 0 !important;
+        }
+
+        & button {
+            margin-top: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group {
+            margin-top: 5px;
+        }
+    }
+
+    #logo-start {
+        width: 64px;
+        height: 78.03px;
+        filter: invert(1) brightness(2);
+        animation: logo 1s 250ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+
+    #signUp-group {
+        left: 0;
+        bottom: 10.5%;
+        right: 0 !important;
+        align-items: center;
+        top: unset !important;
+        justify-content: center;
+    }
 }
