@@ -7,6 +7,20 @@
     transition: all 0.3s ease;
 }
 
+.contact-btn {
+        background: white;
+
+    &:hover {
+        background: var(--unselected-grey);
+    }
+
+    /* TODO: for later */
+    &:focus {
+        color: white;
+        background: var(--primary-blue);
+    }
+}
+
 .dark-bg-btn {
     color: white;
     border: none;

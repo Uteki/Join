@@ -14,7 +14,7 @@
 
 @keyframes bg-change {
     to {
-        background: #f6f7f8;
+        background: var(--primary-background-color);
     }
 }
 

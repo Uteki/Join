@@ -104,6 +104,7 @@
 
 @media (max-width: 900px){
     .side-menu{
+        z-index: 1;
         height: 80px;
         width: 100vw;
         flex-direction: row;

@@ -1,6 +1,6 @@
 #start-page {
     margin: 0;
-    background: #f6f7f8;
+    background: var(--primary-background-color);
     animation: bg-change 0.9s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
 
     & header {
