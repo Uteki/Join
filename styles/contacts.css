@@ -3,7 +3,7 @@
 }
 
 #con-sidebar {
-    box-shadow: 0 0 1px 0 var(--unselected-grey-dark);
+    box-shadow: 3px 0 3px 0 var(--unselected-grey);
     background: white;
     overflow-y: scroll;
     width: 100%;
@@ -22,15 +22,29 @@
     }
 
     & > div {
-        background: white;
         padding-bottom: 20px;
+        background: white;
         position: sticky;
-        top: 0;
         width: 100%;
+        top: 0;
 
         & button {
             width: 100%;
+            display: flex;
+            font-size: 20px;
             margin-top: 20px;
+            align-items: center;
+            justify-content: center;
+
+            & i {
+                margin-left: 20px;
+
+                & img {
+                    margin-top: 1px;
+                    height: 32px;
+                    width: 32px;
+                }
+            }
         }
     }
 
@@ -45,8 +59,8 @@
                 width: 100%;
                 display: block;
                 content: "";
-                height: 3px;
-                background-color: var(--secondary-blue);
+                height: 1px;
+                box-shadow: 0 -1px 2px 0 var(--unselected-grey);
             }
         }
 
@@ -71,8 +85,12 @@
                 align-items: flex-start;
                 flex-direction: column;
 
-                & span:nth-child(2) {
-                    color: #0b6bc4;
+                & span {
+                    font-weight: normal;
+
+                    &:nth-child(2) {
+                        color: var(--mail-color);
+                    }
                 }
             }
         }
@@ -123,10 +141,30 @@
                     background-color: var(--secondary-blue);
                 }
             }
+
+            & h2 {
+                font-weight: normal;
+                color: var(--primary-blue);
+            }
         }
 
         & article {
-            margin-top: 30px;
+            margin-top: 24px;
+
+            & p {
+                &:nth-child(2) {
+                    font-size: 22px;
+                    margin-bottom: 40px;
+                }
+
+                &:nth-child(4) a {
+                    color: var(--mail-color);
+                }
+
+                &:nth-child(6) a {
+                    color: black;
+                }
+            }
 
             & > div {
                 display: flex;
@@ -140,8 +178,40 @@
                     border: 3px solid white;
                 }
 
-                & div:nth-child(2) h2 {
-                    font-size: 37px;
+                & div:nth-child(2) {
+                    & h2 {
+                        font-size: 37px;
+                        margin-bottom: 5px;
+                    }
+
+                    & div {
+                        display: flex;
+
+                        & button {
+                            padding: 0;
+                            display: flex;
+                            align-items: center;
+                            background: none;
+
+                            & i {
+                                width: 24px;
+                                height: 24px;
+                                margin-right: 5px;
+                            }
+
+                            &:nth-child(1) {
+                                margin-right: 10px;
+                            }
+
+                            &:hover {
+                                color: var(--secondary-blue);
+
+                                & img {
+                                    filter: brightness(0) saturate(100%) invert(56%) sepia(98%) saturate(1060%) hue-rotate(166deg) brightness(92%) contrast(93%);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

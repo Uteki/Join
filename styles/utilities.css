@@ -5,3 +5,7 @@
 .m-none {
     margin: 0;
 }
+
+.w-bold {
+    font-weight: bold;
+}
