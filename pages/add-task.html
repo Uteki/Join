@@ -13,7 +13,25 @@
 </head>
 
 <body>
-    <header class="side-menu">
+    <header class="header-bar">
+        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <span class="kanban-title">Kanban Project Management Tool</span>
+        <div class="header-bar-menu">
+            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                <span class="user-initials">
+                    SM
+                </span>
+            </div>
+            <div class="logout-menu d-none" id="logout-menu">
+                <a href="./legal-notice.html">Legal Notice</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <aside class="side-menu">
         <div class="side-menu-top-container">
             <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
             <nav class="site-navigation">
@@ -33,33 +51,10 @@
                 <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
             </nav>
         </div>
-    </header>
-
-    <header class="header-bar">
-        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-        <span class="kanban-title">Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials">
-                    SM
-                </span>
-            </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="./legal-notice.html">Legal Notice</a>
-                <a href="./privacy-policy.html">Privacy Policy</a>
-                <a href="#" onclick="logout()">Logout</a>
-            </div>
-        </div>
-    </header>
+    </aside>
 
     <main>
         <div class="container">
-            <div class="linkssss">
-                <div class="logo">
-           
-                </div>
-            </div>
             <div class="Rechts"> </div>
             <div class="aaa"> 
             <h1>Add Task</h1>
