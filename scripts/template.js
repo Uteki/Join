@@ -1,21 +1,25 @@
 function contactTemplate (abbr, name, mail, number) {
     return `<article>
-        <div>${abbr}</div>
-        
         <div>
-            <h1>${name}</h1>
+            <div>${abbr}</div>
             
-            <div>
-                <button><i></i> Edit</button>
-                <button><i></i> Delete</button>
+            <div class="m-left-40">
+                <h2 class="m-none">${name}</h2>
+    
+                <div>
+                    <button><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                    <button><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
+                </div>
             </div>
         </div>
         
         <p>Contact Information</p>
-        <p>Email</p>
-        <p>${mail}</p>
-        <p>Phone</p>
-        <p>+${number}</p>
+        
+        <p class="w-bold">Email</p>
+        <p><a href="mailto:${mail}">${mail}</a></p>
+        
+        <p class="w-bold">Phone</p>
+        <p><a href="tel:+${number}">+${number}</a></p>
     </article>
     `
 }
@@ -28,10 +32,10 @@ function addAbbreviation (letter) {
 }
 
 function contactButtonTemplate (abbr, name, mail) {
-    return `<button>
-        <div>${abbr}</div>
+    return `<button class="button contact-btn">
+        <div class="abbr-profil">${abbr}</div>
         
-        <div>
+        <div class="m-left-40">
             <span>${name}</span>
             <span>${mail}</span>
         </div>
