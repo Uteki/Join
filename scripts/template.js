@@ -4,11 +4,11 @@ function contactTemplate (abbr, name, mail, number) {
             <div>${abbr}</div>
             
             <div class="m-left-40">
-                <h2 class="m-none">${name}</h2>
+                <h2 class="m-none m-right-40">${name}</h2>
     
                 <div>
-                    <button><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
-                    <button><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
+                    <button onclick="editContact()"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                    <button onclick="deleteContact()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
                 </div>
             </div>
         </div>

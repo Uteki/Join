@@ -2,6 +2,10 @@
     margin-left: 40px;
 }
 
+.m-right-10 {
+    margin-right: 10px !important;
+}
+
 .m-none {
     margin: 0;
 }

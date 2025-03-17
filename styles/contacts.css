@@ -3,6 +3,7 @@
 }
 
 #con-sidebar {
+    flex-basis: 40%;
     box-shadow: 3px 0 3px 0 var(--unselected-grey);
     background: white;
     overflow-y: scroll;
@@ -52,7 +53,7 @@
         height: 1440px;
         & > div {
             & h5 {
-                padding-left: 24px;
+                padding-left: 30px;
             }
 
             &:after {
@@ -117,8 +118,9 @@
 
 #con-display {
     background: var(--primary-background-color);
-    width: 100%;
+    flex-basis: 60%;
     height: 100%;
+    width: 100%;
 
     & > div {
         margin-top: 90px;
@@ -225,4 +227,91 @@
     justify-content: center;
     background: cornflowerblue;
     border-radius: 50%;
+}
+
+@media (max-width: 1118px) {
+    #con-sidebar {
+        & output {
+            .button.contact-btn {
+                flex-direction: column;
+                & .m-left-40 {
+                    margin-left: 0;
+                    margin-top: 5px;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1076px) {
+    #con-display {
+        & .m-left-40 {
+            & > div:nth-child(1) {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0;
+
+                & h1 {
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                & h2 {
+                    &:after {
+                        display: block;
+                        width: 55%;
+                        margin-top: 15px;
+                        content: "";
+                        height: 3px;
+                        background-color: var(--secondary-blue);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 671px) {
+    #con-sidebar {
+        display: none;
+        flex-basis: 100%;
+        max-width: 100% !important;
+
+        & output {
+            & .button.contact-btn {
+                flex-direction: row;
+
+                & .m-left-40 {
+                    margin-left: 40px;
+                    align-items: flex-start;
+                }
+            }
+        }
+    }
+
+    #con-display {
+        & > div {
+            margin-top: 45px;
+        }
+
+        #back-arrow {
+            display: block !important;
+            position: absolute;
+            right: 3%;
+        }
+    }
+}
+
+@media (max-width: 379px) {
+    #con-sidebar {
+        & output {
+            & .button.contact-btn {
+                & .m-left-40 {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
 }
