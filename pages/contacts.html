@@ -9,10 +9,29 @@
 
     <link rel="stylesheet" href="../style.css">
     <script src="../script.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
 </head>
 
 <body>
-    <header class="side-menu">
+    <header class="header-bar">
+        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <span class="kanban-title">Kanban Project Management Tool</span>
+        <div class="header-bar-menu">
+            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                <span class="user-initials">
+                    SM
+                </span>
+            </div>
+            <div class="logout-menu d-none" id="logout-menu">
+                <a href="./legal-notice.html">Legal Notice</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <aside class="side-menu">
         <div class="side-menu-top-container">
             <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
             <nav class="site-navigation">
@@ -32,24 +51,72 @@
                 <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
             </nav>
         </div>
-    </header>
+    </aside>
 
-    <header class="header-bar">
-        <span>Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials">
-                    SM
-                </span>
+    <main id="con-wrapper">
+        <aside id="con-sidebar">
+            <div>
+                <button class="button dark-bg-btn">
+                    Add new contact <i><img src="../assets/svg/contact-icons/person_add.svg" alt="Add contact"></i>
+                </button>
             </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="">Legal Notice</a>
-                <a href="">Privacy Policy</a>
-                <a href="">Logout</a>
+
+            <output>
+                <!-- contacts -->
+                <div>
+                    <h5>M</h5>
+                </div>
+                <!-- abbr -->
+
+                <button class="button contact-btn">
+                    <div class="abbr-profil">MM</div>
+
+                    <div class="m-left-40">
+                        <span>Max Mustermann</span>
+                        <span>maximale@muster.com</span>
+                    </div>
+                </button>
+                <!-- contacts -->
+            </output>
+        </aside>
+
+        <div id="con-display">
+            <div class="m-left-40">
+                <div>
+                    <h1>Contacts</h1>
+                    <img id="back-arrow" class="d-none" src="../assets/svg/Property%201=Default%20(2).svg" alt="Back-arrow" onclick="toggleContactMenu()">
+                    <h2 class="m-right-10">Better with a team</h2>
+                </div>
+
+                <section>
+                    <!-- contact -->
+                    <article>
+                        <div>
+                            <div class="abbr-profil">MM</div>
+
+                            <div class="m-left-40">
+                                <h2 class="m-none m-right-10">Max Mustermann</h2>
+
+                                <div>
+                                    <button><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                                    <button><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Contact Information</p>
+
+                        <p class="w-bold">Email</p>
+                        <p><a href="mailto:maximale@muster.com">maximale@muster.com</a></p>
+
+                        <p class="w-bold">Phone</p>
+                        <p><a href="tel:+49 23985928923">+49 23985928923</a></p>
+                    </article>
+                    <!-- contact -->
+                </section>
             </div>
         </div>
-    </header>
+    </main>
 </body>
 
 </html>

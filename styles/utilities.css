@@ -1,0 +1,15 @@
+.m-left-40 {
+    margin-left: 40px;
+}
+
+.m-right-10 {
+    margin-right: 10px !important;
+}
+
+.m-none {
+    margin: 0;
+}
+
+.w-bold {
+    font-weight: bold;
+}

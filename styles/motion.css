@@ -11,3 +11,20 @@
         transform: translate(0, 0) scale(1);
     }
 }
+
+@keyframes bg-change {
+    to {
+        background: var(--primary-background-color);
+    }
+}
+
+@media (max-width: 700px) {
+    @keyframes logo {
+        to {
+            top: 5%;
+            left: 5%;
+            filter: invert(0) brightness(1);
+            transform: translate(0, 0) scale(1);
+        }
+    }
+}

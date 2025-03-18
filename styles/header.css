@@ -21,7 +21,7 @@
 .side-menu-icon{
     margin-inline: auto;
     padding: 56px;
-    padding-bottom: 120px;
+    padding-bottom: 25%;
 }
 
 .site-navigation{
@@ -104,6 +104,7 @@
 
 @media (max-width: 900px){
     .side-menu{
+        z-index: 1;
         height: 80px;
         width: 100vw;
         flex-direction: row;
@@ -182,6 +183,10 @@
 
 .header-bar-logo{
     display: none;
+    width: 56px;
+}
+
+.header-bar-logo img{
     width: 56px;
 }
 

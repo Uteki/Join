@@ -9,19 +9,39 @@
 
     <link rel="stylesheet" href="../style.css">
     <script src="../script.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
 </head>
 
 <body>
-    <header class="side-menu">
+    <header class="header-bar">
+        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <span class="kanban-title">Kanban Project Management Tool</span>
+        <div class="header-bar-menu">
+            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt=""
+                    class="help-icon"></a>
+            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                <span class="user-initials">
+                    SM
+                </span>
+            </div>
+            <div class="logout-menu d-none" id="logout-menu">
+                <a href="./legal-notice.html">Legal Notice</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <aside class="side-menu">
         <div class="side-menu-top-container">
             <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
             <nav class="site-navigation">
-                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img 
-                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
                 <div class="side-menu-link-container"><a href="./add-task.html" class="side-menu-link"><img
                             src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="side-menu-link-container side-menu-link-current"><a href="./board.html" class="side-menu-link"><img
-                            src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                <div class="side-menu-link-container side-menu-link-current"><a href="./board.html"
+                        class="side-menu-link"><img src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
                 <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
                             src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
             </nav>
@@ -32,24 +52,57 @@
                 <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
             </nav>
         </div>
-    </header>
+    </aside>
 
-    <header class="header-bar">
-        <span>Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials">
-                    SM
-                </span>
+    <main>
+        <section class="board-header">
+            <h1>Board</h1>
+            <div class="board-header-menu">
+                <div class="board-search-container">
+                    <input type="search" placeholder="Find Task" class="board-search-input">
+                    <div class="board-search-divider"></div>
+                    <button class="board-search-button">
+                        <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt=""
+                            class="board-search-icon">
+                    </button>
+                </div>
+                <button class="board-add-task-button">Add Task<img src="../assets/svg/plus-white.svg" alt=""></button>
             </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="">Legal Notice</a>
-                <a href="">Privacy Policy</a>
-                <a href="">Logout</a>
+            <button class="board-add-task-button-mobile"><img src="../assets/svg/plus-white.svg" alt=""></button>
+        </section>
+
+        <section class="board-content">
+            <div class="board-column">
+                <div class="board-column-header">
+                    <h2>To do</h2>
+                    <button type="button">+</button>
+                </div>
+                <div class="board-column-tasks">
+                    <div class="board-task-container">
+                        <span class="board-task-category">User Story</span>
+                        <div class="board-task-description">
+                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
+                            <p>Create a contact form and imprint page...</p>
+                        </div>
+                        <div class="board-task-progress-container">
+                            <div class="board-task-progress-bar-container">
+                                <div class="board-task-progress-bar"></div>
+                            </div>
+                            <span class="board-task-progress">1/2 Subtasks</span>
+                        </div>
+                        <div class="board-task-bottom-container">
+                            <div class="board-task-involved">
+                                <div class="board-task-initial">SM</div>
+                                <div class="board-task-initial">SM</div>
+                                <div class="board-task-initial">SM</div>
+                            </div>
+                            <img src="../assets/svg/Property 1=Low.svg" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </header>
+        </section>
+    </main>
 </body>
 
 </html>
