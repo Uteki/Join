@@ -220,6 +220,39 @@
     }
 }
 
+.btn-mobile {
+    right: 3%;
+    bottom: 15%;
+    border-radius: 50%;
+    top: unset !important;
+    padding: 0 !important;
+    position: fixed !important;
+    width: max-content !important;
+    height: max-content !important;
+
+    & button {
+        width: 56px !important;
+        height: 56px !important;
+        margin-top: 0 !important;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+
+
+        & img {
+            height: 32px !important;
+            width: 32px !important;
+        }
+
+        &:nth-child(1) {
+            & img {
+                transform: scale(0.8);
+            }
+        }
+    }
+}
+
 .abbr-profil {
     color: white;
     display: flex;
@@ -296,10 +329,24 @@
             margin-top: 45px;
         }
 
+        & article {
+            & .m-left-40 {
+                & > div {
+                    display: none !important;
+                }
+            }
+        }
+
         #back-arrow {
             display: block !important;
             position: absolute;
             right: 3%;
+        }
+    }
+
+    .btn-mobile {
+        & button:nth-child(1) {
+            display: flex !important;
         }
     }
 }
