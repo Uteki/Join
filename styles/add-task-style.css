@@ -1,9 +1,8 @@
-
 .left-side{
    width: 440px;
    height: 376px;
-top: 327px;
-    left: 328px;
+   top: 327px;
+   left: 328px;
 }
 
 .right-side{
@@ -13,7 +12,7 @@ top: 327px;
 
 .separator {
     width: 1px;
-    background-color: #D1D1D1; /* Farbe für die Trennlinie */
+    background-color: #D1D1D1; 
     margin: 0 20px;
 }
 
@@ -28,7 +27,7 @@ form {
 
 .button-group {
     display: flex;
-    gap: 8px; /* Abstand von 8px zwischen den Buttons */
+    gap: 8px; 
 }
 
 .priority-button {
@@ -38,93 +37,100 @@ form {
     border: 1px solid #ccc;
     background-color: white;
     cursor: pointer;
-    border-radius: 10px; /* Abgerundet mit einem Radius von 10px */
+    border-radius: 10px; 
 }
 
 .priority-button img {
     width: 20px;
     height: 20px;
-    margin-left: 5px; /* Abstand zwischen Text und Bild */
+    margin-left: 5px; /
 }
 
 .button-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
 }
 
 .button-container input[type="button"] {
-    margin-right: 16px; /* Abstand von 16px zwischen Clear und Create Task */
+    margin-right: 16px; 
 }
 
 .error-message {
-    color: black; /* Textfarbe für die Fehlermeldung */
+    color: black;
     margin-top: 20px;
 }
 
-
-
-.containertwo{
-    width: 1440px;
-    height: 96px;
-    justify-content: space-between;
-    padding-top: 20px;
-    padding-right: 40px;
-    padding-bottom: 20px;
-    padding-left: 348px;
-    color: #FFFFFF;
-}
-
-.h1{
+h1{
     color: black;
-}
-
-.alles{
-    width: 1440px;
-    height: 1024px;
-    top: -5049px;
-    left: 1304px;
-    color:#F6F6F8; 
-}
-
-.alles1{
-    color:#2A3647;
-    height: 1024px;
-    width: 232px;
-    padding-top: 64px;
-    padding-bottom: 64px;
-
+    font-size: 61px;
 }
 
 .linksrechts{
     display: flex;
-}
-
-.linkssss{
-    justify-content: space-between;
-    background-color: #2A3647;
-    display: flex;
-    height: 100vh;
+    flex-direction: row;
 }
 
 .container{
     display: flex;
-    width: 1440px;
-    height: 1024px;
-   
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
 }
 
-.Rechts{
-    margin-left: 50px;
-}
-
-.logo{
-    margin-left: 77px;
-    margin-top: 100px;
-    margin-right: 100px;
-}
-
-.aaa{
-    margin-top: 300px;
+.add-task{
+    width: 100%; 
+    max-width: 800px; 
+    margin: 0 auto; 
 }
  
+#taskForm input[type="text"] {
+    border-radius: 10px; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+}
+
+#taskForm input[type="text"]:focus {
+    outline: none; 
+}
+
+#taskForm textarea {
+    border-radius: 10px; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+}
+
+#taskForm textarea:focus {
+    outline: none; 
+}
+
+input[type="text"] {
+    border-radius: 10px;
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+    width: calc(100% - 16px); 
+    box-sizing: border-box; 
+}
+
+.button-group {
+    margin-bottom: 20px; 
+}
+
+.priority-button {
+    border-radius: 10px;
+    padding: 10px; 
+    margin-right: 10px; 
+    border: 1px solid #ccc; 
+    cursor: pointer; 
+}
+
+.priority-button:hover {
+    background-color: #e0e0e0; 
+}
+
+.required-clear-create{ 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}

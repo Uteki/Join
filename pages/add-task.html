@@ -53,13 +53,7 @@
 
     <main>
         <div class="container">
-            <div class="linkssss">
-                <div class="logo">
-           
-                </div>
-            </div>
-            <div class="Rechts"> </div>
-            <div class="aaa"> 
+            <div class="add-task">
             <h1>Add Task</h1>
             <div class="linksrechts"> 
           
@@ -67,9 +61,8 @@
                     <form id="taskForm">
                         <label for="title">Title:<span class="required">*</span></label><br>
                         <input type="text" id="title" name="title" placeholder="Enter a title" required><br><br> 
-    
                         <label for="description">Description:</label><br>
-                        <textarea id="description" name="description" rows="4" cols="50" placeholder="Beschreibung eingeben"></textarea><br><br> 
+                        <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter a Description"></textarea><br><br> 
     
                         <label for="dueDate">Due date:<span class="required">*</span></label><br>
                         <input type="text" id="dueDate" name="dueDate" placeholder="dd.mm.yyyy" pattern="\d{2}\.\d{2}\.\d{4}" required><br><br> 
@@ -81,7 +74,7 @@
     
                 <div class="right-side">
                     <form>
-                        <label for="priority">Priority:</label><br>
+                        <label for="priority">Priority</label><br>
                         <div class="button-group">
                             <button type="button" class="priority-button" data-priority="urgent">
                                 Urgent
@@ -96,35 +89,34 @@
                                 <img src="../assets/svg/Property 1=Low.svg" alt="Low" class="icon">
                             </button>
                         </div>
-                        
-                        <br>
-        
-    
-                        <label for="assignedTo">Assigned to:</label><br>
-                        <input type="text" id="assignedTo" name="assignedTo" placeholder="Select contacts to assign"><br><br>
-    
-                        <label for="category">Category:<span class="required">*</span></label><br>
+                        <br>                 
+                        <label for="assignedTo">Assigned to</label><br>
+                        <input type="text" id="assignedTo" name="assignedTo" placeholder="Select contacts to assign"><br><br>                   
+                        <label for="category">Category<span class="required">*</span></label><br>
                         <input type="text" id="category" name="category" placeholder="Select task category" required><br><br>
-    
-                        <label for="subtask">Subtasks:</label><br>
+                    
+                        <label for="subtask">Subtasks</label><br>
                         <input type="text" id="subtask" name="subtask" placeholder="Add new subtask"><br><br>
                     </form>
-                        <div class="button-container">
-                            <input type="button" value="Clear" id="clearButton">
-                            <input type="submit" value="Create Task">
-                        </div>
+                       
                  
                 </div>
            
         </div>
-    
-        <div class="error-message">
-            <span><span class="required">*</span> This field is required</span>
+
+        <div class="required-clear-create">     
+            <div class="error-message">
+                <span><span class="required">*</span> This field is required</span>
+            </div>
+            <div class="button-container">
+                <input type="button" value="Clear" id="clearButton">
+                <input type="submit" value="Create Task">
+            </div>
         </div>
     
+    </div>
      
         <script>
-            // Optional: JavaScript zur Handhabung des Clear-Buttons
             document.getElementById('clearButton').addEventListener('click', function() {
                 document.getElementById('taskForm').reset();
             });
