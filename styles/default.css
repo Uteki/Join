@@ -34,6 +34,7 @@ main {
     flex: 1;
     background-color: var(--primary-background-color);
     height: calc(100vh - 96px);
+    overflow: hidden;
 }
 
 h1{
@@ -59,7 +60,6 @@ button{
 @media (max-width: 900px){
     body{
         margin-left: 0px;
-        margin-bottom: 80px;
     }
 
     main {
