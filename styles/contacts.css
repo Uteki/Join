@@ -348,6 +348,10 @@ dialog {
                 border-radius: 8px;
                 padding: 12px 40px 12px 15px;
                 border: 1px solid var(--placeholder-grey);
+
+                &:focus {
+                    border: 1px solid var(--secondary-blue);
+                }
             }
 
             & i {
