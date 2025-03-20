@@ -36,6 +36,7 @@ main {
     background-color: var(--primary-background-color);
     height: calc(100vh - 96px);
     overflow: hidden;
+    position: relative;
 }
 
 h1{
@@ -64,7 +65,7 @@ button{
     }
 
     main {
-        height: calc(100vh - 160px);
+        height: calc(100vh - 176px);
     }
 }
 
