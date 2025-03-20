@@ -442,18 +442,9 @@
 }
 
 
-/* @media (max-height: 700px){
+@media (max-height: 700px){
     .summary-head{
-        transform: scale(0.7);
-    transform-origin: top left;
+        padding-block: 16px;
     }
 
-    .summary-content{
-        height: 400px;
-    }
-
-    .summary-statistics{
-        transform: scale(0.7);
-    transform-origin: top;
-    }
-} */
+}
