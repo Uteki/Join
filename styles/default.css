@@ -69,3 +69,15 @@ button{
     }
 }
 
+@media (max-width: 475px){
+
+    main {
+        height: calc(100vh - 160px);
+    }
+
+    h1{
+        font-size: 47px;
+    }
+}
+
+
