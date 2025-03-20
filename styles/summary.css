@@ -1,0 +1,119 @@
+.summary-head {
+    padding: 64px;
+    padding-left: 96px;
+    padding-top: 96px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    & span{
+        font-size: 27px;
+        font-weight: 400;
+    }
+}
+
+.summary-head-divider{
+    width: 3px;
+    height: 80px;
+    background-color: var(--secondary-blue);
+}
+
+.summary-content {
+    padding-left: 96px;
+    display: flex;
+    align-items: center;
+    gap: 112px;
+}
+
+.summary-statistics {
+    width: 560px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.summary-statistics-element {
+    background-color: white;
+    border-radius: 30px;
+    height: 168px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-statistics-element:hover {
+    background-color: var(--primary-blue);
+    scale: 1.1;
+    color: white;
+
+    & .to-do-icon {
+        background-image: url('../assets/svg/summary-icons/edit-dark.svg');
+    }
+
+    & .check-icon{
+            background-image: url('../assets/svg/summary-icons/check-dark.svg');
+    }
+
+    & .summary-icon {
+        background-color: white;
+    }
+
+}
+
+.summary-statistics-element:nth-child(1),
+.summary-statistics-element:nth-child(2) {
+    flex: 1;
+    padding: 38px 58px 38px 58px;
+}
+
+.summary-statistics-element:nth-child(3) {
+    flex: 0 0 100%;
+    padding: 28px 48px 28px 48px;
+}
+
+.summary-statistics-element:nth-child(4),
+.summary-statistics-element:nth-child(5),
+.summary-statistics-element:nth-child(6) {
+    flex: 1;
+    padding: 24px;
+}
+
+.summary-icon {
+    width: 69px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+}
+
+
+.to-do-icon {
+    background-image: url('../assets/svg/summary-icons/edit-white.svg');
+}
+
+.check-icon{
+    background-image: url('../assets/svg/summary-icons/check-white.svg');
+}
+
+.summary-num{
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summary-num-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    & span:nth-child(2){
+        font-weight: 400;
+        font-size: 20px;
+        text-align: center;
+    }
+}
