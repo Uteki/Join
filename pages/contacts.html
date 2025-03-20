@@ -122,12 +122,12 @@
             </div>
 
             <menu class="dd-menu d-none">
-                <li><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
-                <li><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
+                <li onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
+                <li onclick="deleteContact()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
             </menu>
 
             <div class="btn-mobile">
-                <button class="button dark-bg-btn d-none"><img src="../assets/svg/contact-icons/more_vert.svg" alt="..."></button>
+                <button class="button dark-bg-btn d-none" onclick="mobileCrudMenu()"><img src="../assets/svg/contact-icons/more_vert.svg" alt="..."></button>
             </div>
         </div>
     </main>

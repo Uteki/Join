@@ -2,7 +2,7 @@ const modal = document.getElementById("myModal");
 
 function closeModal(e) {
     if (e.target === modal) {
-        quitModal()
+        quitModal();
     }
 }
 
@@ -13,7 +13,7 @@ function quitModal() {
         modal.close();
         modal.classList.remove("tl-out");
         document.querySelectorAll("#edit-modal, #add-modal").forEach((id) => id.classList.add('d-none'));
-    }, 500);
+    }, 500)
 }
 
 function openModal(dialog) {
@@ -21,3 +21,16 @@ function openModal(dialog) {
     modal.showModal()
 }
 
+function mobileCrudMenu() {
+    const menu = document.getElementsByClassName("dd-menu").item(0);
+    menu.classList.toggle("d-none");
+
+    requestAnimationFrame(() => {
+        document.onclick = function (event) {
+            if (!menu.contains(event.target)) {
+                menu.classList.add("d-none");
+                document.onclick = null;
+            }
+        }
+    })
+}
