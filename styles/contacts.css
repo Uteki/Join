@@ -3,8 +3,8 @@ dialog {
     padding: 0;
     transform: translateX(100vw);
     border: none;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 60px);
+    height: calc(100% - 160px);
     max-width: 1212px;
     max-height: 592px;
     outline: none;
@@ -523,6 +523,91 @@ dialog {
     }
 }
 
+@media (max-width: 764px) {
+    dialog {
+        max-width: 396px;
+        max-height: 760px;
+        width: calc(100% - 30px);
+        height: calc(100% - 60px);
+    }
+
+    #edit-modal, #add-modal {
+        flex-direction: column;
+
+        & .modal-header {
+            flex-basis: 50%;
+
+            & h1 {
+                font-size: 47px;
+            }
+
+            & h2 {
+                font-size: 20px;
+            }
+
+            & img {
+                display: none;
+            }
+
+            & div {
+                margin-bottom: 0;
+            }
+        }
+
+        & .modal-body {
+            flex-basis: 50%;
+            padding-top: 60px;
+
+            & .abbr-wrapper {
+                height: 1px;
+                align-items: center;
+                position: absolute;
+                margin: auto;
+                inset: 0;
+            }
+
+            & form {
+                margin-right: 0;
+                flex-basis: 90%;
+
+                & .input-group {
+                    margin-bottom: 8px;
+
+                    & input {
+                        height: 41px;
+                    }
+                }
+            }
+
+            & .btn-group {
+                display: flex;
+                justify-content: center;
+
+                & button {
+                    height: 51px;
+                }
+            }
+        }
+    }
+
+    #add-modal {
+        .btn-group {
+            button:first-child {
+                display: none;
+            }
+        }
+    }
+
+    .btn-close {
+        top: 30px;
+        right: 30px;
+
+        & img {
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7470%) hue-rotate(116deg) brightness(109%) contrast(109%);
+        }
+    }
+}
+
 @media (min-width: 671px) {
     #con-display {
         display: unset !important;
@@ -586,6 +671,50 @@ dialog {
                     margin-left: 20px;
                 }
             }
+        }
+    }
+}
+
+.dd-menu {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    right: 5px;
+    width: 116px;
+    height: 100px;
+    background-color: white;
+    box-shadow: 0 4px 4px 0 #00000040;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 20px 20px 0 20px;
+
+    & li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        padding: 5px;
+
+        &:hover {
+            color: var(--secondary-blue);
+            background: #eeeeee;
+            border-radius: 15px;
+
+            & img {
+                filter: brightness(0) saturate(100%) invert(56%) sepia(98%) saturate(1060%) hue-rotate(166deg) brightness(92%) contrast(93%);
+            }
+        }
+
+        &::marker {
+            content: "";
+        }
+
+        & i {
+            margin-right: 10px;
+            transform: translateY(1px);
         }
     }
 }
