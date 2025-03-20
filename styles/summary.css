@@ -161,3 +161,17 @@
         font-weight: 700;
     }
 }
+
+.summary-greeting{
+    & span:nth-child(1){
+        color: var(--primary-blue);
+        font-size: 47px;
+        font-weight: 500;
+    }
+
+    & .summary-user-name{
+        color: var(--secondary-blue);
+        font-size: 64px;
+        font-weight: 700;
+    }
+}
