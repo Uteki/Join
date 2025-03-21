@@ -266,7 +266,7 @@ dialog {
         justify-content: center;
 
         & div {
-            margin-bottom: 20%;
+            margin: 0 20px 20% 20px;
         }
 
         & h1 {
@@ -328,6 +328,7 @@ dialog {
 
                 &:first-child {
                     margin-right: 20px;
+                    margin-bottom: 10px;
                 }
 
                 & i {
@@ -594,7 +595,7 @@ dialog {
             }
 
             & div {
-                margin-bottom: 0;
+                margin: 0;
             }
         }
 
@@ -629,6 +630,10 @@ dialog {
 
                 & button {
                     height: 51px;
+
+                    &:first-child {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
