@@ -639,6 +639,10 @@ dialog {
         }
     }
 
+    #con-display {
+        flex-basis: 100%;
+    }
+
     #add-modal {
         .btn-group {
             button:first-child {
