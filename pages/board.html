@@ -8,12 +8,15 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
     <link rel="stylesheet" href="../style.css">
+    <script src="../scripts/template.js" defer></script>
     <script src="../script.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/dragdrop.js" defer></script>
+    <script src="../scripts/board.js" defer></script>
+
 </head>
 
-<body>
+<body onload="renderTasks()">
     <header class="header-bar">
         <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
@@ -72,178 +75,9 @@
             <button class="board-add-task-button-mobile"><img src="../assets/svg/plus-white.svg" alt=""></button>
         </section>
 
-        <section class="board-content">
+        <section class="board-content" id="boardContent">
 
-            <div class="board-column">
-                <div class="board-column-header">
-                    <h2>To do</h2>
-                    <button type="button">+</button>
-                </div>
-                <div class="board-column-tasks">
-                    <div class="board-task-container" draggable="true">
-                        <span class="board-task-category">User Story</span>
-                        <div class="board-task-description">
-                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
-                            <p>Create a contact form and imprint page...</p>
-                        </div>
-                        <div class="board-task-progress-container">
-                            <div class="board-task-progress-bar-container">
-                                <div class="board-task-progress-bar"></div>
-                            </div>
-                            <span class="board-task-progress">1/2 Subtasks</span>
-                        </div>
-                        <div class="board-task-bottom-container">
-                            <div class="board-task-involved">
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                            </div>
-                            <img src="../assets/svg/Property 1=Low.svg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="board-task-container" draggable="true">
-                        <span class="board-task-category">User Story</span>
-                        <div class="board-task-description">
-                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
-                            <p>Create a contact form and imprint page...</p>
-                        </div>
-                        <div class="board-task-progress-container">
-                            <div class="board-task-progress-bar-container">
-                                <div class="board-task-progress-bar"></div>
-                            </div>
-                            <span class="board-task-progress">1/2 Subtasks</span>
-                        </div>
-                        <div class="board-task-bottom-container">
-                            <div class="board-task-involved">
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                            </div>
-                            <img src="../assets/svg/Property 1=Low.svg" alt="">
-                        </div>
-                    </div>
-
-
-                    <div class="board-task-container" draggable="true">
-                        <span class="board-task-category">User Story</span>
-                        <div class="board-task-description">
-                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
-                            <p>Create a contact form and imprint page...</p>
-                        </div>
-                        <div class="board-task-progress-container">
-                            <div class="board-task-progress-bar-container">
-                                <div class="board-task-progress-bar"></div>
-                            </div>
-                            <span class="board-task-progress">1/2 Subtasks</span>
-                        </div>
-                        <div class="board-task-bottom-container">
-                            <div class="board-task-involved">
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                            </div>
-                            <img src="../assets/svg/Property 1=Low.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- new column -->
-
-            <div class="board-column">
-                <div class="board-column-header">
-                    <h2>To do</h2>
-                    <button type="button">+</button>
-                </div>
-                <div class="board-column-tasks">
-                    <div class="board-task-container" draggable="true">
-                        <span class="board-task-category">User Story</span>
-                        <div class="board-task-description">
-                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
-                            <p>Create a contact form and imprint page...</p>
-                        </div>
-                        <div class="board-task-progress-container">
-                            <div class="board-task-progress-bar-container">
-                                <div class="board-task-progress-bar"></div>
-                            </div>
-                            <span class="board-task-progress">1/2 Subtasks</span>
-                        </div>
-                        <div class="board-task-bottom-container">
-                            <div class="board-task-involved">
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                            </div>
-                            <img src="../assets/svg/Property 1=Low.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- new column -->
-
-            <div class="board-column">
-                <div class="board-column-header">
-                    <h2>To do</h2>
-                    <button type="button">+</button>
-                </div>
-                <div class="board-column-tasks">
-                    <div class="board-task-container" draggable="true">
-                        <span class="board-task-category">User Story</span>
-                        <div class="board-task-description">
-                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
-                            <p>Create a contact form and imprint page...</p>
-                        </div>
-                        <div class="board-task-progress-container">
-                            <div class="board-task-progress-bar-container">
-                                <div class="board-task-progress-bar"></div>
-                            </div>
-                            <span class="board-task-progress">1/2 Subtasks</span>
-                        </div>
-                        <div class="board-task-bottom-container">
-                            <div class="board-task-involved">
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                            </div>
-                            <img src="../assets/svg/Property 1=Low.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- new column -->
-
-            <div class="board-column">
-                <div class="board-column-header">
-                    <h2>To do</h2>
-                    <button type="button">+</button>
-                </div>
-                <div class="board-column-tasks">
-                    <div class="board-task-container" draggable="true">
-                        <span class="board-task-category">User Story</span>
-                        <div class="board-task-description">
-                            <h3 class="board-task-container-title">Contact Form & Imprint</h3>
-                            <p>Create a contact form and imprint page...</p>
-                        </div>
-                        <div class="board-task-progress-container">
-                            <div class="board-task-progress-bar-container">
-                                <div class="board-task-progress-bar"></div>
-                            </div>
-                            <span class="board-task-progress">1/2 Subtasks</span>
-                        </div>
-                        <div class="board-task-bottom-container">
-                            <div class="board-task-involved">
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                                <div class="board-task-initial">SM</div>
-                            </div>
-                            <img src="../assets/svg/Property 1=Low.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
                 
         </section>
     </main>
