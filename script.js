@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-f9561-default-rtdb.europe-west1.firebasedatabase.app/join/";
+const BASE_URL = firebaseConfig.databaseURL + "/join/";
 
 let user = [];
 let contactList = [];

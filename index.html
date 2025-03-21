@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Join</title>
+
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
     <link rel="stylesheet" href="./style.css">
 
+    <script src="./scripts/firebase.js" defer></script>
+    <script src="./scripts/utils.js" defer></script>
     <script src="./script.js" defer></script>
-    <script src="./scripts/login.js"></script>
+
+    <script type="module" src="./scripts/login.js" defer></script>
 </head>
 
 <body id="start-page">
@@ -24,7 +29,7 @@
         </header>
 
         <main>
-            <form id="login-form" action="./pages/join.html" method="POST">
+            <form id="login-form" method="POST">
                 <h1>Log in</h1>
 
                 <div class="input-group">
@@ -40,7 +45,7 @@
                 </div>
 
                 <div class="btn-group">
-                    <button class="button dark-bg-btn" type="submit">Log in</button>
+                    <button id="sub-login" class="button dark-bg-btn" type="submit">Log in</button>
                     <button class="button outline-btn" onclick="window.location.href='./pages/summary.html'">Guest Log in</button>
                 </div>
             </form>
@@ -56,8 +61,8 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="email"></label>
-                    <input type="email" name="email" id="email" placeholder="Email" autocomplete="off" required>
+                    <label for="mail-sign"></label>
+                    <input type="email" name="email" id="mail-sign" placeholder="Email" autocomplete="off" required>
                     <i><img src="assets/svg/form-icons/mail.svg" alt="Mail"></i>
                 </div>
 
@@ -82,7 +87,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="button dark-bg-btn">Sign up</button>
+                <button id="sign-sub" type="submit" class="button dark-bg-btn">Sign up</button>
             </form>
         </main>
 

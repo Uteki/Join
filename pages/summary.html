@@ -8,8 +8,12 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="../style.css">
-    <script src="../script.js" defer></script>
+
+    <script src="../scripts/firebase.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
+    <script src="../script.js" defer></script>
+
+    <script type="module" src="../scripts/state.js" defer></script>
 </head>
 
 <body onload="init()">
@@ -26,7 +30,7 @@
             <div class="logout-menu d-none" id="logout-menu">
                 <a href="./legal-notice.html">Legal Notice</a>
                 <a href="./privacy-policy.html">Privacy Policy</a>
-                <a href="#" onclick="logout()">Logout</a>
+                <a href="" id="log-out">Logout</a>
             </div>
         </div>
     </header>
