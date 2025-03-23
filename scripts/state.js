@@ -26,7 +26,8 @@ onAuthStateChanged(auth, (user) => {
         // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
         //TODO: get data from uid?
-        console.log(user);
+        console.log(user, user.displayName);
+        document.getElementsByClassName("summary-user-name")[0].innerHTML = user.displayName;
         // ...
     } else {
         // User is signed out

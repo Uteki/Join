@@ -15,7 +15,7 @@ submitSignIn.addEventListener("click", function (event) {
     const password = document.getElementById("pw-sign").value;
     const name = document.getElementById("name").value;
 
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password, name)
         .then((userCredential) => {
             const user = userCredential.user;
 
