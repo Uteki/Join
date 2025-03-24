@@ -100,7 +100,7 @@
     align-items: center;
     flex-direction: column;
     width: 240px;
-    gap: 32px;
+    gap: 8px;
 }
 
 .board-column-header{
@@ -135,6 +135,19 @@
 .board-column-header button:hover{
     color: var(--secondary-blue);
     border-color: var(--secondary-blue);
+}
+
+.board-empty-column{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 48px;
+    background-color: var(--empty-board-column-bg);
+    color: var(--unselected-grey-dark);
+    border-radius: 10px;
+    border: 1px dashed var(--unselected-grey-dark);
 }
 
 .board-column-tasks{
@@ -196,8 +209,7 @@
 }
 
 .board-task-progress-bar-container{
-    width: 100%;
-    max-width: 120px;
+    width: 120px;
     background-color: var(--primary-background-color);
     border-radius: 8px;
     height: 8px;
@@ -212,7 +224,6 @@
     color: white;
     font-weight: bold;
     transition: width 0.3s ease;
-    width: 50%;
     border-radius: 8px;
 }
 
