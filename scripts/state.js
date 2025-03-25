@@ -6,31 +6,42 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const logOut = document.getElementById("log-out");
+const userIn = JSON.parse(localStorage.getItem("user"));
+
+if (userIn) {
+    let name = userIn.displayName.trim();
+    let abbr = name.indexOf(" ");
+    let initials = name.slice(0, 1);
+
+    if (abbr !== -1) {
+        initials += name.slice(abbr + 1, abbr + 2);
+    }
+
+    document.getElementsByClassName("user-initials")[0].textContent = initials;
+    document.getElementsByClassName("summary-user-name")[0].textContent = name;
+}
 
 logOut.addEventListener("click", function (event) {
     signOut(auth).then(() => {
         alert("Logged out");
-        console.log(window.location.origin);
+
+        localStorage.removeItem("user");
         window.location.replace("../index.html");
     })
     .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorCode + errorMessage);
+        console.error(error);
+        alert(error.code + " " + error.message);
     })
 })
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
         //TODO: get data from uid?
-        console.log(user, user.displayName);
         document.getElementsByClassName("summary-user-name")[0].innerHTML = user.displayName;
         // ...
     } else {
-        // User is signed out
-        // ...
+        localStorage.removeItem("user");
+        window.location.replace("../index.html");
     }
 });
