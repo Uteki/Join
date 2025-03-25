@@ -1,7 +1,6 @@
-const logoutMenu = document.getElementById('logout-menu')
-
 function toggleLogoutMenu(){
-    logoutMenu.classList.toggle('d-none')
+    const logoutMenu = document.getElementById('logout-menu')
+    logoutMenu.classList.toggle('d-none');
 }
 
 function toggleContactMenu(){
