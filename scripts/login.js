@@ -18,9 +18,9 @@ submitSignIn.addEventListener("click", async function (event) {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        setStorage(user);
 
         await updateProfile(user, { displayName: name });
+        await setStorage(user);
         await setUserData(user.uid, name, email);
 
         alert("Creating");
