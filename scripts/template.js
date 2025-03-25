@@ -1,3 +1,5 @@
+// Contact
+
 function contactTemplate (abbr, name, mail, number) {
     return `<article>
         <div>
@@ -41,4 +43,59 @@ function contactButtonTemplate (abbr, name, mail) {
         </div>
     </button>
     `
+}
+
+// Board
+
+function boardColumnTemplate (column, index){
+    return `
+        <div class="board-column" id="boardColumn${index}">
+            <div class="board-column-header">
+                <h2>${column.name}</h2>
+                <button type="button">+</button>
+            </div>
+            <div class="board-column-tasks" id="boardColumnTasks${index}" ondrop="dropHandler(event, ${index})" ondragover="allowDrop(event)">
+            </div>   
+        </div>   
+        `
+}
+
+function boardTaskTemplate (task){
+    return `
+        <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})">
+            <span class="board-task-category">${task.category}</span>
+            <div class="board-task-description">
+                <h3 class="board-task-container-title">${task.title}</h3>
+                <p>${task.description}</p>
+            </div>
+            <div class="board-task-progress-container">
+                <div class="board-task-progress-bar-container">
+                    <div class="board-task-progress-bar" style="width: ${progressBarWidth(task.subtasks)}"></div>
+                </div>
+                <span class="board-task-progress">${finishedTasks(task.subtasks)}/${task.subtasks.length} Subtasks</span>
+            </div>
+            <div class="board-task-bottom-container">
+                <div class="board-task-involved">
+                    
+                    <div class="board-task-initial">SM</div>
+                    <div class="board-task-initial">SM</div>
+                </div>
+                <img src="../assets/svg/Property 1=${task.priority}.svg" alt="">
+            </div>
+        </div>
+        `
+}
+
+function boardTaskInitalsTemplate(){
+    return `
+        <div class="board-task-initial"></div>
+    `
+}
+
+function boardTaskTemplateEmpty(){
+    return `
+    <div class="board-empty-column">
+        No tasks To do
+    </div>
+`
 }

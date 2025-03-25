@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #privacy-policy {
+=======
+#legal-policy {
+>>>>>>> ebc239286ac83e72f953a773d79d3a585c70daa4
     & h1 {
         font-size: 2.5rem;
         padding-top: 96px;
@@ -19,18 +23,23 @@
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ebc239286ac83e72f953a773d79d3a585c70daa4
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem; /
-    }
+    #legal-policy {
+        & h1 {
+            font-size: 2rem; /
+        }
 
-    h2 {
-        font-size: 1.5rem; 
-        margin-top: 50px; 
-    }
+        & h2 {
+            font-size: 1.5rem;
+            margin-top: 50px;
+        }
 
-    p {
-        margin: 50px 20px; 
+        & p {
+            margin: 50px 20px;
+        }
     }
 }
