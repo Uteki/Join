@@ -1,5 +1,3 @@
-const boardContent = document.getElementById('boardContent')
-
 let currentDraggedElement;
 
 // Render functions
@@ -7,10 +5,10 @@ let currentDraggedElement;
 async function renderTasks() {
     await init();
     await renderColumns();
-
 }
 
 async function renderColumns() {
+    const boardContent = document.getElementById('boardContent')
     boardContent.innerHTML = '';
     for (let index = 0; index < taskList.length; index++) {
         const element = taskList[index];
@@ -24,7 +22,7 @@ function renderTaskContainer(tasks, columnIndex) {
     if (tasks.length > 0) {
         for (let index = 0; index < tasks.length; index++) {
             const element = tasks[index];
-            boardColumnTasks.innerHTML += boardTaskTemplate(element, index);
+            boardColumnTasks.innerHTML += boardTaskTemplate(element, columnIndex);
         }
     } else {
         boardColumnTasks.innerHTML += boardTaskTemplateEmpty();
@@ -75,5 +73,44 @@ async function moveTaskToColumn(taskId, targetColumnIndex) {
     }
     await updateTaskList();
     renderTasks();
+}
+
+// Overlay
+function openTaskOverlay(taskId, columnIndex){
+    const body = document.querySelector('body')
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    const task = taskList[columnIndex].tasks[taskIndex]
+    body.innerHTML += boardOverlayTemplate(task);
+    renderOverlayAssignedTo(task);
+    renderOverlaySubtasks(task, columnIndex, taskIndex);
+}
+
+async function closeTaskOverlay(){
+    const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
+    taskOverviewOverlay.remove()
+    await updateTaskList();
+    renderTasks();
+}
+
+function renderOverlayAssignedTo(task){
+    const taskOverviewAssignedContainer = document.getElementById('taskOverviewAssignedContainer')
+    for (let index = 0; index < task.assignedTo.length; index++) {
+        const element = task.assignedTo[index];
+        taskOverviewAssignedContainer.innerHTML += overviewAssignedTemplate(element);
+    }
+};
+
+function renderOverlaySubtasks(task, columnIndex, taskIndex){
+    const taskOverviewSubtasks = document.getElementById('taskOverviewSubtasks')
+    for (let index = 0; index < task.subtasks.length; index++) {
+        const element = task.subtasks[index];
+        taskOverviewSubtasks.innerHTML += overviewSubtaskTemplate(element, columnIndex, taskIndex, index);
+    }
+};
+
+function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex){
+    const task = taskList[columnIndex].tasks[taskIndex]
+    task.subtasks[subtaskIndex].finished = !task.subtasks[subtaskIndex].finished;
 }
 

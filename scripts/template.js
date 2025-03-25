@@ -60,9 +60,9 @@ function boardColumnTemplate (column, index){
         `
 }
 
-function boardTaskTemplate (task){
+function boardTaskTemplate (task, columnIndex){
     return `
-        <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})">
+        <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})" onclick="openTaskOverlay(${task.id}, ${columnIndex})">
             <span class="board-task-category">${task.category}</span>
             <div class="board-task-description">
                 <h3 class="board-task-container-title">${task.title}</h3>
@@ -97,5 +97,53 @@ function boardTaskTemplateEmpty(){
     <div class="board-empty-column">
         No tasks To do
     </div>
+`
+}
+
+function boardOverlayTemplate(task){
+    return `
+    <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
+        <div class="task-overview-container"  id="taskOverviewOverlayContainer" onclick="event.stopPropagation()">
+            <div class="task-overview-category">
+                <span>${task.category}</span>
+                <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
+            </div>
+            <h3>
+                ${task.title}
+            </h3>
+            <span class="task-overview-description">${task.description}</span>
+            <span class="task-overview-date task-overview-feature">Due Date: <span class="task-overview-due-date">${task.dueDate}</span></span>
+            <span class="task-overview-priority task-overview-feature">Priority: <span>${task.priority} <img src="../assets/svg/Property 1=${task.priority}.svg" alt=""></span></span>
+            <div class="task-overview-assigned-container" id="taskOverviewAssignedContainer">
+                	<span class="task-overview-feature">Assigned To:</span>
+
+            </div>
+            <div class="task-overview-subtasks" id="taskOverviewSubtasks">
+                <span class="task-overview-feature">Subtasks:</span>
+                
+            </div>
+            <div class="task-overview-edit-buttons">
+                <button><img src="../assets/svg/delete.svg" alt="">Delete</button>
+                <div class="task-overview-divider"></div>
+                <button><img src="../assets/svg/summary-icons/edit-dark.svg" alt="">Edit</button>
+            </div>
+        </div>
+    </section>
+`
+}
+
+// user implementation is missing
+function overviewAssignedTemplate(contact){
+    return `
+        <div><span class="task-overview-initials">EM</span> <span>Emmanuel Mauer</span></div>
+`
+}
+
+function overviewSubtaskTemplate(subtask, columnIndex, taskIndex, subtaskIndex){
+    return `
+        <div>
+            <input type="checkbox" id="subtask${subtask.id}" ${subtask.finished ? "checked" : ""} onclick="toggleSubtaskCheckbox(${columnIndex}, ${taskIndex}, ${subtaskIndex})">
+            <label for="subtask${subtask.id}">${subtask.description}</label>
+        </div>
 `
 }
