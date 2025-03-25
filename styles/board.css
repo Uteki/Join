@@ -252,7 +252,7 @@
     aspect-ratio: 1/1;
     height: 40px;
     padding: 6px;
-    margin-left: -15px;
+    margin-left: -10px;
     background-color: rgb(15, 141, 65);
     color: white;
     display: flex;
@@ -324,6 +324,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
 }
 
 .task-overview-container {

@@ -22,3 +22,15 @@ function showPassword() {
         value.type = "password";
     }
 }
+
+function getContactInitials(contactName){
+    let name = contactName.trim();
+    let abbr = name.indexOf(" ");
+    let initials = name.slice(0, 1);
+
+    if (abbr !== -1) {
+        initials += name.slice(abbr + 1, abbr + 2);
+    }
+
+    return initials;
+}

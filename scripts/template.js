@@ -75,10 +75,8 @@ function boardTaskTemplate (task, columnIndex){
                 <span class="board-task-progress">${finishedTasks(task.subtasks)}/${task.subtasks.length} Subtasks</span>
             </div>
             <div class="board-task-bottom-container">
-                <div class="board-task-involved">
+                <div class="board-task-involved" id="boardTaskInvolved${task.id}">
                     
-                    <div class="board-task-initial">SM</div>
-                    <div class="board-task-initial">SM</div>
                 </div>
                 <img src="../assets/svg/Property 1=${task.priority}.svg" alt="">
             </div>
@@ -86,9 +84,9 @@ function boardTaskTemplate (task, columnIndex){
         `
 }
 
-function boardTaskInitalsTemplate(){
+function boardTaskInitalsTemplate(contact){
     return `
-        <div class="board-task-initial"></div>
+        <div class="board-task-initial">${getContactInitials(contact.name)}</div>
     `
 }
 
@@ -135,7 +133,7 @@ function boardOverlayTemplate(task){
 // user implementation is missing
 function overviewAssignedTemplate(contact){
     return `
-        <div><span class="task-overview-initials">EM</span> <span>Emmanuel Mauer</span></div>
+        <div><span class="task-overview-initials">${getContactInitials(contact.name)}</span> <span>${contact.name}</span></div>
 `
 }
 

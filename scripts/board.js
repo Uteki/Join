@@ -23,9 +23,18 @@ function renderTaskContainer(tasks, columnIndex) {
         for (let index = 0; index < tasks.length; index++) {
             const element = tasks[index];
             boardColumnTasks.innerHTML += boardTaskTemplate(element, columnIndex);
+            renderTaskAssignedTo(element.assignedTo, element.id);
         }
     } else {
         boardColumnTasks.innerHTML += boardTaskTemplateEmpty();
+    }
+}
+
+function renderTaskAssignedTo(assignedContacts, id){
+    const boardTaskInvolved = document.getElementById(`boardTaskInvolved${id}`)
+    for (let index = 0; index < assignedContacts.length; index++) {
+        const element = assignedContacts[index];
+        boardTaskInvolved.innerHTML += boardTaskInitalsTemplate(findContact(element));
     }
 }
 
@@ -97,9 +106,14 @@ function renderOverlayAssignedTo(task){
     const taskOverviewAssignedContainer = document.getElementById('taskOverviewAssignedContainer')
     for (let index = 0; index < task.assignedTo.length; index++) {
         const element = task.assignedTo[index];
-        taskOverviewAssignedContainer.innerHTML += overviewAssignedTemplate(element);
+        taskOverviewAssignedContainer.innerHTML += overviewAssignedTemplate(findContact(element));
     }
 };
+
+function findContact(id){
+    const contactIndex = contactList.findIndex((element) => element.id === id);
+    return contactList[contactIndex] 
+}
 
 function renderOverlaySubtasks(task, columnIndex, taskIndex){
     const taskOverviewSubtasks = document.getElementById('taskOverviewSubtasks')
