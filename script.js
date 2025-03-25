@@ -14,13 +14,12 @@ async function connect() {
 
     user = json.user;
     contactList = json.contactList;
-    // taskList = json.taskList;
     taskList = await JSON.parse(json.tasks);
 }
 
 
 async function updateTaskList() {
-    let response = await fetch(BASE_URL + '.json', {
+    await fetch(BASE_URL + '.json', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -29,8 +28,4 @@ async function updateTaskList() {
             tasks: JSON.stringify(taskList),
           })
     });
-    console.log(response)
-
 }
-
-
