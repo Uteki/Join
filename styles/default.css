@@ -16,8 +16,9 @@
     --mail-color: #007CEE;
     --accent-blue: #0038FF;
     --urgent-orange: #FF3D00;
+    --medium-yellow: #FFA800;
+    --low-green: #7AE229;
     --empty-board-column-bg: #E7E7E7;
-
 }
 
 body {
