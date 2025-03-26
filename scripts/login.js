@@ -1,12 +1,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const submitSignIn = document.getElementById("sign-sub");
 const submitLogin = document.getElementById("sub-login");
+const guestLogin = document.getElementById("g-login");
 
 submitSignIn.addEventListener("click", async function (event) {
     event.preventDefault();
@@ -50,6 +51,25 @@ submitLogin.addEventListener("click", function (event) {
             console.error(error);
             alert(error.code + " " + error.message);
         });
+})
+
+guestLogin.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    signInAnonymously(auth)
+        .then((test) => {
+            let boy = test.user;
+
+            updateProfile(boy, { displayName: 'Guest' })
+                .then(() => {
+                    setStorage(boy);
+                    window.location.href = "../pages/summary.html";
+                })
+        })
+        .catch((error) => {
+            console.error(error);
+            alert(error.code + " " + error.message);
+        })
 })
 
 function setUserData(userId, name, email) {
