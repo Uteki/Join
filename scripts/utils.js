@@ -34,3 +34,7 @@ function getContactInitials(contactName){
 
     return initials;
 }
+
+function toggleVisibility(id){
+    document.getElementById(`${id}`).classList.toggle('d-none')
+}
