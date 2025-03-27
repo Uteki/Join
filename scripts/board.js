@@ -211,6 +211,25 @@ function deleteSubtask(subtaskId){
     const subtaskMatchesId = (element) => element.id === subtaskId;
     const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
     editTask.subtasks.splice(subTaskIndex, 1)
+    clearInnerHtml('subtaskEditorContainer')
+    rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
+function startSubtaskEditing(subtaskId){
+    const subtaskEditorContainer = document.getElementById('subtaskEditorContainer')
+    clearInnerHtml('taskOverlaySubtasksList')
+    const subtaskMatchesId = (element) => element.id === subtaskId;
+    const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
+    const subtask = editTask.subtasks[subTaskIndex]
+    subtaskEditorContainer.innerHTML += editorSubtaskEditorTemplate(subtask);
+}
+
+function changeSubtaskDescription(subtaskId){
+    const editSubtaskInput = document.getElementById('editSubtaskInput')
+    const subtaskMatchesId = (element) => element.id === subtaskId;
+    const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
+    editTask.subtasks[subTaskIndex].description = editSubtaskInput.value
+    clearInnerHtml('subtaskEditorContainer')
     rendertaskOverviewSubtasksList(editTask.subtasks);
 }
 

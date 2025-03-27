@@ -765,6 +765,60 @@
     }
 }
 
+.task-subtask-editor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    & input{
+        padding-right: 100px;
+    }
+
+    & .task-subtask-editor-buttons{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+        background-color: white;
+        gap: 8px;
+        
+    }
+
+    & button{
+        background-color: transparent;
+        padding: 5px;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & img{
+            width: 20px;
+        }
+
+        &:hover{
+            background-color:white;
+        }
+    }
+
+    & span{
+        display: block;
+        width: 1px;
+        height: 20px;
+        background-color: var(--placeholder-grey);
+    }
+}
+
+
+
+
+
 .task-overlay-editor-confirm-button {
     display: flex;
     align-items: center;
