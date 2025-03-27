@@ -179,7 +179,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 </div>
                 <div class="task-overview-feature task-overview-editor-form-content" id="taskOverviewSubtasks">
                     <span class="task-overview-feature">Subtasks:</span>
-                    <input type="text"/>
+                    <input type="text" placeholder="Add new subtask"/>
                     <ul id="taskOverlaySubtasksList" class="task-overlay-subtask-list">
 
                     </ul>

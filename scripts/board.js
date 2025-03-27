@@ -1,4 +1,5 @@
 let currentDraggedElement;
+let filteredTasks = [];
 
 // Render functions
 
@@ -179,6 +180,51 @@ function closeAssignedSelection(){
 function openAssignedSelection(){
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
     taskOverlayEditorAssignedSelection.classList.remove('d-none')
+}
+
+// Board Task filter functions
+
+function filterTasks(){
+    const query = document.getElementById('boardSearchInput').value
+    const filteredTasks = searchTasks(query);
+    console.log(filteredTasks)
+    renderfilteredTasks(filteredTasks);
+}
+
+function searchTasks(query){
+    const lowerQuery = query.toLowerCase();
+    return taskList
+      .map(category => {
+        // Filtere das tasks-Array für jede Kategorie
+        const filteredTasks = category.tasks.filter(task =>
+          task.title.toLowerCase().includes(lowerQuery)
+        );
+        return {
+          ...category,
+          tasks: filteredTasks
+        };
+      });
+
+//     for (let index = 0; index < taskList.length; index++) {
+//         const element = taskList[index];
+//         let filteredColumn = {
+//             name: element.name,
+//             tasks: null,
+//         }
+//         filteredColumn.tasks = element.tasks.filter((task) => task.title.includes(document.getElementById('boardSearchInput').value))
+//         filteredTasks.push(filteredColumn)
+//         console.log(filteredColumn)
+//     }
+}
+
+function renderfilteredTasks(filteredTasks){
+    const boardContent = document.getElementById('boardContent')
+    boardContent.innerHTML = '';
+    for (let index = 0; index < filteredTasks.length; index++) {
+        const element = filteredTasks[index];
+        boardContent.innerHTML += boardColumnTemplate(element, index);
+        renderTaskContainer(element.tasks, index);
+    }
 }
 
 

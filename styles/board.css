@@ -695,7 +695,7 @@
 .task-overlay-subtask-list{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 }
 
 .task-overlay-editor-subtask{
@@ -703,6 +703,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+
+
+    &:hover{
+        background-color: var(--unselected-grey);
+    }
 }
 
 .task-overlay-editor-subtask-buttons{
@@ -712,9 +719,20 @@
     gap: 4px;
     & button{
         background-color: transparent;
+        padding: 5px;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         & img{
             height: 20px;
+        }
+
+        &:hover{
+            background-color:white;
         }
     }
 
@@ -746,6 +764,10 @@
 
         & img{
            width: 16px; 
+        }
+
+        &:hover{
+            background-color: var(--secondary-blue);
         }
     }
 }
