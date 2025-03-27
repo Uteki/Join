@@ -1,5 +1,6 @@
 let currentDraggedElement;
 let filteredTasks = [];
+let editTask;
 
 // Render functions
 
@@ -10,7 +11,7 @@ async function renderTasks() {
 
 async function renderColumns() {
     const boardContent = document.getElementById('boardContent')
-    boardContent.innerHTML = '';
+    clearInnerHtml('boardContent');
     for (let index = 0; index < taskList.length; index++) {
         const element = taskList[index];
         boardContent.innerHTML += boardColumnTemplate(element, index);
@@ -135,6 +136,14 @@ async function startOverlayEditor(taskId, columnIndex){
     const taskOverviewOverlayContainer = document.getElementById('taskOverviewOverlayContainer')
     taskOverviewOverlayContainer.remove()
     renderOverlayEditor(taskId, columnIndex);
+    createTaskCopy(taskId, columnIndex);
+}
+
+function createTaskCopy(taskId, columnIndex){
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    editTask = JSON.parse(JSON.stringify(taskList[columnIndex].tasks[taskIndex]));
+    console.log(editTask)
 }
 
 function renderOverlayEditor(id, columnIndex){
@@ -166,6 +175,7 @@ function rendertaskOverlayEditorAssignedContacts(assignedList){
 
 function rendertaskOverviewSubtasksList(subtasks){
     const taskOverlaySubtasksList = document.getElementById('taskOverlaySubtasksList')
+    clearInnerHtml('taskOverlaySubtasksList')
     for (let index = 0; index < subtasks.length; index++) {
         const element = subtasks[index];
         taskOverlaySubtasksList.innerHTML += editorSubtaskListTemplate(element);
@@ -182,6 +192,19 @@ function openAssignedSelection(){
     taskOverlayEditorAssignedSelection.classList.remove('d-none')
 }
 
+// Overlay Editor edit functions
+
+function addSubtask(taskId, columnIndex){
+    const newSubtask = {
+        id: 5,
+        description: document.getElementById('addSubtaskInput').value,
+        finished: false,
+    }
+    editTask.subtasks.push(newSubtask)
+    document.getElementById('addSubtaskInput').value = '';
+    rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
 // Board Task filter functions
 
 function filterTasks(){
@@ -195,7 +218,6 @@ function searchTasks(query){
     const lowerQuery = query.toLowerCase();
     return taskList
       .map(category => {
-        // Filtere das tasks-Array für jede Kategorie
         const filteredTasks = category.tasks.filter(task =>
           task.title.toLowerCase().includes(lowerQuery)
         );
@@ -225,7 +247,7 @@ function renderfilteredTasks(filteredTasks){
         boardContent.innerHTML += boardColumnTemplate(element, index);
         renderTaskContainer(element.tasks, index);
     }
-}
+};
 
 
 

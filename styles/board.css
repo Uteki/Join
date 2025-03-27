@@ -692,6 +692,27 @@
     padding-left: 8px;
 }
 
+.task-overlay-editor-add-subtask{
+    display: flex;
+    position: relative;
+
+    & button{
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+        background-color: transparent;
+        font-size: 32px;
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 32px;
+        padding: 0px;
+        aspect-ratio: 1/1;
+    }
+}
+
 .task-overlay-subtask-list{
     display: flex;
     flex-direction: column;
