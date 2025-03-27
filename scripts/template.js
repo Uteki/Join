@@ -218,7 +218,7 @@ function editorSubtaskListTemplate(subtask){
                 <div class="task-overlay-editor-subtask-buttons">
                     <button><img src="../assets/svg/summary-icons/edit-dark.svg"></button>
                         <span></span>
-                    <button><img src="../assets/svg/delete.svg"></button>
+                    <button><img src="../assets/svg/delete.svg" onclick="deleteSubtask(${subtask.id})"></button>
                 </div>
             </div>
         </li>

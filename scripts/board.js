@@ -194,6 +194,8 @@ function openAssignedSelection(){
 
 // Overlay Editor edit functions
 
+// Subtasks
+
 function addSubtask(taskId, columnIndex){
     const newSubtask = {
         id: 5,
@@ -202,6 +204,13 @@ function addSubtask(taskId, columnIndex){
     }
     editTask.subtasks.push(newSubtask)
     document.getElementById('addSubtaskInput').value = '';
+    rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
+function deleteSubtask(subtaskId){
+    const subtaskMatchesId = (element) => element.id === subtaskId;
+    const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
+    editTask.subtasks.splice(subTaskIndex, 1)
     rendertaskOverviewSubtasksList(editTask.subtasks);
 }
 
