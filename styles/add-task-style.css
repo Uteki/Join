@@ -61,6 +61,7 @@ form {
 
 .linksrechts{
     display: flex;
+    padding-left: 94px;
     flex-direction: row;
 }
 
@@ -73,8 +74,12 @@ form {
 
 .add-task{
     width: 100%; 
-    max-width: 800px; 
     margin: 0 auto; 
+}
+
+.add-task-title{
+    padding: 64px;
+    padding-left: 94px;
 }
  
 #taskForm input[type="text"] {
@@ -99,14 +104,37 @@ form {
     outline: none; 
 }
 
-input[type="text"] {
+.add-task input[type="text"],
+.add-task select,
+.add-task textarea {
     border-radius: 10px;
-    padding: 8px; 
-    border: 1px solid #ccc; 
-    font-size: 14px; 
-    width: calc(100% - 16px); 
-    box-sizing: border-box; 
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    max-width: 400px;
 }
+
+.add-task .dropdown {
+   
+}
+
+.add-task textarea {
+    resize: vertical;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .button-group {
     margin-bottom: 20px; 
@@ -127,5 +155,106 @@ input[type="text"] {
 .required-clear-create{ 
     display: flex; 
     align-items: center; 
-    justify-content: space-between; 
+    justify-content: space-between;
+    padding-left: 94px;
+    max-width: 990px;
 }
+
+.dropdown {
+    max-width: 400px;
+    width: 100%; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.checkbox-group {
+    max-width: 400px;  /* Maximale Breite, um es zu begrenzen */
+}
+
+/* Optional: Stil für die Checkboxen */
+.checkbox-group label {
+    display: flex;
+    align-items: center; /* Vertikale Zentrierung des Textes */
+}
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px; /* Abstand zwischen Checkbox und Text */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         /* Dropdown Container */
+         .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 300px; /* Breite des Dropdowns */
+        }
+
+        /* Dropdown Button */
+        .dropdown-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        /* Dropdown Inhalte */
+        .dropdown-content {
+            display: none; /* Standardmäßig versteckt */
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            z-index: 1;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto; /* Scrollbar hinzufügen */
+        }
+
+        /* Checkbox Stil */
+        .dropdown-content label {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+        }
+
+        /* Checkbox Abstand */
+        .dropdown-content input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .dropdown.open .dropdown-content {
+            display: block; /* Dropdown anzeigen */
+        }
+
+        .required {
+            color: red;
+        }

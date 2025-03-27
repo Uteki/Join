@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#privacy-policy {
-=======
 #legal-policy {
->>>>>>> ebc239286ac83e72f953a773d79d3a585c70daa4
     & h1 {
         font-size: 2.5rem;
         padding-top: 96px;
@@ -23,14 +19,10 @@
     }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ebc239286ac83e72f953a773d79d3a585c70daa4
 @media (max-width: 768px) {
     #legal-policy {
         & h1 {
-            font-size: 2rem; /
+            font-size: 2rem; 
         }
 
         & h2 {

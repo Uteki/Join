@@ -56,7 +56,9 @@
     <main>
         <div class="container">
             <div class="add-task">
+                <div class="add-task-title">
             <h1>Add Task</h1>
+        </div>
             <div class="linksrechts"> 
           
                 <div class="left-side">
@@ -77,30 +79,63 @@
                 <div class="right-side">
                     <form>
                         <label for="priority">Priority</label><br>
-                        <div class="button-group">
-                            <button type="button" class="priority-button" data-priority="urgent">
-                                Urgent
-                                <img src="../assets/svg/Property 1=Urgent.svg" alt="Urgent" class="icon">
-                            </button>
-                            <button type="button" class="priority-button" data-priority="medium">
-                                Medium
-                                <img src="../assets/svg/Property 1=Medium.svg" alt="Medium" class="icon">
-                            </button>
-                            <button type="button" class="priority-button" data-priority="low">
-                                Low
-                                <img src="../assets/svg/Property 1=Low.svg" alt="Low" class="icon">
-                            </button>
-                        </div>
-                        <br>                 
-                        <label for="assignedTo">Assigned to</label><br>
-                        <input type="text" id="assignedTo" name="assignedTo" placeholder="Select contacts to assign"><br><br>                   
+                   
+                            <div class="button-group">
+                                <button type="button" class="priority-button" data-priority="urgent" onclick="setPriority(this, 'red')">
+                                    Urgent
+                                    <img src="../assets/svg/Property 1=Urgent.svg" alt="Urgent" class="icon">
+                                </button>
+                                <button type="button" class="priority-button" data-priority="medium" onclick="setPriority(this, 'orange')">
+                                    Medium
+                                    <img src="../assets/svg/Property 1=Medium.svg" alt="Medium" class="icon">
+                                </button>
+                                <button type="button" class="priority-button" data-priority="low" onclick="setPriority(this, 'green')">
+                                    Low
+                                    <img src="../assets/svg/Property 1=Low.svg" alt="Low" class="icon">
+                                </button>
+                            </div>   
+                        <br>      
+
+
+
+
+
+
+// Template 
+
+                        
+          <label for="assignedTo">Assigned to</label><br>
+        <div class="dropdown" id="assignedTo">
+            
+            <div class="dropdown-button">
+                <span>Select contacts to assign</span> 
+            </div>
+            <div class="dropdown-content">
+                <label>
+                    <input type="checkbox" value="max_mustermann"> Max Mustermann
+                </label>
+                <label>
+                    <input type="checkbox" value="tomas_mustermann"> Tomas Mustermann
+                </label>
+                <label>
+                    <input type="checkbox" value="daniel_mustermann"> Daniel Mustermann
+                </label>
+                <label>
+                    <input type="checkbox" value="lucas_mustermann"> Lucas Mustermann
+                </label>
+            </div>
+        </div><br><br>
+
                         <label for="category">Category<span class="required">*</span></label><br>
-                        <input type="text" id="category" name="category" placeholder="Select task category" required><br><br>
-                    
+                        <select id="category" name="category" class="dropdown" required>
+                            <option value="" disabled selected>Select task category</option>
+                            <option value="technical_task">Technical Task</option>
+                            <option value="user_story">User Story</option>
+                        </select><br><br>
                         <label for="subtask">Subtasks</label><br>
                         <input type="text" id="subtask" name="subtask" placeholder="Add new subtask"><br><br>
                     </form>
-                       
+              
                  
                 </div>
            
@@ -115,7 +150,6 @@
                 <input type="submit" value="Create Task">
             </div>
         </div>
-    
     </div>
      
         <script>
@@ -124,7 +158,6 @@
             });
         </script>
     </main>
-
 
 </body>
 
