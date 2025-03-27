@@ -179,10 +179,15 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 </div>
                 <div class="task-overview-feature task-overview-editor-form-content" id="taskOverviewSubtasks">
                     <span class="task-overview-feature">Subtasks:</span>
-                    <input type="text"/>
+                    <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"/><button onclick="addSubtask(${task.id}, ${columnIndex})">+</button></div>
+                    <div id="subtaskEditorContainer">
+
+                    </div>
+                    
                     <ul id="taskOverlaySubtasksList" class="task-overlay-subtask-list">
 
                     </ul>
+
                 </div>
             </div>
             <div class="task-overlay-editor-confirm-button">
@@ -216,11 +221,24 @@ function editorSubtaskListTemplate(subtask){
             <div class="task-overlay-editor-subtask">
                 ${subtask.description}
                 <div class="task-overlay-editor-subtask-buttons">
-                    <button><img src="../assets/svg/summary-icons/edit-dark.svg"></button>
+                    <button onclick="startSubtaskEditing(${subtask.id})"><img src="../assets/svg/summary-icons/edit-dark.svg"></button>
                         <span></span>
-                    <button><img src="../assets/svg/delete.svg"></button>
+                    <button onclick="deleteSubtask(${subtask.id})"><img src="../assets/svg/delete.svg"></button>
                 </div>
             </div>
         </li>
+    `
+}
+
+function editorSubtaskEditorTemplate(subtask){
+    return `
+        <div class="task-subtask-editor">
+        <input type="text" value="${subtask.description}" id="editSubtaskInput"/>
+            <div class="task-subtask-editor-buttons">
+                <button onclick="deleteSubtask(${subtask.id})"><img src="../assets/svg/delete.svg"></button>
+                    <span></span>
+                <button onclick="changeSubtaskDescription(${subtask.id})"><img src="../assets/svg/summary-icons/check-dark.svg"></button>
+            </div>
+        </div>
     `
 }
