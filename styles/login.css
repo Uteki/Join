@@ -103,6 +103,14 @@
             position: absolute;
             transform: translateY(-50%);
             color: var(--unselected-grey-dark);
+
+            & picture {
+                width: 22px;
+                height: 20px;
+                display: block;
+                background-size: cover;
+                background-image: url("../assets/svg/form-icons/visibility_off.svg");
+            }
         }
     }
 

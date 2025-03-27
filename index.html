@@ -40,8 +40,11 @@
 
                 <div class="input-group">
                     <label for="pw-login"></label>
-                    <input type="password" name="password" id="pw-login" placeholder="Password" autocomplete="off" required>
-                    <i><img src="assets/svg/form-icons/lock.svg" alt="Lock"></i>
+                    <input type="password" name="password" id="pw-login" placeholder="Password" autocomplete="off" oninput="inputPassword('pw-login')" required>
+                    <i>
+                        <img src="assets/svg/form-icons/lock.svg" alt="Lock">
+                        <picture class="d-none" onclick="showPassword('pw-login')"></picture>
+                    </i>
                 </div>
 
                 <div class="btn-group">
@@ -68,14 +71,20 @@
 
                 <div class="input-group">
                     <label for="pw-sign"></label>
-                    <input type="password" name="password" id="pw-sign" placeholder="Password" autocomplete="off" required>
-                    <i><img src="assets/svg/form-icons/lock.svg" alt="Lock"></i>
+                    <input type="password" name="password" id="pw-sign" placeholder="Password" autocomplete="off" oninput="inputPassword('pw-sign')" required>
+                    <i>
+                        <img src="assets/svg/form-icons/lock.svg" alt="Lock">
+                        <picture class="d-none" onclick="showPassword('pw-sign')"></picture>
+                    </i>
                 </div>
 
                 <div class="input-group">
                     <label for="pw-signUp"></label>
-                    <input type="password" name="password" id="pw-signUp" placeholder="Confirm Password" autocomplete="off" required>
-                    <i><img src="assets/svg/form-icons/lock.svg" alt="Lock"></i>
+                    <input type="password" name="password" id="pw-signUp" placeholder="Confirm Password" autocomplete="off" oninput="inputPassword('pw-signUp')" required>
+                    <i>
+                        <img src="assets/svg/form-icons/lock.svg" alt="Lock">
+                        <picture class="d-none" onclick="showPassword('pw-signUp')"></picture>
+                    </i>
                 </div>
 
                 <div class="checkbox-group">
