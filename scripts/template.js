@@ -168,7 +168,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
 
                 <div class="task-overview-feature task-overview-editor-form-content" onclick="event.stopPropagation()">
                         <span class="task-overview-feature">Assigned To</span>
-                        <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()">
+                        <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()" oninput="filterContacts()" id="editorContactQueryInput">
                         <div id="taskOverlayEditorAssignedSelection" class="task-overlay-editor-assigned-selection d-none">
 
                         </div>

@@ -1,6 +1,7 @@
 let currentDraggedElement;
 let filteredTasks = [];
 let editTask;
+let filteredContacts;
 
 // Render functions
 
@@ -152,19 +153,19 @@ function renderOverlayEditor(id, columnIndex){
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     const task = taskList[columnIndex].tasks[taskIndex]
     overlay.innerHTML += boardOverlayEditorTemplate(task, columnIndex);
-    renderOverlayEditorAssigned();
+    renderOverlayEditorAssigned(contactList);
     rendertaskOverviewSubtasksList(task.subtasks);
 };
 
-function renderOverlayEditorAssigned(){
+function renderOverlayEditorAssigned(contactsToRender){
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
     clearInnerHtml('taskOverlayEditorAssignedSelection')
-    for (let index = 0; index < contactList.length; index++) {
-        const element = contactList[index];
+    for (let index = 0; index < contactsToRender.length; index++) {
+        const element = contactsToRender[index];
         taskOverlayEditorAssignedSelection.innerHTML += assignedListOptionTemplate(element)
     }
-    for (let index = 0; index < contactList.length; index++) {
-        const element = contactList[index];
+    for (let index = 0; index < contactsToRender.length; index++) {
+        const element = contactsToRender[index];
         checkIfContactIsAssigned(element);
     }
     rendertaskOverlayEditorAssignedContacts();
@@ -189,6 +190,30 @@ function checkIfContactIsAssigned(element){
         checkbox.checked = true;
     } 
 }
+
+function filterContacts(){
+    const query = document.getElementById('editorContactQueryInput').value
+    const filteredContacts = searchContacts(query);
+    console.log(filteredContacts)
+    renderOverlayEditorAssigned(filteredContacts);
+    // renderfilteredContacts(filteredContacts);
+}
+
+function searchContacts(query){
+    const lowerQuery = query.toLowerCase();
+    let filteredContacts = contactList.filter((contact) => contact.name.toLowerCase().includes(lowerQuery));
+    return filteredContacts;
+}
+
+// function renderfilteredContacts(filteredTasks){
+//     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
+//     taskOverlayEditorAssignedSelection.innerHTML = '';
+//     for (let index = 0; index < filteredTasks.length; index++) {
+//         const element = filteredTasks[index];
+//         taskOverlayEditorAssignedSelection.innerHTML += boardColumnTemplate(element, index);
+//         renderTaskContainer(element.tasks, index);
+//     }
+// };
 
 function rendertaskOverviewSubtasksList(subtasks){
     const taskOverlaySubtasksList = document.getElementById('taskOverlaySubtasksList')
@@ -229,6 +254,7 @@ function changeTaskPriority(newPrio){
 }
 
 function toggleContactToTask(contactId){
+    const searchInput = document.getElementById('editorContactQueryInput')
     if(editTask.assignedTo.includes(contactId)){
         const contactIndex = editTask.assignedTo.findIndex((element) => element === contactId);
 
@@ -237,7 +263,8 @@ function toggleContactToTask(contactId){
     } else {
         editTask.assignedTo.push(contactId);
     }
-    renderOverlayEditorAssigned();
+    searchInput.value = '';
+    renderOverlayEditorAssigned(contactList);
 }
 // Subtasks
 
