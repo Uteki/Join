@@ -155,20 +155,20 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
             <div class="task-overlay-editor-form">
-                <div class="task-overview-feature task-overview-editor-form-content">Titel <span class="task-overview-due-date"><input type="text" value="${task.title}"></span></div>
-                <div class="task-overview-feature task-overview-editor-form-content">Description<span class="task-overview-due-date"><textarea>${task.description}</textarea></span></div>
-                <div class="task-overview-feature task-overview-editor-form-content">Due Date<span class="task-overview-due-date"><input type="date" value="${task.dueDate}"></span></div>
+                <div class="task-overview-feature task-overview-editor-form-content">Titel <span class="task-overview-due-date"><input type="text" value="${task.title}" id="editorTitleInput" oninput="changeTitle()"></span></div>
+                <div class="task-overview-feature task-overview-editor-form-content">Description<span class="task-overview-due-date"><textarea id="editorTaskDescriptionInput" oninput="changeTaskDescription()">${task.description}</textarea></span></div>
+                <div class="task-overview-feature task-overview-editor-form-content">Due Date<span class="task-overview-due-date"><input type="date" value="${task.dueDate}" id="editorDateInput" oninput="changeTaskDate()"></span></div>
                 <div class="task-overview-feature task-overview-editor-form-content">Priority
                     <div class="task-overview-priority-buttons">
-                        <button class="task-overview-editor-priority-button">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
-                        <button class="task-overview-editor-priority-button">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
-                        <button class="task-overview-editor-priority-button">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
+                        <button class="task-overview-editor-priority-button" onclick="changeTaskPriority('urgent')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
+                        <button class="task-overview-editor-priority-button" onclick="changeTaskPriority('medium')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
+                        <button class="task-overview-editor-priority-button" onclick="changeTaskPriority('low')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
                     </div>
                 </div>
 
                 <div class="task-overview-feature task-overview-editor-form-content" onclick="event.stopPropagation()">
                         <span class="task-overview-feature">Assigned To</span>
-                        <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()">
+                        <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()" oninput="filterContacts()" id="editorContactQueryInput">
                         <div id="taskOverlayEditorAssignedSelection" class="task-overlay-editor-assigned-selection d-none">
 
                         </div>
@@ -191,7 +191,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 </div>
             </div>
             <div class="task-overlay-editor-confirm-button">
-                <button>Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+                <button onclick="submitTaskChanges(${task.id}, ${columnIndex})">Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
         </div>
 `
@@ -199,12 +199,12 @@ function boardOverlayEditorTemplate(task, columnIndex) {
 
 function assignedListOptionTemplate(contact){
     return `
-        <div class="assigned-list-option"> 
+        <div class="assigned-list-option" onclick="toggleContactToTask(${contact.id})" id="contact${contact.id}"> 
             <div>
                 <span class="task-overview-initials">${getContactInitials(contact.name)}</span>
                 <span>${contact.name}</span>
             </div>
-            <input type="checkbox" class="editor-assigned-list-checkbox">
+            <input type="checkbox" class="editor-assigned-list-checkbox" id="contactCheckbox${contact.id}">
         </div>
     `
 }
