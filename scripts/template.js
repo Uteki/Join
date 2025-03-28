@@ -191,7 +191,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 </div>
             </div>
             <div class="task-overlay-editor-confirm-button">
-                <button>Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+                <button onclick="submitTaskChanges(${task.id}, ${columnIndex})">Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
         </div>
 `

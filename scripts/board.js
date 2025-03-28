@@ -326,17 +326,6 @@ function searchTasks(query){
           tasks: filteredTasks
         };
       });
-
-//     for (let index = 0; index < taskList.length; index++) {
-//         const element = taskList[index];
-//         let filteredColumn = {
-//             name: element.name,
-//             tasks: null,
-//         }
-//         filteredColumn.tasks = element.tasks.filter((task) => task.title.includes(document.getElementById('boardSearchInput').value))
-//         filteredTasks.push(filteredColumn)
-//         console.log(filteredColumn)
-//     }
 }
 
 function renderfilteredTasks(filteredTasks){
@@ -348,6 +337,16 @@ function renderfilteredTasks(filteredTasks){
         renderTaskContainer(element.tasks, index);
     }
 };
+
+// Submit changes
+
+function submitTaskChanges(taskId, columnIndex){
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    taskList[columnIndex].tasks[taskIndex] = editTask;
+    updateTaskList();
+    closeTaskOverlay();
+}
 
 
 
