@@ -619,7 +619,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-height: 160px;
+    max-height: 200px;
     overflow-y: scroll;
 }
 
@@ -630,6 +630,7 @@
     padding: 6px;
     padding-inline: 24px;
     border-radius: 8px;
+    cursor: pointer;
 
 
     &:hover{
@@ -649,9 +650,10 @@
             font-size: 12px;
             font-weight: 100;
             aspect-ratio: 1 / 1;
-            height: 32px;
+            height: 38px;
             background-color: rgb(15, 141, 65);
             color: white;
+            border: 2px solid white;
         }
     }
 }
@@ -683,7 +685,45 @@
     &:checked::before {
         background-image: url("../assets/svg/check-button-checked.svg");
         cursor: pointer;
+        filter: brightness(0) invert(1);
     }
+}
+
+.assigned-list-option-selected{
+    background-color: var(--primary-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px;
+    padding-inline: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: var(--primary-blue-hover);
+    }
+
+    & div{
+        font-size: 14px;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        gap: 8px;
+
+        &>span:nth-child(1){
+            font-size: 12px;
+            font-weight: 100;
+            aspect-ratio: 1 / 1;
+            height: 38px;
+            background-color: rgb(15, 141, 65);
+            color: white;
+            border: 2px solid white;
+        }
+    }
+
 }
 
 .task-overlay-editor-assigned-contacts{

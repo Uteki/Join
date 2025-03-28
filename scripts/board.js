@@ -135,8 +135,8 @@ function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex){
 async function startOverlayEditor(taskId, columnIndex){
     const taskOverviewOverlayContainer = document.getElementById('taskOverviewOverlayContainer')
     taskOverviewOverlayContainer.remove()
-    renderOverlayEditor(taskId, columnIndex);
     createTaskCopy(taskId, columnIndex);
+    renderOverlayEditor(taskId, columnIndex);
 }
 
 function createTaskCopy(taskId, columnIndex){
@@ -152,25 +152,42 @@ function renderOverlayEditor(id, columnIndex){
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     const task = taskList[columnIndex].tasks[taskIndex]
     overlay.innerHTML += boardOverlayEditorTemplate(task, columnIndex);
-    renderOverlayEditorAssigned(task.assignedTo);
+    renderOverlayEditorAssigned();
     rendertaskOverviewSubtasksList(task.subtasks);
 };
 
-function renderOverlayEditorAssigned(assignedList){
+function renderOverlayEditorAssigned(){
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
+    clearInnerHtml('taskOverlayEditorAssignedSelection')
     for (let index = 0; index < contactList.length; index++) {
         const element = contactList[index];
         taskOverlayEditorAssignedSelection.innerHTML += assignedListOptionTemplate(element)
     }
-    rendertaskOverlayEditorAssignedContacts(assignedList);
+    for (let index = 0; index < contactList.length; index++) {
+        const element = contactList[index];
+        checkIfContactIsAssigned(element);
+    }
+    rendertaskOverlayEditorAssignedContacts();
 }
 
-function rendertaskOverlayEditorAssignedContacts(assignedList){
+function rendertaskOverlayEditorAssignedContacts(){
     const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
-    for (let index = 0; index < assignedList.length; index++) {
-        const element = assignedList[index];
+    clearInnerHtml('taskOverlayEditorAssignedContacts')
+    for (let index = 0; index < editTask.assignedTo.length; index++) {
+        const element = editTask.assignedTo[index];
         taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
     }
+};
+
+function checkIfContactIsAssigned(element){
+    const check = editTask.assignedTo.includes(element.id)
+    const contactElement = document.getElementById(`contact${element.id}`)
+    const checkbox = document.getElementById(`contactCheckbox${element.id}`);
+    if(check){
+        contactElement.classList.add('assigned-list-option-selected')
+        contactElement.classList.remove('assigned-list-option')
+        checkbox.checked = true;
+    } 
 }
 
 function rendertaskOverviewSubtasksList(subtasks){
@@ -194,6 +211,34 @@ function openAssignedSelection(){
 
 // Overlay Editor edit functions
 
+
+function changeTitle(){
+    editTask.title = document.getElementById('editorTitleInput').value
+}
+
+function changeTaskDescription(){
+    editTask.description = document.getElementById('editorTaskDescriptionInput').value
+}
+
+function changeTaskDate(){
+    editTask.dueDate = document.getElementById('editorDateInput').value
+}
+
+function changeTaskPriority(newPrio){
+    editTask.priority = newPrio;
+}
+
+function toggleContactToTask(contactId){
+    if(editTask.assignedTo.includes(contactId)){
+        const contactIndex = editTask.assignedTo.findIndex((element) => element === contactId);
+
+        editTask.assignedTo.splice(contactIndex, 1);
+
+    } else {
+        editTask.assignedTo.push(contactId);
+    }
+    renderOverlayEditorAssigned();
+}
 // Subtasks
 
 function addSubtask(taskId, columnIndex){
