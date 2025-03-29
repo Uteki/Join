@@ -190,6 +190,27 @@
     }
 }
 
+#sign-success {
+    z-index: 5;
+    width: 312px;
+    height: 74px;
+    display: flex;
+    position: absolute;
+    text-align: center;
+    padding-left: 25px;
+    border-radius: 20px;
+    padding-right: 25px;
+    align-items: center;
+    background: var(--primary-blue);
+    box-shadow: 0 0 4px 0 #00000026;
+    animation: sign-su 1s ease forwards;
+
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
 #logo-start {
     top: 50%;
     left: 50%;
@@ -320,9 +341,9 @@
 
 @media (max-width: 385px) {
     .signUpError:after {
-        z-index: 50;
+        z-index: 505;
         color: white;
-        bottom: -25vh;
+        bottom: -24vh;
         padding: 10px;
         text-align: center;
         border-radius: 20px;

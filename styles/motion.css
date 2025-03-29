@@ -50,17 +50,6 @@
     }
 }
 
-@media (max-width: 700px) {
-    @keyframes logo {
-        to {
-            top: 5%;
-            left: 5%;
-            filter: invert(0) brightness(1);
-            transform: translate(0, 0) scale(1);
-        }
-    }
-}
-
 @keyframes greeting {
     from {
         opacity: 1;
@@ -69,5 +58,26 @@
     to {
         opacity: 0;
         display: none;
+    }
+}
+
+@keyframes sign-su {
+    from {
+        bottom: -55%;
+    }
+
+    to {
+        bottom: 45%;
+    }
+}
+
+@media (max-width: 700px) {
+    @keyframes logo {
+        to {
+            top: 5%;
+            left: 5%;
+            filter: invert(0) brightness(1);
+            transform: translate(0, 0) scale(1);
+        }
     }
 }

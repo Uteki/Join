@@ -26,8 +26,7 @@ submitSignIn.addEventListener("click", async function (event) {
         await setStorage(user);
         await setUserData(user.uid, name, email);
 
-        alert("You will be logged in.");
-        window.location.href = "../pages/summary.html";
+        loginAfter();
     } catch (error) {
         document.querySelector(".signUpError").classList.add("upMail");
     }
@@ -70,6 +69,14 @@ guestLogin.addEventListener("click", function (event) {
             alert(error.code + " " + error.message);
         })
 })
+
+function loginAfter() {
+    document.getElementById("sign-success").classList.toggle("d-none");
+
+    setTimeout(() => {
+        window.location.href = "../pages/summary.html";
+    }, 2500);
+}
 
 function setUserData(userId, name, email) {
     const db = getDatabase(app);
