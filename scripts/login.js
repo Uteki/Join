@@ -17,6 +17,8 @@ submitSignIn.addEventListener("click", async function (event) {
     const name = document.getElementById("name").value;
 
     try {
+        if (wrongRegData()) return;
+
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
@@ -24,11 +26,10 @@ submitSignIn.addEventListener("click", async function (event) {
         await setStorage(user);
         await setUserData(user.uid, name, email);
 
-        alert("Creating");
+        alert("You will be logged in.");
         window.location.href = "../pages/summary.html";
     } catch (error) {
-        console.error(error);
-        alert(error.code + " " + error.message);
+        document.querySelector(".signUpError").classList.add("upMail");
     }
 });
 
@@ -44,12 +45,10 @@ submitLogin.addEventListener("click", function (event) {
             const user = userCredential.user;
             setStorage(user);
 
-            alert("login");
             window.location.href = "../pages/summary.html";
         })
         .catch((error) => {
-            console.error(error);
-            alert(error.code + " " + error.message);
+            wrongData(error);
         });
 })
 
@@ -57,12 +56,12 @@ guestLogin.addEventListener("click", function (event) {
     event.preventDefault();
 
     signInAnonymously(auth)
-        .then((test) => {
-            let boy = test.user;
+        .then((per) => {
+            let anon = per.user;
 
-            updateProfile(boy, { displayName: 'Guest' })
+            updateProfile(anon, { displayName: 'Guest' })
                 .then(() => {
-                    setStorage(boy);
+                    setStorage(anon);
                     window.location.href = "../pages/summary.html";
                 })
         })
@@ -93,4 +92,60 @@ function setStorage(user) {
         displayName: user.displayName,
         email: user.email
     }));
+}
+
+function wrongData() {
+    let errorMsg = document.getElementById("err-msg");
+
+    document.querySelectorAll("#start-page main form input").forEach((input) => {
+        input.style.border = "1px solid red";
+        errorMsg.classList.add("loginError");
+
+        setTimeout(() => {
+            input.style.border = "1px solid var(--placeholder-grey)";
+            errorMsg.classList.remove("loginError");
+        }, 5000);
+    })
+}
+
+function wrongRegData() {
+    const box = document.getElementById("agreement");
+    const err = document.querySelector(".signUpError");
+    const area = {
+        name: document.getElementById("name"), email: document.getElementById("mail-sign"),
+        pw1: document.getElementById("pw-sign"), pw2: document.getElementById("pw-signUp")
+    }
+
+    if (box.checked !== true) return showError(err, "upCheckbox");
+    if (area.pw1.value !== area.pw2.value) return showError(err, "upPassword", "pw-sign", "pw-signUp");
+    if (area.pw1.value.length < 6) return showError(err, "upPass", "pw-sign");
+    if (!area.email.value.includes("@") || !area.email.value.includes(".")) return showError(err, "upEmail", "mail-sign");
+    if (area.name.value.length < 1) return showError(err, "upName", "name");
+}
+
+function timeout(id) {
+    let ids = document.getElementById(`${id}`);
+
+    ids.style.border = "1px solid red";
+
+    setTimeout(() => {
+        ids.style.border = "1px solid var(--placeholder-grey)";
+    }, 5000);
+}
+
+function removeError(err, id) {
+    setTimeout(() => {
+        err.classList.remove(id);
+    }, 5000);
+}
+
+function showError(err, content, input, extra) {
+    err.classList.add(content);
+
+    [input, extra].forEach((el) => {
+        if (el) timeout(el);
+    })
+
+    removeError(err, content);
+    return true;
 }
