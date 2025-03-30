@@ -9,7 +9,9 @@
 
     <link rel="stylesheet" href="../style.css">
 
+    <script src="../scripts/template.js" defer></script>
     <script src="../scripts/firebase.js" defer></script>
+    <script src="../scripts/contact.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/modal.js" defer></script>
     <script src="../script.js" defer></script>
@@ -17,7 +19,7 @@
     <script type="module" src="../scripts/state.js" defer></script>
 </head>
 
-<body>
+<body onload="renderContact()">
     <header class="header-bar">
         <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
@@ -65,20 +67,7 @@
             </div>
 
             <output>
-                <!-- contacts -->
-                <div>
-                    <h5>M</h5>
-                </div>
                 <!-- abbr -->
-
-                <button class="button contact-btn">
-                    <div class="abbr-profil">MM</div>
-
-                    <div class="m-left-40">
-                        <span>Max Mustermann</span>
-                        <span>maximale@muster.com</span>
-                    </div>
-                </button>
                 <!-- contacts -->
             </output>
 
@@ -96,29 +85,6 @@
                 </div>
 
                 <section>
-                    <!-- contact -->
-                    <article>
-                        <div>
-                            <div class="abbr-profil">MM</div>
-
-                            <div class="m-left-40">
-                                <h2 class="m-none m-right-10">Max Mustermann</h2>
-
-                                <div>
-                                    <button onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
-                                    <button><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p>Contact Information</p>
-
-                        <p class="w-bold">Email</p>
-                        <p><a href="mailto:maximale@muster.com">maximale@muster.com</a></p>
-
-                        <p class="w-bold">Phone</p>
-                        <p><a href="tel:+49 23985928923">+49 23985928923</a></p>
-                    </article>
                     <!-- contact -->
                 </section>
             </div>

@@ -25,8 +25,6 @@ if (userIn) {
 
 logOut.addEventListener("click", function (event) {
     signOut(auth).then(() => {
-        alert("Logged out");
-
         localStorage.removeItem("user");
         window.location.replace("../index.html");
     })
@@ -39,9 +37,8 @@ logOut.addEventListener("click", function (event) {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid;
-        //TODO: get data from uid?
-        document.getElementsByClassName("summary-user-name")[0].innerHTML = user.displayName;
-        // ...
+        let display = document.getElementsByClassName("summary-user-name")[0];
+        if (display) display.innerHTML = user.displayName;
     } else {
         localStorage.removeItem("user");
         window.location.replace("../index.html");

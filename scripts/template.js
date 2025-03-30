@@ -1,16 +1,16 @@
 // Contact
 
-function contactTemplate(abbr, name, mail, number) {
+function contactTemplate(abbr, name, mail, number, id) {
     return `<article>
         <div>
-            <div>${abbr}</div>
+            <div class="abbr-profil">${abbr}</div>
             
             <div class="m-left-40">
-                <h2 class="m-none m-right-40">${name}</h2>
+                <h2 class="m-none m-right-10">${name}</h2>
     
                 <div>
-                    <button onclick="editContact()"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
-                    <button onclick="deleteContact()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
+                    <button onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                    <button onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@ function addAbbreviation(letter) {
     `
 }
 
-function contactButtonTemplate(abbr, name, mail) {
-    return `<button class="button contact-btn">
+function contactButtonTemplate(abbr, name, mail ,id) {
+    return `<button class="button contact-btn" onclick="displayContact(${id})">
         <div class="abbr-profil">${abbr}</div>
         
         <div class="m-left-40">
