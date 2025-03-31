@@ -32,7 +32,7 @@ function getContactInitials(contactName){
         initials += name.slice(abbr + 1, abbr + 2);
     }
 
-    return initials;
+    return initials.toUpperCase();
 }
 
 function toggleVisibility(id){
