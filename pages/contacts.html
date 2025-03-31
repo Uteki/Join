@@ -11,6 +11,7 @@
 
     <script src="../scripts/template.js" defer></script>
     <script src="../scripts/firebase.js" defer></script>
+    <script src="../scripts/handler.js" defer></script>
     <script src="../scripts/contact.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/modal.js" defer></script>
@@ -119,7 +120,7 @@
                     <div class="abbr-profil">MM</div>
                 </div>
 
-                <form id="edit-form" action="..." method="POST">
+                <form id="edit-form" method="POST">
                     <div class="input-group">
                         <label for="edit-name"></label>
                         <input type="text" name="name" id="edit-name" placeholder="Name" autocomplete="off" required>
@@ -162,7 +163,7 @@
                     <div class="abbr-profil"><i><img src="../assets/svg/contact-icons/anon.svg" alt="Anon"></i></div>
                 </div>
 
-                <form id="add-form" action="..." method="POST">
+                <form id="add-form">
                     <div class="input-group">
                         <label for="add-name"></label>
                         <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off" required>
@@ -182,8 +183,8 @@
                     </div>
 
                     <div class="btn-group">
-                        <button class="button outline-btn" type="submit">Cancel<i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i></button>
-                        <button class="button dark-bg-btn" onclick="">Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
+                        <button class="button outline-btn" onclick="quitModal('yes')">Cancel<i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i></button>
+                        <button class="button dark-bg-btn" type="submit" onclick="createContact()">Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
                     </div>
                 </form>
                 <!-- addC -->

@@ -1,6 +1,9 @@
 const outputMenu = document.querySelector("#con-sidebar output");
 const displaySection = document.querySelector("section");
 
+const display = document.getElementById("con-display");
+const sidebar = document.getElementById("con-sidebar");
+
 async function renderContact() {
     let index;
     await init();
@@ -22,6 +25,11 @@ async function displayContact(id) {
 
     displaySection.innerHTML = "";
     displaySection.innerHTML += contactTemplate(await getIni(contact.name), contact.name, contact.email, contact.phone, contact.id);
+
+    if (window.innerWidth <= 670) {
+        display.classList.remove("d-none");
+        sidebar.style.display = "";
+    }
 }
 
 async function getIni(contact) {
