@@ -28,7 +28,7 @@ async function displayContact(id) {
     displaySection.innerHTML = "";
     displaySection.innerHTML += contactTemplate(await getIni(contact.name), contact.name, contact.email, contact.phone, contact.id);
 
-    dropdownMenu.innerHTML = dropdownTemplate(id);
+    dropdownMenu.innerHTML = dropdownTemplate(id, contact.name, contact.email, contact.phone);
 
     if (window.innerWidth <= 670) {
         display.classList.remove("d-none");

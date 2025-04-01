@@ -32,9 +32,9 @@ async function changeContact(ID) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            email: editContact.email.value,
-            name: editContact.name.value,
-            phone: editContact.phone.value,
+            email: editContact.email.value || "no@mail",
+            name: editContact.name.value || "Anon",
+            phone: editContact.phone.value || "0",
         })
     });
 

@@ -30,6 +30,8 @@ function openModal(dialog, id, name, mail, phone) {
         editContact.email.value = mail;
         editContact.phone.value = phone;
 
+        getIni(name).then((response) => {document.getElementById("iniModal").innerHTML = response})
+
         document.getElementById("saveOrDelete").innerHTML = editButtonTemplate(id)
     }
 
