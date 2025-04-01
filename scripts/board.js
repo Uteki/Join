@@ -1,5 +1,3 @@
-const boardContent = document.getElementById('boardContent')
-
 let currentDraggedElement;
 
 // Render functions
@@ -7,10 +5,10 @@ let currentDraggedElement;
 async function renderTasks() {
     await init();
     await renderColumns();
-
 }
 
 async function renderColumns() {
+    const boardContent = document.getElementById('boardContent')
     boardContent.innerHTML = '';
     for (let index = 0; index < taskList.length; index++) {
         const element = taskList[index];
@@ -24,10 +22,19 @@ function renderTaskContainer(tasks, columnIndex) {
     if (tasks.length > 0) {
         for (let index = 0; index < tasks.length; index++) {
             const element = tasks[index];
-            boardColumnTasks.innerHTML += boardTaskTemplate(element, index);
+            boardColumnTasks.innerHTML += boardTaskTemplate(element, columnIndex);
+            renderTaskAssignedTo(element.assignedTo, element.id);
         }
     } else {
         boardColumnTasks.innerHTML += boardTaskTemplateEmpty();
+    }
+}
+
+function renderTaskAssignedTo(assignedContacts, id){
+    const boardTaskInvolved = document.getElementById(`boardTaskInvolved${id}`)
+    for (let index = 0; index < assignedContacts.length; index++) {
+        const element = assignedContacts[index];
+        boardTaskInvolved.innerHTML += boardTaskInitalsTemplate(findContact(element));
     }
 }
 
@@ -76,4 +83,104 @@ async function moveTaskToColumn(taskId, targetColumnIndex) {
     await updateTaskList();
     renderTasks();
 }
+
+// Overlay
+function openTaskOverlay(taskId, columnIndex){
+    const body = document.querySelector('body')
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    const task = taskList[columnIndex].tasks[taskIndex]
+    body.innerHTML += boardOverlayTemplate(task, columnIndex);
+    renderOverlayAssignedTo(task);
+    renderOverlaySubtasks(task, columnIndex, taskIndex);
+}
+
+async function closeTaskOverlay(){
+    const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
+    taskOverviewOverlay.remove()
+    await updateTaskList();
+    renderTasks();
+}
+
+function renderOverlayAssignedTo(task){
+    const taskOverviewAssignedContainer = document.getElementById('taskOverviewAssignedContainer')
+    for (let index = 0; index < task.assignedTo.length; index++) {
+        const element = task.assignedTo[index];
+        taskOverviewAssignedContainer.innerHTML += overviewAssignedTemplate(findContact(element));
+    }
+};
+
+function findContact(id){
+    const contactIndex = contactList.findIndex((element) => element.id === id);
+    return contactList[contactIndex] 
+}
+
+function renderOverlaySubtasks(task, columnIndex, taskIndex){
+    const taskOverviewSubtasks = document.getElementById('taskOverviewSubtasks')
+    for (let index = 0; index < task.subtasks.length; index++) {
+        const element = task.subtasks[index];
+        taskOverviewSubtasks.innerHTML += overviewSubtaskTemplate(element, columnIndex, taskIndex, index);
+    }
+};
+
+function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex){
+    const task = taskList[columnIndex].tasks[taskIndex]
+    task.subtasks[subtaskIndex].finished = !task.subtasks[subtaskIndex].finished;
+}
+
+// Overlay editor
+
+async function startOverlayEditor(taskId, columnIndex){
+    const taskOverviewOverlayContainer = document.getElementById('taskOverviewOverlayContainer')
+    taskOverviewOverlayContainer.remove()
+    renderOverlayEditor(taskId, columnIndex);
+}
+
+function renderOverlayEditor(id, columnIndex){
+    const overlay = document.getElementById('taskOverviewOverlay')
+    const taskMatchesId = (element) => element.id === id;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    const task = taskList[columnIndex].tasks[taskIndex]
+    overlay.innerHTML += boardOverlayEditorTemplate(task, columnIndex);
+    renderOverlayEditorAssigned(task.assignedTo);
+    rendertaskOverviewSubtasksList(task.subtasks);
+};
+
+function renderOverlayEditorAssigned(assignedList){
+    const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
+    for (let index = 0; index < contactList.length; index++) {
+        const element = contactList[index];
+        taskOverlayEditorAssignedSelection.innerHTML += assignedListOptionTemplate(element)
+    }
+    rendertaskOverlayEditorAssignedContacts(assignedList);
+}
+
+function rendertaskOverlayEditorAssignedContacts(assignedList){
+    const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
+    for (let index = 0; index < assignedList.length; index++) {
+        const element = assignedList[index];
+        taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
+    }
+}
+
+function rendertaskOverviewSubtasksList(subtasks){
+    const taskOverlaySubtasksList = document.getElementById('taskOverlaySubtasksList')
+    for (let index = 0; index < subtasks.length; index++) {
+        const element = subtasks[index];
+        taskOverlaySubtasksList.innerHTML += editorSubtaskListTemplate(element);
+    }
+}
+
+function closeAssignedSelection(){
+    const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
+    taskOverlayEditorAssignedSelection.classList.add('d-none')
+}
+
+function openAssignedSelection(){
+    const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
+    taskOverlayEditorAssignedSelection.classList.remove('d-none')
+}
+
+
+
 
