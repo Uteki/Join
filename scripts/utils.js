@@ -13,13 +13,30 @@ function signUp() {
         .forEach(el => el.classList.toggle("d-none"));
 }
 
-//TODO - ... show password
-function showPassword() {
-    let value = document.getElementById("myInput");
-    if (value.type === "password") {
-        value.type = "text";
+function showPassword(pass) {
+    let input = document.getElementById(`${pass}`);
+    let bgImg = document.querySelector(`.input-group:has(#${pass}) i picture`);
+
+    if (input.type === "password") {
+        input.type = "text";
+        bgImg.style.backgroundImage = "url('../assets/svg/form-icons/visibility.svg')";
     } else {
-        value.type = "password";
+        input.type = "password";
+        bgImg.style.backgroundImage = "url('../assets/svg/form-icons/visibility_off.svg')";
+    }
+}
+
+function inputPassword(pass) {
+    let value = document.getElementById(`${pass}`).value;
+    let pic = document.querySelector(`.input-group:has(#${pass}) i picture`);
+    let img = document.querySelector(`.input-group:has(#${pass}) i img:first-child`);
+
+    pic.classList.remove("d-none");
+    img.classList.add("d-none");
+
+    if (value === "") {
+        img.classList.remove("d-none");
+        pic.classList.add("d-none");
     }
 }
 
