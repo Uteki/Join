@@ -99,14 +99,14 @@ form {
     outline: none; 
 }
 
-input[type="text"] {
+/* input[type="text"] {
     border-radius: 10px;
     padding: 8px; 
     border: 1px solid #ccc; 
     font-size: 14px; 
     width: calc(100% - 16px); 
     box-sizing: border-box; 
-}
+} */
 
 .button-group {
     margin-bottom: 20px; 
