@@ -13,6 +13,7 @@
 
     <script src="../scripts/firebase.js" defer></script>
     <script type="module" src="../scripts/state.js" defer></script>
+    <script src="../scripts/add-task.js" defer></script>
 </head>
 
 <body>
@@ -57,7 +58,9 @@
     <main>
         <div class="container">
             <div class="add-task">
+                <div class="add-task-title">
             <h1>Add Task</h1>
+        </div>
             <div class="linksrechts"> 
           
                 <div class="left-side">
@@ -66,66 +69,112 @@
                         <input type="text" id="title" name="title" placeholder="Enter a title" required><br><br> 
                         <label for="description">Description:</label><br>
                         <textarea id="description" name="description" rows="4" cols="50" placeholder="Enter a Description"></textarea><br><br> 
-    
                         <label for="dueDate">Due date:<span class="required">*</span></label><br>
-                        <input type="text" id="dueDate" name="dueDate" placeholder="dd.mm.yyyy" pattern="\d{2}\.\d{2}\.\d{4}" required><br><br> 
+                        <input type="date" id="dueDate" class="task-input" required>
                     </form>
                 </div>
-            
-    
                 <div class="separator"></div>
     
                 <div class="right-side">
                     <form>
                         <label for="priority">Priority</label><br>
-                        <div class="button-group">
-                            <button type="button" class="priority-button" data-priority="urgent">
-                                Urgent
-                                <img src="../assets/svg/Property 1=Urgent.svg" alt="Urgent" class="icon">
-                            </button>
-                            <button type="button" class="priority-button" data-priority="medium">
-                                Medium
-                                <img src="../assets/svg/Property 1=Medium.svg" alt="Medium" class="icon">
-                            </button>
-                            <button type="button" class="priority-button" data-priority="low">
-                                Low
-                                <img src="../assets/svg/Property 1=Low.svg" alt="Low" class="icon">
-                            </button>
+                   
+                            <div class="button-group">
+                                <button type="button" class="priority-button" data-priority="urgent" onclick="setPriority(this, 'red')">
+                                    Urgent
+                                    <img src="../assets/svg/priority-icons/priority-urgent.svg" alt="Urgent" class="icon">
+                                </button>
+                                <button type="button" class="priority-button" data-priority="medium" onclick="setPriority(this, 'orange')">
+                                    Medium
+                                    <img src="../assets/svg/priority-icons/priority-medium.svg" alt="Medium" class="icon">
+                                </button>
+                                <button type="button" class="priority-button" data-priority="low" onclick="setPriority(this, 'green')">
+                                    Low
+                                    <img src="../assets/svg/priority-icons/priority-low.svg" alt="Low" class="icon">
+                                </button>
+                            </div>   
+                        <br>      
+
+          <label for="assignedTo">Assigned to</label><br>
+        <div class="dropdown" id="assignedTo">
+            
+
+
+   <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()">
+                        <div id="addTaskAssignedToInput-" class="task-overlay-editor-assigned-selection d-none">
+<!-- Template aufrufen  -->
                         </div>
-                        <br>                 
-                        <label for="assignedTo">Assigned to</label><br>
-                        <input type="text" id="assignedTo" name="assignedTo" placeholder="Select contacts to assign"><br><br>                   
-                        <label for="category">Category<span class="required">*</span></label><br>
-                        <input type="text" id="category" name="category" placeholder="Select task category" required><br><br>
-                    
+
+
+
+            <div class="dropdown-content">
+                <label>
+                    <input type="checkbox" value="max_mustermann"> Max Mustermann
+                </label>
+                <label>
+                    <input type="checkbox" value="tomas_mustermann"> Tomas Mustermann
+                </label>
+                <label>
+                    <input type="checkbox" value="daniel_mustermann"> Daniel Mustermann
+                </label>
+                <label>
+                    <input type="checkbox" value="lucas_mustermann"> Lucas Mustermann
+                </label>
+            </div>
+        </div>   <br><br>
+        <label for="category">Category<span class="required">*</span></label><br>
+        <select id="category" name="category" class="dropdown" required>
+            <option value="" disabled selected>Select task category</option>
+            <option value="technical_task">Technical Task</option>
+            <option value="user_story">User Story</option>
+                        </select><br><br>
                         <label for="subtask">Subtasks</label><br>
                         <input type="text" id="subtask" name="subtask" placeholder="Add new subtask"><br><br>
-                    </form>
-                       
-                 
+                    </form>      
                 </div>
-           
         </div>
 
-        <div class="required-clear-create">     
-            <div class="error-message">
-                <span><span class="required">*</span> This field is required</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="required-clear-create">
+            <span><span class="required">*</span> This field is required</span>
+            <div id="errorMessageContainer" class="error-message" style="display:none; color: red;">
+                <span><span class="required">*</span> Please fill in all required fields</span>
             </div>
             <div class="button-container">
                 <input type="button" value="Clear" id="clearButton">
-                <input type="submit" value="Create Task">
-            </div>
-        </div>
-    
-    </div>
-     
-        <script>
-            document.getElementById('clearButton').addEventListener('click', function() {
-                document.getElementById('taskForm').reset();
-            });
-        </script>
-    </main>
+                <input type="button" value="Create Task" id="createButton" onclick="createTask()">
 
+
+
+
+
+
+
+
+        
+         
+    
+        
+
+
+
+
+        </div>
+</div>
+    </main>
 
 </body>
 

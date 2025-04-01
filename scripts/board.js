@@ -33,11 +33,17 @@ function renderTaskContainer(tasks, columnIndex) {
     }
 }
 
-function renderTaskAssignedTo(assignedContacts, id){
-    const boardTaskInvolved = document.getElementById(`boardTaskInvolved${id}`)
-    for (let index = 0; index < assignedContacts.length; index++) {
+function renderTaskAssignedTo(assignedContacts, id) {
+    const boardTaskInvolved = document.getElementById(`boardTaskInvolved${id}`);
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(assignedContacts.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
         const element = assignedContacts[index];
         boardTaskInvolved.innerHTML += boardTaskInitalsTemplate(findContact(element));
+    }
+    if (assignedContacts.length > maxDisplayCount) {
+        const excessCount = assignedContacts.length - maxDisplayCount;
+        boardTaskInvolved.innerHTML += ` +${excessCount}`;
     }
 }
 
@@ -196,7 +202,6 @@ function filterContacts(){
     const filteredContacts = searchContacts(query);
     console.log(filteredContacts)
     renderOverlayEditorAssigned(filteredContacts);
-    // renderfilteredContacts(filteredContacts);
 }
 
 function searchContacts(query){
@@ -204,16 +209,6 @@ function searchContacts(query){
     let filteredContacts = contactList.filter((contact) => contact.name.toLowerCase().includes(lowerQuery));
     return filteredContacts;
 }
-
-// function renderfilteredContacts(filteredTasks){
-//     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
-//     taskOverlayEditorAssignedSelection.innerHTML = '';
-//     for (let index = 0; index < filteredTasks.length; index++) {
-//         const element = filteredTasks[index];
-//         taskOverlayEditorAssignedSelection.innerHTML += boardColumnTemplate(element, index);
-//         renderTaskContainer(element.tasks, index);
-//     }
-// };
 
 function rendertaskOverviewSubtasksList(subtasks){
     const taskOverlaySubtasksList = document.getElementById('taskOverlaySubtasksList')
