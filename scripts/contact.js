@@ -4,6 +4,8 @@ const displaySection = document.querySelector("section");
 const display = document.getElementById("con-display");
 const sidebar = document.getElementById("con-sidebar");
 
+const dropdownMenu = document.querySelector(".dd-menu");
+
 async function renderContact() {
     let index;
     await init();
@@ -25,6 +27,8 @@ async function displayContact(id) {
 
     displaySection.innerHTML = "";
     displaySection.innerHTML += contactTemplate(await getIni(contact.name), contact.name, contact.email, contact.phone, contact.id);
+
+    dropdownMenu.innerHTML = dropdownTemplate(id);
 
     if (window.innerWidth <= 670) {
         display.classList.remove("d-none");

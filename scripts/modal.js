@@ -24,7 +24,15 @@ function clearModal() {
     addContact.phone.value = "";
 }
 
-function openModal(dialog) {
+function openModal(dialog, id, name, mail, phone) {
+    if (dialog === "edit") {
+        editContact.name.value = name;
+        editContact.email.value = mail;
+        editContact.phone.value = phone;
+
+        document.getElementById("saveOrDelete").innerHTML = editButtonTemplate(id)
+    }
+
     document.getElementById(`${dialog}-modal`).classList.toggle("d-none");
     modal.showModal()
 }

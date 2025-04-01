@@ -9,7 +9,7 @@ function contactTemplate(abbr, name, mail, number, id) {
                 <h2 class="m-none m-right-10">${name}</h2>
     
                 <div>
-                    <button onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                    <button onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number})"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
                     <button onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
                 </div>
             </div>
@@ -42,6 +42,18 @@ function contactButtonTemplate(abbr, name, mail ,id) {
             <span>${mail}</span>
         </div>
     </button>
+    `
+}
+
+function dropdownTemplate(id) {
+    return  `<li onclick="openModal('edit', ${id})"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
+             <li onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
+    `
+}
+
+function editButtonTemplate(id) {
+    return `<button type="button" class="button outline-btn" onclick="deleteContact(${id}); quitModal()">Delete</button>
+            <button type="button" class="button dark-bg-btn" onclick="changeContact(${id})">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
     `
 }
 
