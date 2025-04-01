@@ -63,6 +63,8 @@ dialog {
             margin-top: 20px;
             align-items: center;
             justify-content: center;
+            
+            
 
             & i {
                 margin-left: 20px;

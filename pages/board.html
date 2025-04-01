@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,9 @@
     <script src="../scripts/dragdrop.js" defer></script>
     <script src="../scripts/board.js" defer></script>
     <script src="../scripts/firebase.js" defer></script>
+    <script src="../scripts/addTaskForm.js" defer></script>
     <script type="module" src="../scripts/state.js" defer></script>
+
 </head>
 
 <body onload="renderTasks()">
@@ -59,21 +61,21 @@
         </div>
     </aside>
 
-    <main>
+    <main class="board-wrapper">
         <section class="board-header">
             <h1>Board</h1>
             <div class="board-header-menu">
                 <div class="board-search-container">
-                    <input type="search" placeholder="Find Task" class="board-search-input">
+                    <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()" id="boardSearchInput">
                     <div class="board-search-divider"></div>
                     <button class="board-search-button">
                         <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt=""
                             class="board-search-icon">
                     </button>
                 </div>
-                <button class="board-add-task-button">Add Task<img src="../assets/svg/plus-white.svg" alt=""></button>
+                <button class="board-add-task-button" onclick="openAddTaskForm()">Add Task<img src="../assets/svg/plus-white.svg" alt=""></button>
             </div>
-            <button class="board-add-task-button-mobile"><img src="../assets/svg/plus-white.svg" alt=""></button>
+            <button class="board-add-task-button-mobile" onclick="openAddTaskForm()"><img src="../assets/svg/plus-white.svg" alt=""></button>
         </section>
 
         <section class="board-content" id="boardContent">
@@ -81,6 +83,7 @@
             
                 
         </section>
+
     </main>
 </body>
 

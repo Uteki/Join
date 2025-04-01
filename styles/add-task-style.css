@@ -122,7 +122,50 @@ form {
     align-items: center; 
 }
 
-.checkbox-group input[type="checkbox"] {
+.add-task{
+    width: 100%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+ 
+#taskForm input[type="text"] {
+    border-radius: 10px; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+}
+
+#taskForm input[type="text"]:focus {
+    outline: none; 
+}
+
+#taskForm textarea {
+    border-radius: 10px; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+}
+
+#taskForm textarea:focus {
+    outline: none; 
+}
+
+/* input[type="text"] {
+    border-radius: 10px;
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+    width: calc(100% - 16px); 
+    box-sizing: border-box; 
+} */
+
+.button-group {
+    margin-bottom: 20px; 
+}
+
+.priority-button {
+    border-radius: 10px;
+    padding: 10px; 
     margin-right: 10px; 
 }
 

@@ -1,4 +1,7 @@
 let currentDraggedElement;
+let filteredTasks = [];
+let editTask;
+let filteredContacts;
 
 // Render functions
 
@@ -9,7 +12,7 @@ async function renderTasks() {
 
 async function renderColumns() {
     const boardContent = document.getElementById('boardContent')
-    boardContent.innerHTML = '';
+    clearInnerHtml('boardContent');
     for (let index = 0; index < taskList.length; index++) {
         const element = taskList[index];
         boardContent.innerHTML += boardColumnTemplate(element, index);
@@ -30,11 +33,17 @@ function renderTaskContainer(tasks, columnIndex) {
     }
 }
 
-function renderTaskAssignedTo(assignedContacts, id){
-    const boardTaskInvolved = document.getElementById(`boardTaskInvolved${id}`)
-    for (let index = 0; index < assignedContacts.length; index++) {
+function renderTaskAssignedTo(assignedContacts, id) {
+    const boardTaskInvolved = document.getElementById(`boardTaskInvolved${id}`);
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(assignedContacts.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
         const element = assignedContacts[index];
         boardTaskInvolved.innerHTML += boardTaskInitalsTemplate(findContact(element));
+    }
+    if (assignedContacts.length > maxDisplayCount) {
+        const excessCount = assignedContacts.length - maxDisplayCount;
+        boardTaskInvolved.innerHTML += ` +${excessCount}`;
     }
 }
 
@@ -133,7 +142,15 @@ function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex){
 async function startOverlayEditor(taskId, columnIndex){
     const taskOverviewOverlayContainer = document.getElementById('taskOverviewOverlayContainer')
     taskOverviewOverlayContainer.remove()
+    createTaskCopy(taskId, columnIndex);
     renderOverlayEditor(taskId, columnIndex);
+}
+
+function createTaskCopy(taskId, columnIndex){
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    editTask = JSON.parse(JSON.stringify(taskList[columnIndex].tasks[taskIndex]));
+    console.log(editTask)
 }
 
 function renderOverlayEditor(id, columnIndex){
@@ -142,29 +159,60 @@ function renderOverlayEditor(id, columnIndex){
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     const task = taskList[columnIndex].tasks[taskIndex]
     overlay.innerHTML += boardOverlayEditorTemplate(task, columnIndex);
-    renderOverlayEditorAssigned(task.assignedTo);
+    renderOverlayEditorAssigned(contactList);
     rendertaskOverviewSubtasksList(task.subtasks);
 };
 
-function renderOverlayEditorAssigned(assignedList){
+function renderOverlayEditorAssigned(contactsToRender){
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
-    for (let index = 0; index < contactList.length; index++) {
-        const element = contactList[index];
+    clearInnerHtml('taskOverlayEditorAssignedSelection')
+    for (let index = 0; index < contactsToRender.length; index++) {
+        const element = contactsToRender[index];
         taskOverlayEditorAssignedSelection.innerHTML += assignedListOptionTemplate(element)
     }
-    rendertaskOverlayEditorAssignedContacts(assignedList);
+    for (let index = 0; index < contactsToRender.length; index++) {
+        const element = contactsToRender[index];
+        checkIfContactIsAssigned(element);
+    }
+    rendertaskOverlayEditorAssignedContacts();
 }
 
-function rendertaskOverlayEditorAssignedContacts(assignedList){
+function rendertaskOverlayEditorAssignedContacts(){
     const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
-    for (let index = 0; index < assignedList.length; index++) {
-        const element = assignedList[index];
+    clearInnerHtml('taskOverlayEditorAssignedContacts')
+    for (let index = 0; index < editTask.assignedTo.length; index++) {
+        const element = editTask.assignedTo[index];
         taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
     }
+};
+
+function checkIfContactIsAssigned(element){
+    const check = editTask.assignedTo.includes(element.id)
+    const contactElement = document.getElementById(`contact${element.id}`)
+    const checkbox = document.getElementById(`contactCheckbox${element.id}`);
+    if(check){
+        contactElement.classList.add('assigned-list-option-selected')
+        contactElement.classList.remove('assigned-list-option')
+        checkbox.checked = true;
+    } 
+}
+
+function filterContacts(){
+    const query = document.getElementById('editorContactQueryInput').value
+    const filteredContacts = searchContacts(query);
+    console.log(filteredContacts)
+    renderOverlayEditorAssigned(filteredContacts);
+}
+
+function searchContacts(query){
+    const lowerQuery = query.toLowerCase();
+    let filteredContacts = contactList.filter((contact) => contact.name.toLowerCase().includes(lowerQuery));
+    return filteredContacts;
 }
 
 function rendertaskOverviewSubtasksList(subtasks){
     const taskOverlaySubtasksList = document.getElementById('taskOverlaySubtasksList')
+    clearInnerHtml('taskOverlaySubtasksList')
     for (let index = 0; index < subtasks.length; index++) {
         const element = subtasks[index];
         taskOverlaySubtasksList.innerHTML += editorSubtaskListTemplate(element);
@@ -179,6 +227,120 @@ function closeAssignedSelection(){
 function openAssignedSelection(){
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
     taskOverlayEditorAssignedSelection.classList.remove('d-none')
+}
+
+// Overlay Editor edit functions
+
+
+function changeTitle(){
+    editTask.title = document.getElementById('editorTitleInput').value
+}
+
+function changeTaskDescription(){
+    editTask.description = document.getElementById('editorTaskDescriptionInput').value
+}
+
+function changeTaskDate(){
+    editTask.dueDate = document.getElementById('editorDateInput').value
+}
+
+function changeTaskPriority(newPrio){
+    editTask.priority = newPrio;
+}
+
+function toggleContactToTask(contactId){
+    const searchInput = document.getElementById('editorContactQueryInput')
+    if(editTask.assignedTo.includes(contactId)){
+        const contactIndex = editTask.assignedTo.findIndex((element) => element === contactId);
+
+        editTask.assignedTo.splice(contactIndex, 1);
+
+    } else {
+        editTask.assignedTo.push(contactId);
+    }
+    searchInput.value = '';
+    renderOverlayEditorAssigned(contactList);
+}
+// Subtasks
+
+function addSubtask(taskId, columnIndex){
+    const newSubtask = {
+        id: 5,
+        description: document.getElementById('addSubtaskInput').value,
+        finished: false,
+    }
+    editTask.subtasks.push(newSubtask)
+    document.getElementById('addSubtaskInput').value = '';
+    rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
+function deleteSubtask(subtaskId){
+    const subtaskMatchesId = (element) => element.id === subtaskId;
+    const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
+    editTask.subtasks.splice(subTaskIndex, 1)
+    clearInnerHtml('subtaskEditorContainer')
+    rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
+function startSubtaskEditing(subtaskId){
+    const subtaskEditorContainer = document.getElementById('subtaskEditorContainer')
+    clearInnerHtml('taskOverlaySubtasksList')
+    const subtaskMatchesId = (element) => element.id === subtaskId;
+    const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
+    const subtask = editTask.subtasks[subTaskIndex]
+    subtaskEditorContainer.innerHTML += editorSubtaskEditorTemplate(subtask);
+}
+
+function changeSubtaskDescription(subtaskId){
+    const editSubtaskInput = document.getElementById('editSubtaskInput')
+    const subtaskMatchesId = (element) => element.id === subtaskId;
+    const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
+    editTask.subtasks[subTaskIndex].description = editSubtaskInput.value
+    clearInnerHtml('subtaskEditorContainer')
+    rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
+// Board Task filter functions
+
+function filterTasks(){
+    const query = document.getElementById('boardSearchInput').value
+    const filteredTasks = searchTasks(query);
+    console.log(filteredTasks)
+    renderfilteredTasks(filteredTasks);
+}
+
+function searchTasks(query){
+    const lowerQuery = query.toLowerCase();
+    return taskList
+      .map(category => {
+        const filteredTasks = category.tasks.filter(task =>
+          task.title.toLowerCase().includes(lowerQuery)
+        );
+        return {
+          ...category,
+          tasks: filteredTasks
+        };
+      });
+}
+
+function renderfilteredTasks(filteredTasks){
+    const boardContent = document.getElementById('boardContent')
+    boardContent.innerHTML = '';
+    for (let index = 0; index < filteredTasks.length; index++) {
+        const element = filteredTasks[index];
+        boardContent.innerHTML += boardColumnTemplate(element, index);
+        renderTaskContainer(element.tasks, index);
+    }
+};
+
+// Submit changes
+
+function submitTaskChanges(taskId, columnIndex){
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    taskList[columnIndex].tasks[taskIndex] = editTask;
+    updateTaskList();
+    closeTaskOverlay();
 }
 
 
