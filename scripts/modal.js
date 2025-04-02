@@ -6,14 +6,22 @@ function closeModal(e) {
     }
 }
 
-function quitModal() {
+function quitModal(cancel) {
     modal.classList.add('tl-out');
+
+    if (cancel) clearModal();
 
     setTimeout(() => {
         modal.close();
         modal.classList.remove("tl-out");
         document.querySelectorAll("#edit-modal, #add-modal").forEach((id) => id.classList.add('d-none'));
     }, 500)
+}
+
+function clearModal() {
+    addContact.name.value = "";
+    addContact.email.value = "";
+    addContact.phone.value = "";
 }
 
 function openModal(dialog) {
