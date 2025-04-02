@@ -471,7 +471,7 @@
     align-items: flex-start;
     gap: 24px;
     max-height: 560px;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
 }
 
@@ -666,38 +666,7 @@
     gap: 16px;
 
     
-    & button:nth-child(1):focus{
-        background-color: var(--urgent-orange);
-        color: white;
-
-        & img{
-            filter: brightness(0) invert(1);
-        }
-
-        &:hover{
-            box-shadow: 0px 0px 0px 0px #00000000;
-        }
-    }
-    & button:nth-child(2):focus{
-        background-color: var(--medium-yellow);
-        color: white;
-
-        & img{
-            filter: brightness(0) invert(1);
-        }
-
-        &:hover{
-            box-shadow: 0px 0px 0px 0px #00000000;
-        }
-    }
-    & button:nth-child(3):focus{
-        background-color: var(--low-green);
-        color: white;
-
-        & img{
-            filter: brightness(0) invert(1);
-        }
-
+    & button:focus{
         &:hover{
             box-shadow: 0px 0px 0px 0px #00000000;
         }
@@ -1058,4 +1027,32 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 16px;
+}
+
+.board-add-tadk-required-icon{
+    color: red;
+}
+
+.task-overview-editor-priority-button.active-priority-button-low{
+    background-color: var(--low-green);
+    color: white;
+    & img {
+        filter: brightness(0) invert(1);
+    }
+}
+
+.task-overview-editor-priority-button.active-priority-button-medium{
+    background-color: var(--medium-yellow);
+    color: white;
+    & img {
+        filter: brightness(0) invert(1);
+    }
+}
+
+.task-overview-editor-priority-button.active-priority-button-urgent{
+    background-color: var(--urgent-orange);
+    color: white;
+    & img {
+        filter: brightness(0) invert(1);
+    }
 }

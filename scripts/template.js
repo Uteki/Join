@@ -270,9 +270,9 @@ function boardAddTaskTemplate() {
             <form>
             <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
-                    <div class="task-overview-feature task-overview-editor-form-content">Titel <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content">Description<span class="task-overview-due-date"><textarea required id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
-                    <div class="task-overview-feature task-overview-editor-form-content">Due Date<span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
                 </div>
                 <div class="board-add-task-form-divider">
 
@@ -281,9 +281,9 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content">Priority
                         <div class="task-overview-priority-buttons">
-                            <button type="button" class="task-overview-editor-priority-button" onclick="setTaskPriority('urgent')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
-                            <button type="button" class="task-overview-editor-priority-button" onclick="setTaskPriority('medium')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
-                            <button type="button"class="task-overview-editor-priority-button" onclick="setTaskPriority('low')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
+                            <button type="button" id="addTaskFormUrgentBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('urgent', 'addTaskFormUrgentBtn')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
+                            <button type="button" id="addTaskFormMediumBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('medium', 'addTaskFormMediumBtn')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
+                            <button type="button" id="addTaskFormLowBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('low', 'addTaskFormLowBtn')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
                         </div>
                     </div>
 
@@ -298,7 +298,8 @@ function boardAddTaskTemplate() {
                             </div>
                     </div>
 
-                    <div class="task-overview-feature task-overview-editor-form-content">Category
+                    <div class="task-overview-feature task-overview-editor-form-content">
+                        <label for="boardAddTaskCategoryInput"><span>Category</span><span class="board-add-tadk-required-icon">*</span></label>
                         <select name="category" id="boardAddTaskCategoryInput">
                             <option value="" selected>Please choose a category</option>
                             <option value="Technical Task">Technical Task</option>
