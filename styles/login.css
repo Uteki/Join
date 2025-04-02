@@ -175,11 +175,11 @@
     justify-content: center;
 
     #back-arrow {
-        /* top: 10%; */
-        /* left: 10%; */
-        /* cursor: pointer; */
-        /* margin-top: 10px; */
-        /* position: absolute; */
+         top: 10%;
+         left: 10%;
+         cursor: pointer;
+         margin-top: 10px;
+         position: absolute;
     }
 
     & button {
