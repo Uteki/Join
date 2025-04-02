@@ -29,7 +29,7 @@ function renderTaskContainer(tasks, columnIndex) {
             renderTaskAssignedTo(element.assignedTo, element.id);
         }
     } else {
-        boardColumnTasks.innerHTML += boardTaskTemplateEmpty();
+        boardColumnTasks.innerHTML += boardTaskTemplateEmpty(columnIndex);
     }
 }
 
@@ -44,6 +44,14 @@ function renderTaskAssignedTo(assignedContacts, id) {
     if (assignedContacts.length > maxDisplayCount) {
         const excessCount = assignedContacts.length - maxDisplayCount;
         boardTaskInvolved.innerHTML += ` +${excessCount}`;
+    }
+}
+
+function truncateTaskDescription(description){
+    if (description.length > 50) {
+        return description.substring(0, 50) + '...';
+    } else {
+        return description;
     }
 }
 
@@ -339,6 +347,14 @@ function submitTaskChanges(taskId, columnIndex){
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks[taskIndex] = editTask;
+    updateTaskList();
+    closeTaskOverlay();
+}
+
+function deleteTaskFromBoard(taskId, columnIndex){
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    taskList[columnIndex].tasks.splice(taskIndex, 1)
     updateTaskList();
     closeTaskOverlay();
 }
