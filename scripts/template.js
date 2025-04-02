@@ -68,12 +68,9 @@ function boardTaskTemplate(task, columnIndex) {
                 <h3 class="board-task-container-title">${task.title}</h3>
                 <p>${task.description}</p>
             </div>
-            <div class="board-task-progress-container">
-                <div class="board-task-progress-bar-container">
-                    <div class="board-task-progress-bar" style="width: ${progressBarWidth(task.subtasks)}"></div>
-                </div>
-                <span class="board-task-progress">${finishedTasks(task.subtasks)}/${task.subtasks.length} Subtasks</span>
-            </div>
+            
+            ${boardTaskProgressTemplate(task.subtasks)}
+
             <div class="board-task-bottom-container">
                 <div class="board-task-involved" id="boardTaskInvolved${task.id}">
                     
@@ -82,6 +79,21 @@ function boardTaskTemplate(task, columnIndex) {
             </div>
         </div>
         `
+}
+
+function boardTaskProgressTemplate(subtasks) {
+    if(subtasks.length > 0){
+        return `
+            <div class="board-task-progress-container">
+                <div class="board-task-progress-bar-container">
+                    <div class="board-task-progress-bar" style="width: ${progressBarWidth(subtasks)}"></div>
+                </div>
+                <span class="board-task-progress">${finishedTasks(subtasks)}/${subtasks.length} Subtasks</span>
+            </div>
+        `
+    } else {
+        return `<span></span>`
+    }
 }
 
 function boardTaskInitalsTemplate(contact) {
@@ -123,7 +135,7 @@ function boardOverlayTemplate(task, columnIndex) {
                 </div>
             </div>
             <div class="task-overview-edit-buttons">
-                <button><img src="../assets/svg/delete.svg" alt="">Delete</button>
+                <button onclick="deleteTaskFromBoard(${task.id}, ${columnIndex})"><img src="../assets/svg/delete.svg">Delete</button>
                 <div class="task-overview-divider"></div>
                 <button onclick="startOverlayEditor(${task.id}, ${columnIndex})"><img src="../assets/svg/summary-icons/edit-dark.svg" alt="">Edit</button>
             </div>

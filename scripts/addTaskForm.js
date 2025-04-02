@@ -33,7 +33,6 @@ function addNewTask(){
     console.log(newTask)
     updateTaskList()
     closeTaskOverlay()
-    clearNewTask();
 }
 
 // set IDs

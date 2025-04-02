@@ -343,6 +343,14 @@ function submitTaskChanges(taskId, columnIndex){
     closeTaskOverlay();
 }
 
+function deleteTaskFromBoard(taskId, columnIndex){
+    const taskMatchesId = (element) => element.id === taskId;
+    const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
+    taskList[columnIndex].tasks.splice(taskIndex, 1)
+    updateTaskList();
+    closeTaskOverlay();
+}
+
 
 
 
