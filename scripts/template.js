@@ -66,7 +66,7 @@ function boardTaskTemplate(task, columnIndex) {
             <span class="board-task-category">${task.category}</span>
             <div class="board-task-description">
                 <h3 class="board-task-container-title">${task.title}</h3>
-                <p>${task.description}</p>
+                <p>${truncateTaskDescription(task.description)}</p>
             </div>
             
             ${boardTaskProgressTemplate(task.subtasks)}
@@ -102,10 +102,10 @@ function boardTaskInitalsTemplate(contact) {
     `
 }
 
-function boardTaskTemplateEmpty() {
+function boardTaskTemplateEmpty(columnIndex) {
     return `
     <div class="board-empty-column">
-        No tasks To do
+        No tasks ${taskList[columnIndex].name}
     </div>
 `
 }
@@ -267,7 +267,8 @@ function boardAddTaskTemplate() {
                 <h1>Add Task</h1>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
-            <form class="board-add-task-form">
+            <form>
+            <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
                     <div class="task-overview-feature task-overview-editor-form-content">Titel <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content">Description<span class="task-overview-due-date"><textarea required id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
@@ -318,11 +319,12 @@ function boardAddTaskTemplate() {
 
                     </div>
                 </div>
-            </form>
+            </div>
             <div class="task-overlay-editor-confirm-button">
                 <button type="button" onclick="closeTaskOverlay()">Cancel<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
                 <button type="submit" onclick="addNewTask()">Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
+            </form>
         </div>
     </section>
 `

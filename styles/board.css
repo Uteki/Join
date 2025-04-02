@@ -168,9 +168,10 @@
     scrollbar-width: none;
 }
 
-.board-column-tasks::-webkit-scrollbar {
-    display: none;
-}
+/* .board-column-tasks::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+} */
 
 .board-task-container {
     width: 240px;
@@ -235,7 +236,7 @@
 }
 
 .board-task-progress {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .board-task-bottom-container {
@@ -291,10 +292,6 @@
     .board-column-tasks {
        width: 100%;
     }
-
-    .board-task-container {
-        width: 100%;
-    }
 }
 
 @media (max-width: 1180px) {
@@ -329,16 +326,26 @@
     }
 
     .board-column-tasks {
-       width: 100%;
-       justify-content: start;
-       align-items: start;
-       height: fit-content;
-       flex-direction: row;
-        overflow-x: scroll;
+        width: 100%;
+        justify-content: start;
+        align-items: start;
+        height: fit-content;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -ms-overflow-style: auto;  /* IE und Edge */
+        scrollbar-width: auto;     /* Firefox */
+        padding-bottom: 16px;
     }
 
+    /* .board-column-tasks::-webkit-scrollbar {
+        width: 10px;  
+        height: 10px; 
+        background-color: rgb(255, 255, 255);
+    } */
+
     .board-task-container {
-        width: 240px;
+        min-width: 240px;
     }
 }
 
