@@ -59,3 +59,16 @@ function toggleVisibility(id){
 function clearInnerHtml(elementId){
     document.getElementById(elementId).innerHTML = '';
 }
+
+function savePath() {
+    let path = window.location.pathname;
+    let pathElp = path.substring(path.lastIndexOf("/") + 1);
+
+    localStorage.setItem("path", `${pathElp}`);
+    window.location.href = "../pages/help.html";
+}
+
+function getPath() {
+    let pathElp = localStorage.getItem("path");
+    window.location.href = `../pages/${pathElp}`;
+}

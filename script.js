@@ -29,4 +29,8 @@ async function updateTaskList() {
     });
 }
 
-    console.log(response)
+async function updateUl() {
+    let response = await fetch(BASE_URL + ".json");
+    let json = await response.json();
+    return json.contactList;
+}

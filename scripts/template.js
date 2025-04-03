@@ -9,7 +9,7 @@ function contactTemplate(abbr, name, mail, number, id) {
                 <h2 class="m-none m-right-10">${name}</h2>
     
                 <div>
-                    <button onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                    <button onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number})"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
                     <button onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
                 </div>
             </div>
@@ -45,6 +45,18 @@ function contactButtonTemplate(abbr, name, mail ,id) {
     `
 }
 
+function dropdownTemplate(id, name, mail, number) {
+    return  `<li onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number})"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
+             <li onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
+    `
+}
+
+function editButtonTemplate(id) {
+    return `<button type="button" class="button outline-btn" onclick="deleteContact(${id}); quitModal()">Delete</button>
+            <button type="button" class="button dark-bg-btn" onclick="changeContact(${id})">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
+    `
+}
+
 // Board
 
 function boardColumnTemplate(column, index) {
@@ -66,14 +78,11 @@ function boardTaskTemplate(task, columnIndex) {
             <span class="board-task-category">${task.category}</span>
             <div class="board-task-description">
                 <h3 class="board-task-container-title">${task.title}</h3>
-                <p>${task.description}</p>
+                <p>${truncateTaskDescription(task.description)}</p>
             </div>
-            <div class="board-task-progress-container">
-                <div class="board-task-progress-bar-container">
-                    <div class="board-task-progress-bar" style="width: ${progressBarWidth(task.subtasks)}"></div>
-                </div>
-                <span class="board-task-progress">${finishedTasks(task.subtasks)}/${task.subtasks.length} Subtasks</span>
-            </div>
+            
+            ${boardTaskProgressTemplate(task.subtasks)}
+
             <div class="board-task-bottom-container">
                 <div class="board-task-involved" id="boardTaskInvolved${task.id}">
                     
@@ -84,16 +93,31 @@ function boardTaskTemplate(task, columnIndex) {
         `
 }
 
+function boardTaskProgressTemplate(subtasks) {
+    if(subtasks.length > 0){
+        return `
+            <div class="board-task-progress-container">
+                <div class="board-task-progress-bar-container">
+                    <div class="board-task-progress-bar" style="width: ${progressBarWidth(subtasks)}"></div>
+                </div>
+                <span class="board-task-progress">${finishedTasks(subtasks)}/${subtasks.length} Subtasks</span>
+            </div>
+        `
+    } else {
+        return `<span></span>`
+    }
+}
+
 function boardTaskInitalsTemplate(contact) {
     return `
         <div class="board-task-initial">${getContactInitials(contact.name)}</div>
     `
 }
 
-function boardTaskTemplateEmpty() {
+function boardTaskTemplateEmpty(columnIndex) {
     return `
     <div class="board-empty-column">
-        No tasks To do
+        No tasks ${taskList[columnIndex].name}
     </div>
 `
 }
@@ -123,7 +147,7 @@ function boardOverlayTemplate(task, columnIndex) {
                 </div>
             </div>
             <div class="task-overview-edit-buttons">
-                <button><img src="../assets/svg/delete.svg" alt="">Delete</button>
+                <button onclick="deleteTaskFromBoard(${task.id}, ${columnIndex})"><img src="../assets/svg/delete.svg">Delete</button>
                 <div class="task-overview-divider"></div>
                 <button onclick="startOverlayEditor(${task.id}, ${columnIndex})"><img src="../assets/svg/summary-icons/edit-dark.svg" alt="">Edit</button>
             </div>
@@ -255,7 +279,8 @@ function boardAddTaskTemplate() {
                 <h1>Add Task</h1>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
-            <form class="board-add-task-form">
+            <form>
+            <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
                     <div class="task-overview-feature task-overview-editor-form-content">Titel <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content">Description<span class="task-overview-due-date"><textarea required id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
@@ -306,11 +331,12 @@ function boardAddTaskTemplate() {
 
                     </div>
                 </div>
-            </form>
+            </div>
             <div class="task-overlay-editor-confirm-button">
                 <button type="button" onclick="closeTaskOverlay()">Cancel<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
                 <button type="submit" onclick="addNewTask()">Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
+            </form>
         </div>
     </section>
 `

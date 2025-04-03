@@ -81,18 +81,20 @@
 
 .side-menu-bottom-container{
     height: 20%;
+    width: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .footer-navigation{
-    width: 112px;
+    /* width: 112px; */
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    width: 1;
     gap: 16px;
-
+    text-align: c;
 }
 
 .footer-navigation-link{
