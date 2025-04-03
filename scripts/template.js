@@ -174,9 +174,9 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 <div class="task-overview-feature task-overview-editor-form-content">Due Date<span class="task-overview-due-date"><input type="date" value="${task.dueDate}" id="editorDateInput" oninput="changeTaskDate()"></span></div>
                 <div class="task-overview-feature task-overview-editor-form-content">Priority
                     <div class="task-overview-priority-buttons">
-                        <button class="task-overview-editor-priority-button" onclick="changeTaskPriority('urgent')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
-                        <button class="task-overview-editor-priority-button" onclick="changeTaskPriority('medium')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
-                        <button class="task-overview-editor-priority-button" onclick="changeTaskPriority('low')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
+                        <button id="boardEditorUrgentBtn" class="task-overview-editor-priority-button" onclick="changeTaskPriority('urgent', 'boardEditorUrgentBtn')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
+                        <button id="boardEditorMediumBtn" class="task-overview-editor-priority-button" onclick="changeTaskPriority('medium', 'boardEditorMediumBtn')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
+                        <button id="boardEditorLowBtn" class="task-overview-editor-priority-button" onclick="changeTaskPriority('low', 'boardEditorLowBtn')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
                     </div>
                 </div>
 

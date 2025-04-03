@@ -47,7 +47,7 @@ function renderTaskAssignedTo(assignedContacts, id) {
     }
 }
 
-function truncateTaskDescription(description){
+function truncateTaskDescription(description) {
     if (description.length > 50) {
         return description.substring(0, 50) + '...';
     } else {
@@ -109,7 +109,7 @@ function removeHighlightDropArea(id) {
 }
 
 // Overlay
-function openTaskOverlay(taskId, columnIndex){
+function openTaskOverlay(taskId, columnIndex) {
     const body = document.querySelector('body')
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
@@ -119,14 +119,14 @@ function openTaskOverlay(taskId, columnIndex){
     renderOverlaySubtasks(task, columnIndex, taskIndex);
 }
 
-async function closeTaskOverlay(){
+async function closeTaskOverlay() {
     const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
     taskOverviewOverlay.remove()
     await updateTaskList();
     renderTasks();
 }
 
-function renderOverlayAssignedTo(task){
+function renderOverlayAssignedTo(task) {
     const taskOverviewAssignedContainer = document.getElementById('taskOverviewAssignedContainer')
     for (let index = 0; index < task.assignedTo.length; index++) {
         const element = task.assignedTo[index];
@@ -134,12 +134,12 @@ function renderOverlayAssignedTo(task){
     }
 };
 
-function findContact(id){
+function findContact(id) {
     const contactIndex = contactList.findIndex((element) => element.id === id);
-    return contactList[contactIndex] 
+    return contactList[contactIndex]
 }
 
-function renderOverlaySubtasks(task, columnIndex, taskIndex){
+function renderOverlaySubtasks(task, columnIndex, taskIndex) {
     const taskOverviewSubtasks = document.getElementById('taskOverviewSubtasks')
     for (let index = 0; index < task.subtasks.length; index++) {
         const element = task.subtasks[index];
@@ -147,27 +147,27 @@ function renderOverlaySubtasks(task, columnIndex, taskIndex){
     }
 };
 
-function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex){
+function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex) {
     const task = taskList[columnIndex].tasks[taskIndex]
     task.subtasks[subtaskIndex].finished = !task.subtasks[subtaskIndex].finished;
 }
 
 // Overlay editor
 
-async function startOverlayEditor(taskId, columnIndex){
+async function startOverlayEditor(taskId, columnIndex) {
     const taskOverviewOverlayContainer = document.getElementById('taskOverviewOverlayContainer')
     taskOverviewOverlayContainer.remove()
     createTaskCopy(taskId, columnIndex);
     renderOverlayEditor(taskId, columnIndex);
 }
 
-function createTaskCopy(taskId, columnIndex){
+function createTaskCopy(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     editTask = JSON.parse(JSON.stringify(taskList[columnIndex].tasks[taskIndex]));
 }
 
-function renderOverlayEditor(id, columnIndex){
+function renderOverlayEditor(id, columnIndex) {
     const overlay = document.getElementById('taskOverviewOverlay')
     const taskMatchesId = (element) => element.id === id;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
@@ -177,7 +177,7 @@ function renderOverlayEditor(id, columnIndex){
     rendertaskOverviewSubtasksList(task.subtasks);
 };
 
-function renderOverlayEditorAssigned(contactsToRender){
+function renderOverlayEditorAssigned(contactsToRender) {
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
     clearInnerHtml('taskOverlayEditorAssignedSelection')
     for (let index = 0; index < contactsToRender.length; index++) {
@@ -191,7 +191,7 @@ function renderOverlayEditorAssigned(contactsToRender){
     rendertaskOverlayEditorAssignedContacts();
 }
 
-function rendertaskOverlayEditorAssignedContacts(){
+function rendertaskOverlayEditorAssignedContacts() {
     const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
     clearInnerHtml('taskOverlayEditorAssignedContacts')
     for (let index = 0; index < editTask.assignedTo.length; index++) {
@@ -200,30 +200,30 @@ function rendertaskOverlayEditorAssignedContacts(){
     }
 };
 
-function checkIfContactIsAssigned(element){
+function checkIfContactIsAssigned(element) {
     const check = editTask.assignedTo.includes(element.id)
     const contactElement = document.getElementById(`contact${element.id}`)
     const checkbox = document.getElementById(`contactCheckbox${element.id}`);
-    if(check){
+    if (check) {
         contactElement.classList.add('assigned-list-option-selected')
         contactElement.classList.remove('assigned-list-option')
         checkbox.checked = true;
-    } 
+    }
 }
 
-function filterContacts(){
+function filterContacts() {
     const query = document.getElementById('editorContactQueryInput').value
     const filteredContacts = searchContacts(query);
     renderOverlayEditorAssigned(filteredContacts);
 }
 
-function searchContacts(query){
+function searchContacts(query) {
     const lowerQuery = query.toLowerCase();
     let filteredContacts = contactList.filter((contact) => contact.name.toLowerCase().includes(lowerQuery));
     return filteredContacts;
 }
 
-function rendertaskOverviewSubtasksList(subtasks){
+function rendertaskOverviewSubtasksList(subtasks) {
     const taskOverlaySubtasksList = document.getElementById('taskOverlaySubtasksList')
     clearInnerHtml('taskOverlaySubtasksList')
     for (let index = 0; index < subtasks.length; index++) {
@@ -232,12 +232,14 @@ function rendertaskOverviewSubtasksList(subtasks){
     }
 }
 
-function closeAssignedSelection(){
+function closeAssignedSelection() {
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
-    taskOverlayEditorAssignedSelection.classList.add('d-none')
+    if (taskOverlayEditorAssignedSelection.classList.includes('d-none')) {
+        taskOverlayEditorAssignedSelection.classList.add('d-none')
+    }
 }
 
-function openAssignedSelection(){
+function openAssignedSelection() {
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
     taskOverlayEditorAssignedSelection.classList.remove('d-none')
 }
@@ -245,25 +247,39 @@ function openAssignedSelection(){
 // Overlay Editor edit functions
 
 
-function changeTitle(){
+function changeTitle() {
     editTask.title = document.getElementById('editorTitleInput').value
 }
 
-function changeTaskDescription(){
+function changeTaskDescription() {
     editTask.description = document.getElementById('editorTaskDescriptionInput').value
 }
 
-function changeTaskDate(){
+function changeTaskDate() {
     editTask.dueDate = document.getElementById('editorDateInput').value
 }
 
-function changeTaskPriority(newPrio){
+function changeTaskPriority(newPrio, buttonID) {
     editTask.priority = newPrio;
+    const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
+    }
+    document.getElementById(buttonID).classList.toggle(`active-priority-button-${newPrio}`);
 }
 
-function toggleContactToTask(contactId){
+function setTaskPriority(newPrio, buttonID) {
+    newTask.priority = newPrio;
+    const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
+    }
+    document.getElementById(buttonID).classList.toggle(`active-priority-button-${newPrio}`);
+}
+
+function toggleContactToTask(contactId) {
     const searchInput = document.getElementById('editorContactQueryInput')
-    if(editTask.assignedTo.includes(contactId)){
+    if (editTask.assignedTo.includes(contactId)) {
         const contactIndex = editTask.assignedTo.findIndex((element) => element === contactId);
 
         editTask.assignedTo.splice(contactIndex, 1);
@@ -276,7 +292,7 @@ function toggleContactToTask(contactId){
 }
 // Subtasks
 
-function addSubtask(){
+function addSubtask() {
     const newSubtask = {
         id: generateNewSubtaskId(),
         description: document.getElementById('addSubtaskInput').value,
@@ -299,7 +315,7 @@ function generateNewSubtaskId() {
     return newId;
 }
 
-function deleteSubtask(subtaskId){
+function deleteSubtask(subtaskId) {
     const subtaskMatchesId = (element) => element.id === subtaskId;
     const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
     editTask.subtasks.splice(subTaskIndex, 1)
@@ -307,7 +323,7 @@ function deleteSubtask(subtaskId){
     rendertaskOverviewSubtasksList(editTask.subtasks);
 }
 
-function startSubtaskEditing(subtaskId){
+function startSubtaskEditing(subtaskId) {
     const subtaskEditorContainer = document.getElementById('subtaskEditorContainer')
     clearInnerHtml('taskOverlaySubtasksList')
     const subtaskMatchesId = (element) => element.id === subtaskId;
@@ -316,7 +332,7 @@ function startSubtaskEditing(subtaskId){
     subtaskEditorContainer.innerHTML += editorSubtaskEditorTemplate(subtask);
 }
 
-function changeSubtaskDescription(subtaskId){
+function changeSubtaskDescription(subtaskId) {
     const editSubtaskInput = document.getElementById('editSubtaskInput')
     const subtaskMatchesId = (element) => element.id === subtaskId;
     const subTaskIndex = editTask.subtasks.findIndex(subtaskMatchesId)
@@ -327,27 +343,27 @@ function changeSubtaskDescription(subtaskId){
 
 // Board Task filter functions
 
-function filterTasks(){
+function filterTasks() {
     const query = document.getElementById('boardSearchInput').value
     const filteredTasks = searchTasks(query);
     renderfilteredTasks(filteredTasks);
 }
 
-function searchTasks(query){
+function searchTasks(query) {
     const lowerQuery = query.toLowerCase();
     return taskList
-      .map(category => {
-        const filteredTasks = category.tasks.filter(task =>
-          task.title.toLowerCase().includes(lowerQuery)
-        );
-        return {
-          ...category,
-          tasks: filteredTasks
-        };
-      });
+        .map(category => {
+            const filteredTasks = category.tasks.filter(task =>
+                task.title.toLowerCase().includes(lowerQuery)
+            );
+            return {
+                ...category,
+                tasks: filteredTasks
+            };
+        });
 }
 
-function renderfilteredTasks(filteredTasks){
+function renderfilteredTasks(filteredTasks) {
     const boardContent = document.getElementById('boardContent')
     boardContent.innerHTML = '';
     for (let index = 0; index < filteredTasks.length; index++) {
@@ -359,7 +375,7 @@ function renderfilteredTasks(filteredTasks){
 
 // Submit changes
 
-function submitTaskChanges(taskId, columnIndex){
+function submitTaskChanges(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks[taskIndex] = editTask;
@@ -367,7 +383,7 @@ function submitTaskChanges(taskId, columnIndex){
     closeTaskOverlay();
 }
 
-function deleteTaskFromBoard(taskId, columnIndex){
+function deleteTaskFromBoard(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks.splice(taskIndex, 1)
