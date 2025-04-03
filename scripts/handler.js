@@ -18,7 +18,7 @@ async function createContact (contacts = contactList, path="contactList/", data=
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: addContact.name.value, email: addContact.email.value, phone: addContact.phone.value, id: await generateId(contactList)})
+        body: JSON.stringify({name: addContact.name.value, email: addContact.email.value, phone: addContact.phone.value, id: await generateId(contactList), color: generateColor()})
     });
 
     await displayContact(newID); // change needed
@@ -99,6 +99,10 @@ function generateId(existingContacts) {
     } while (!unique);
 
     return newId;
+}
+
+function generateColor() {
+    return `${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 async function findId(ID) {
