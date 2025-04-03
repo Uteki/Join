@@ -267,11 +267,11 @@ function boardAddTaskTemplate() {
                 <h1>Add Task</h1>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
-            <form>
+            <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="addNewTask()">
             <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
                     <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
-                    <div class="task-overview-feature task-overview-editor-form-content">Description<span class="task-overview-due-date"><textarea required id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
                 </div>
                 <div class="board-add-task-form-divider">
@@ -289,7 +289,7 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content" onclick="event.stopPropagation()" style="position: relative;">
                             <span class="task-overview-feature">Assigned To</span>
-                            <input required type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openBoardAddTaskAssignedSelection()" oninput="boardAddTaskFilterContacts()" id="boardAddTaskContactQueryInput">
+                            <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openBoardAddTaskAssignedSelection()" oninput="boardAddTaskFilterContacts()" id="boardAddTaskContactQueryInput">
                             <div id="boardAddTaskAssignedSelection" class="task-overlay-editor-assigned-selection d-none" style="position:absolute; top:95px; background-color: white; width: 100%; z-index: 100;">
 
                             </div>
@@ -300,7 +300,7 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content">
                         <label for="boardAddTaskCategoryInput"><span>Category</span><span class="board-add-tadk-required-icon">*</span></label>
-                        <select name="category" id="boardAddTaskCategoryInput">
+                        <select name="category" id="boardAddTaskCategoryInput" required>
                             <option value="" selected>Please choose a category</option>
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
@@ -321,9 +321,9 @@ function boardAddTaskTemplate() {
                     </div>
                 </div>
             </div>
-            <div class="task-overlay-editor-confirm-button">
-                <button type="button" onclick="closeTaskOverlay()">Cancel<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
-                <button type="submit" onclick="addNewTask()">Ok<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+            <div class="board-add-task-bottom-buttons">
+                <button type="button" onclick="closeTaskOverlay()" class="board-add-task-cancel-button">Cancel<img src="../assets/svg/close.svg" alt=""></button>
+                <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
             </form>
         </div>

@@ -30,7 +30,6 @@ function addNewTask() {
     setCategory()
     newTask.id = setNewTaskId()
     taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
-    console.log(newTask)
     updateTaskList()
     closeTaskOverlay()
 }
@@ -187,6 +186,12 @@ function addTaskSetSubtaskId() {
 
 
 // submit functions
+function validateForm() {
+    let form = document.getElementById("boardAddTaskForm");
+    let submitButton = document.getElementById("boardAddTaskSubmitButton");
+    submitButton.disabled = !form.checkValidity();
+}
+
 
 function setTitle() {
     newTask.title = document.getElementById('addTaskTitleInput').value
@@ -208,7 +213,6 @@ function setTaskPriority(newPrio, buttonID) {
     newTask.priority = newPrio;
     const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
     for (var i = 0; i < buttons.length; i++) {
-        // Klassen entfernen
         buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
     }
     document.getElementById(buttonID).classList.toggle(`active-priority-button-${newPrio}`);
