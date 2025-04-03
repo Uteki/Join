@@ -54,7 +54,7 @@ function boardColumnTemplate(column, index) {
                 <h2>${column.name}</h2>
                 <button type="button" onclick="openAddTaskForm()">+</button>
             </div>
-            <div class="board-column-tasks" id="boardColumnTasks${index}" ondrop="dropHandler(event, ${index})" ondragover="allowDrop(event)">
+            <div class="board-column-tasks" id="boardColumnTasks${index}" ondrop="dropHandler(event, ${index})" ondragleave="removeHighlightDropArea('boardColumnTasks${index}')" ondragover="allowDrop(event); highlightDropArea('boardColumnTasks${index}')">
             </div>   
         </div>   
         `
@@ -314,7 +314,7 @@ function boardAddTaskTemplate() {
 
                         </div>
                         
-                        <ul id="boardAddTaskSubtasksList" class="task-overlay-subtask-list">
+                        <ul id="boardAddTaskSubtasksList" class="board-add-task-subtask-list">
 
                         </ul>
 

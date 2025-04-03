@@ -81,7 +81,6 @@ function dropHandler(event, targetColumnIndex) {
 };
 
 async function moveTaskToColumn(taskId, targetColumnIndex) {
-    let sourceColumnIndex = null;
     let taskToMove = null;
     taskList.forEach((column, colIndex) => {
         if (column.tasks) {
@@ -99,6 +98,14 @@ async function moveTaskToColumn(taskId, targetColumnIndex) {
     }
     await updateTaskList();
     renderTasks();
+}
+
+function highlightDropArea(id) {
+    document.getElementById(`${id}`).classList.add('drag-area-highlight')
+}
+
+function removeHighlightDropArea(id) {
+    document.getElementById(`${id}`).classList.remove('drag-area-highlight')
 }
 
 // Overlay
@@ -158,7 +165,6 @@ function createTaskCopy(taskId, columnIndex){
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     editTask = JSON.parse(JSON.stringify(taskList[columnIndex].tasks[taskIndex]));
-    console.log(editTask)
 }
 
 function renderOverlayEditor(id, columnIndex){
@@ -208,7 +214,6 @@ function checkIfContactIsAssigned(element){
 function filterContacts(){
     const query = document.getElementById('editorContactQueryInput').value
     const filteredContacts = searchContacts(query);
-    console.log(filteredContacts)
     renderOverlayEditorAssigned(filteredContacts);
 }
 
@@ -271,15 +276,27 @@ function toggleContactToTask(contactId){
 }
 // Subtasks
 
-function addSubtask(taskId, columnIndex){
+function addSubtask(){
     const newSubtask = {
-        id: 5,
+        id: generateNewSubtaskId(),
         description: document.getElementById('addSubtaskInput').value,
         finished: false,
     }
     editTask.subtasks.push(newSubtask)
     document.getElementById('addSubtaskInput').value = '';
     rendertaskOverviewSubtasksList(editTask.subtasks);
+}
+
+function generateNewSubtaskId() {
+    let existingIds = new Set();
+    editTask.subtasks.forEach(task => {
+        existingIds.add(task.id);
+    });
+    let newId = 0;
+    while (existingIds.has(newId)) {
+        newId++;
+    }
+    return newId;
 }
 
 function deleteSubtask(subtaskId){
@@ -313,7 +330,6 @@ function changeSubtaskDescription(subtaskId){
 function filterTasks(){
     const query = document.getElementById('boardSearchInput').value
     const filteredTasks = searchTasks(query);
-    console.log(filteredTasks)
     renderfilteredTasks(filteredTasks);
 }
 

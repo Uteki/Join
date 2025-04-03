@@ -156,6 +156,12 @@
     border: 1px dashed var(--unselected-grey-dark);
 }
 
+.drag-area-highlight{
+    background-color: var(--empty-board-column-bg);
+    border: 1px dashed var(--unselected-grey-dark);
+    border-radius: 12px;
+}
+
 .board-column-tasks {
     display: flex;
     justify-content: start;
@@ -182,6 +188,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    /* &:hover{
+        transform: rotate(30deg);
+    } */
 }
 
 .board-task-category {
@@ -1064,7 +1074,14 @@
     }
 }
 
-
+.board-add-task-subtask-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 100px;
+    overflow-y: auto;
+    margin-top: -20px;
+}
 
 .board-add-task-bottom-buttons {
     display: flex;

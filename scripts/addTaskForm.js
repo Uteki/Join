@@ -17,7 +17,6 @@ function openAddTaskForm() {
     const body = document.querySelector('body')
     body.innerHTML += boardAddTaskTemplate();
     newTask = JSON.parse(JSON.stringify(defaultTask))
-    console.log(newTask)
     renderAddTaskForm();
 }
 
@@ -53,7 +52,6 @@ function generateNewTaskId() {
 // Overlay editor
 
 function renderAddTaskForm() {
-    console.log('wird ausgeführt')
     renderAddTaskAssigned(contactList);
     renderAddTaskSubtasksList(newTask.subtasks);
 };
@@ -64,7 +62,6 @@ function renderAddTaskAssigned(contactsToRender) {
     for (let index = 0; index < contactsToRender.length; index++) {
         const element = contactsToRender[index];
         boardAddTaskAssignedSelection.innerHTML += addTaskAssignedListOptionTemplate(element)
-        console.log('hier sollte was geladen werden')
     }
     for (let index = 0; index < contactsToRender.length; index++) {
         const element = contactsToRender[index];
@@ -96,7 +93,6 @@ function addTaskCheckIfContactIsAssigned(element) {
 function boardAddTaskFilterContacts() {
     const query = document.getElementById('boardAddTaskContactQueryInput').value
     const filteredContacts = searchContacts(query);
-    console.log(filteredContacts)
     renderAddTaskAssigned(filteredContacts);
 }
 
@@ -191,7 +187,6 @@ function validateForm() {
     let submitButton = document.getElementById("boardAddTaskSubmitButton");
     submitButton.disabled = !form.checkValidity();
 }
-
 
 function setTitle() {
     newTask.title = document.getElementById('addTaskTitleInput').value
