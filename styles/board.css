@@ -678,8 +678,6 @@
     gap: 32px;
     padding-right: 8px;
     max-height: 450px;
-    /* -ms-overflow-style: none;
-    scrollbar-width: none; */
 }
 
 .task-overview-editor-form-content {
@@ -1004,10 +1002,6 @@
     }
 }
 
-
-
-
-
 .task-overlay-editor-confirm-button {
     display: flex;
     align-items: center;
@@ -1069,7 +1063,7 @@
 .board-add-task-container {
     background-color: white;
     height: auto;
-    width: 60vw;
+    width: 880px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -1226,3 +1220,88 @@
         }
     }
 }
+
+@media (max-width: 950px){
+    .board-add-task-container{
+        width: auto;
+    }
+    .board-add-task-form{
+        flex-direction: column;
+        overflow-y: auto;
+        max-height: 600px;
+    }
+
+    .board-add-task-form-container{
+        width: 100%;
+    }
+
+    .board-add-task-form-divider{
+        display: none;
+    }
+
+    .board-add-task-bottom-buttons{
+        padding-top: 16px;
+    }
+}
+
+@media (max-width: 600px){
+    .board-add-task-container{
+        padding: 24px;
+    }
+
+    .board-add-task-header {
+        & h1 {
+            font-size: 40px;
+        }
+    }
+
+    .task-overview-editor-form-content {
+        & select {
+            font-size: 16px;
+        }
+
+        & input {
+            font-size: 16px;
+        }
+
+        & textarea{
+            font-size: 16px;
+        }
+    }
+
+    
+    .board-add-task-bottom-buttons{
+        justify-content: space-between;
+        gap: 32px;
+
+        & .board-add-task-cancel-button {
+            font-size: 16px;
+            padding: 14px;
+        }
+        
+        & .board-add-task-submit-button {
+            font-size: 16px;
+            padding: 14px;
+            width: 140px;
+        }
+    }
+}
+
+@media (max-width: 360px){
+    .task-overview-editor-form-content {
+        & select{
+            padding-right: 12px;
+        }
+    }
+    .board-add-task-bottom-buttons{
+        gap: 8px;
+    }
+}
+
+@media (max-height: 650px){
+    .board-add-task-form{
+        max-height: 350px;
+    }
+}
+
+
