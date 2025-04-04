@@ -1,9 +1,9 @@
 #legal-notice, #atHelp  {
     padding: 96px 96px 0 96px;
+    overflow-y: auto;
 }
 
 #atHelp {
-    overflow-y: auto;
 
     & > div {
         position: relative;
