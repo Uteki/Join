@@ -1,7 +1,7 @@
 .board-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .board-header {
@@ -166,7 +166,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    height: 600px;
+    height: calc(100vh - 96px - 184px - 50px);
     flex-direction: column;
     gap: 16px;
     overflow-y: scroll;
@@ -188,10 +188,13 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
 
-    /* &:hover{
-        transform: rotate(30deg);
-    } */
+    &:hover{
+        transform: translateY(-3%);
+        box-shadow: 0px 10px 11px -4px rgba(0,0,0,0.19);
+    }
 }
 
 .board-task-category {
@@ -283,7 +286,7 @@
         padding-inline: 60px;
         display: flex;
         align-items: flex-start;
-        gap: 32px;
+        gap: 16px;
         overflow-y: hidden;
     }
 
@@ -300,6 +303,10 @@
     }
 
     .board-column-tasks {
+        width: 100%;
+    }
+
+    .board-task-container {
         width: 100%;
     }
 }
@@ -344,19 +351,12 @@
         overflow-x: auto;
         overflow-y: hidden;
         -ms-overflow-style: auto;
-        /* IE und Edge */
         scrollbar-width: auto;
-        /* Firefox */
         padding-bottom: 16px;
     }
 
-    /* .board-column-tasks::-webkit-scrollbar {
-        width: 10px;  
-        height: 10px; 
-        background-color: rgb(255, 255, 255);
-    } */
-
     .board-task-container {
+        width: 240px;
         min-width: 240px;
     }
 }
@@ -407,6 +407,13 @@
     .board-content {
         padding-inline: 32px;
     }
+
+    .board-task-container {
+        &:hover{
+            transform: none;
+            box-shadow: none;
+        }
+    }
 }
 
 /* Task overview overlay */
@@ -426,6 +433,7 @@
     background-color: white;
     height: auto;
     width: 525px;
+    max-height: 600px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -612,6 +620,54 @@
 
 }
 
+@media (max-width: 600px) {
+    .task-overview-container{
+        width: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+    .task-overview-container{
+        width: 300px;
+        padding: 32px 24px 32px 24px;
+
+        & h3{
+            font-size: 32px;
+        }
+
+        &>span{
+            height: 32px;
+            font-size: 18px;
+        }
+
+    }
+
+    .task-overview-container-content{
+        max-height: 300px;
+    }
+
+    .task-overview-initals{
+        font-size: 16px;
+    }
+
+    .task-overview-subtasks{
+        & div{
+            margin-top: 16px;
+            margin-left: 8px;
+            gap: 2px;
+        }
+    }
+
+
+}
+
+@media (min-height: 850px) {
+    .task-overview-container{
+        max-height: 800px;
+    }
+}
+
+
 /* task overlay editor */
 .task-overlay-editor-form {
     width: 100%;
@@ -621,8 +677,7 @@
     flex-direction: column;
     gap: 32px;
     padding-right: 8px;
-    /* -ms-overflow-style: none;
-    scrollbar-width: none; */
+    max-height: 450px;
 }
 
 .task-overview-editor-form-content {
@@ -641,6 +696,10 @@
         &:focus {
             border: 1px solid var(--secondary-blue);
         }
+    }
+
+    & #addSubtaskInput{
+        padding-right: 55px;
     }
 
     & textarea {
@@ -943,10 +1002,6 @@
     }
 }
 
-
-
-
-
 .task-overlay-editor-confirm-button {
     display: flex;
     align-items: center;
@@ -975,12 +1030,40 @@
     }
 }
 
+@media (max-width: 600px){
+
+    .task-overview-priority-buttons {
+        flex-direction: column;
+    }
+
+    .task-overview-editor-priority-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px){
+    .task-overview-editor-form-content {
+        & input {
+            font-size: 16px;
+        }
+    }
+
+    .assigned-list-option {
+        padding-inline: 12px;
+    }
+
+    .assigned-list-option-selected {
+        padding-inline: 12px;
+    }
+
+}
+
 /* add task formular */
 
 .board-add-task-container {
     background-color: white;
     height: auto;
-    width: 60vw;
+    width: 880px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -1137,3 +1220,88 @@
         }
     }
 }
+
+@media (max-width: 950px){
+    .board-add-task-container{
+        width: auto;
+    }
+    .board-add-task-form{
+        flex-direction: column;
+        overflow-y: auto;
+        max-height: 600px;
+    }
+
+    .board-add-task-form-container{
+        width: 100%;
+    }
+
+    .board-add-task-form-divider{
+        display: none;
+    }
+
+    .board-add-task-bottom-buttons{
+        padding-top: 16px;
+    }
+}
+
+@media (max-width: 600px){
+    .board-add-task-container{
+        padding: 24px;
+    }
+
+    .board-add-task-header {
+        & h1 {
+            font-size: 40px;
+        }
+    }
+
+    .task-overview-editor-form-content {
+        & select {
+            font-size: 16px;
+        }
+
+        & input {
+            font-size: 16px;
+        }
+
+        & textarea{
+            font-size: 16px;
+        }
+    }
+
+    
+    .board-add-task-bottom-buttons{
+        justify-content: space-between;
+        gap: 32px;
+
+        & .board-add-task-cancel-button {
+            font-size: 16px;
+            padding: 14px;
+        }
+        
+        & .board-add-task-submit-button {
+            font-size: 16px;
+            padding: 14px;
+            width: 140px;
+        }
+    }
+}
+
+@media (max-width: 360px){
+    .task-overview-editor-form-content {
+        & select{
+            padding-right: 12px;
+        }
+    }
+    .board-add-task-bottom-buttons{
+        gap: 8px;
+    }
+}
+
+@media (max-height: 650px){
+    .board-add-task-form{
+        max-height: 350px;
+    }
+}
+
+

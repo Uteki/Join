@@ -87,7 +87,7 @@ function boardTaskTemplate(task, columnIndex) {
                 <div class="board-task-involved" id="boardTaskInvolved${task.id}">
                     
                 </div>
-                <img src="../assets/svg/priority-icons/priority-${task.priority}.svg" alt="">
+                ${renderTaskPriority(task.priority)}
             </div>
         </div>
         `
@@ -111,6 +111,12 @@ function boardTaskProgressTemplate(subtasks) {
 function boardTaskInitalsTemplate(contact) {
     return `
         <div class="board-task-initial">${getContactInitials(contact.name)}</div>
+    `
+}
+
+function boardTaskPriorityTemplate(prio){
+    return `
+    <img src="../assets/svg/priority-icons/priority-${prio}.svg" alt="">
     `
 }
 
