@@ -110,7 +110,7 @@ function boardTaskProgressTemplate(subtasks) {
 
 function boardTaskInitalsTemplate(contact) {
     return `
-        <div class="board-task-initial">${getContactInitials(contact.name)}</div>
+        <div class="board-task-initial" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</div>
     `
 }
 
@@ -165,7 +165,7 @@ function boardOverlayTemplate(task, columnIndex) {
 // user implementation is missing
 function overviewAssignedTemplate(contact) {
     return `
-        <div><span class="task-overview-initials">${getContactInitials(contact.name)}</span> <span>${contact.name}</span></div>
+        <div><span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span> <span>${contact.name}</span></div>
 `
 }
 
@@ -233,7 +233,7 @@ function assignedListOptionTemplate(contact){
     return `
         <div class="assigned-list-option" onclick="toggleContactToTask(${contact.id})" id="contact${contact.id}"> 
             <div>
-                <span class="task-overview-initials">${getContactInitials(contact.name)}</span>
+                <span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span>
                 <span>${contact.name}</span>
             </div>
             <input type="checkbox" class="editor-assigned-list-checkbox" id="contactCheckbox${contact.id}">
@@ -243,7 +243,7 @@ function assignedListOptionTemplate(contact){
 
 function assignedListTemplate(contact){
     return `
-        <span class="task-overview-initials">${getContactInitials(contact.name)}</span>
+        <span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span>
     `
 }
 
