@@ -1,4 +1,5 @@
 const modal = document.getElementById("myModal");
+let iniColor = document.getElementById("iniModal");
 
 function closeModal(e) {
     if (e.target === modal) {
@@ -24,7 +25,19 @@ function clearModal() {
     addContact.phone.value = "";
 }
 
-function openModal(dialog) {
+function openModal(dialog, id, name, mail, phone, color) {
+    if (dialog === "edit") {
+        editContact.name.value = name;
+        editContact.email.value = mail;
+        editContact.phone.value = phone;
+
+        getIni(name).then((response) => {
+            iniColor.innerHTML = response; iniColor.style.backgroundColor = "#" + color;
+        })
+
+        document.getElementById("saveOrDelete").innerHTML = editButtonTemplate(id)
+    }
+
     document.getElementById(`${dialog}-modal`).classList.toggle("d-none");
     modal.showModal()
 }

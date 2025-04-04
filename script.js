@@ -28,3 +28,9 @@ async function updateTaskList() {
           })
     });
 }
+
+async function updateUl() {
+    let response = await fetch(BASE_URL + ".json");
+    let json = await response.json();
+    return json.contactList;
+}

@@ -1,0 +1,49 @@
+#legal-notice, #atHelp  {
+    padding: 96px 96px 0 96px;
+}
+
+#atHelp {
+    overflow-y: auto;
+
+    & > div {
+        position: relative;
+    }
+
+    & h3 {
+        margin-bottom: 0;
+    }
+
+    & ol {
+        padding-left: 25px;
+    }
+
+    & li {
+    padding-left: 25px;
+
+        &::marker {
+            font-size: 22px;
+            font-weight: bold;
+            padding: 0;
+        }
+    }
+}
+
+#arrow-help {
+    position: absolute;
+    right: 0;
+    top: 20px !important;
+}
+
+.highlight {
+    color: var(--secondary-blue);
+}
+
+@media (max-width: 475px) {
+
+    #atHelp {
+        padding: 20px 20px 0 20px;
+    }
+    #arrow-help {
+        top: 12px !important;
+    }
+}

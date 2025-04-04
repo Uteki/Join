@@ -1,15 +1,15 @@
 // Contact
 
-function contactTemplate(abbr, name, mail, number, id) {
+function contactTemplate(abbr, name, mail, number, id, color) {
     return `<article>
         <div>
-            <div class="abbr-profil">${abbr}</div>
+            <div style="background-color: #${color}" class="abbr-profil">${abbr}</div>
             
             <div class="m-left-40">
                 <h2 class="m-none m-right-10">${name}</h2>
     
                 <div>
-                    <button onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
+                    <button onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number}, '${color}')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</button>
                     <button onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</button>
                 </div>
             </div>
@@ -33,15 +33,27 @@ function addAbbreviation(letter) {
     `
 }
 
-function contactButtonTemplate(abbr, name, mail ,id) {
+function contactButtonTemplate(abbr, name, mail ,id, color) {
     return `<button class="button contact-btn" onclick="displayContact(${id})">
-        <div class="abbr-profil">${abbr}</div>
+        <div style="background-color: #${color}" class="abbr-profil">${abbr}</div>
         
         <div class="m-left-40">
             <span>${name}</span>
             <span>${mail}</span>
         </div>
     </button>
+    `
+}
+
+function dropdownTemplate(id, name, mail, number, color) {
+    return  `<li onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number}, '${color}')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
+             <li onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
+    `
+}
+
+function editButtonTemplate(id) {
+    return `<button type="button" class="button outline-btn" onclick="deleteContact(${id}); quitModal()">Delete</button>
+            <button type="button" class="button dark-bg-btn" onclick="changeContact(${id})">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
     `
 }
 

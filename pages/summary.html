@@ -10,18 +10,19 @@
     <link rel="stylesheet" type="text/css" href="../style.css">
 
     <script src="../scripts/firebase.js" defer></script>
+    <script src="../scripts/summary.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
     <script src="../script.js" defer></script>
 
     <script type="module" src="../scripts/state.js" defer></script>
 </head>
 
-<body onload="init()">
+<body onload="summarize()">
     <header class="header-bar">
         <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
         <div class="header-bar-menu">
-            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
             <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
                 <span class="user-initials"></span>
             </div>
@@ -68,7 +69,7 @@
                 <div class="summary-statistics-element">
                     <div class="summary-icon to-do-icon"></div>
                     <div class="summary-num-text">
-                        <span class="summary-num">1</span>
+                        <span class="summary-num">0</span>
                         <span>To-do</span>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
                 <div class="summary-statistics-element">
                     <div class="summary-icon check-icon"></div>
                     <div class="summary-num-text">
-                        <span class="summary-num">1</span>
+                        <span class="summary-num">0</span>
                         <span>Done</span>
                     </div>
                 </div>
@@ -85,7 +86,7 @@
                     <div class="summary-urgent-container-left">
                         <div class="summary-icon urgent-icon"></div>
                         <div class="summary-num-text">
-                            <span class="summary-num">1</span>
+                            <span class="summary-num">0</span>
                             <span>Urgent</span>
                         </div>
                     </div>
@@ -93,28 +94,28 @@
 
                     </div>
                     <div class="summary-urgent-container-right">
-                        <span>October 16, 2022</span>
+                        <span>Loading...</span>
                         <span>Upcoming Deadline</span>
                     </div>
                 </div>
 
                 <div class="summary-statistics-element">
                     <div class="summary-num-text">
-                        <span class="summary-num">5</span>
+                        <span class="summary-num">0</span>
                         <span>Tasks in Board</span>
                     </div>
                 </div>
 
                 <div class="summary-statistics-element">
                     <div class="summary-num-text">
-                        <span class="summary-num">2</span>
+                        <span class="summary-num">0</span>
                         <span>Tasks in Progress</span>
                     </div>
                 </div>
 
                 <div class="summary-statistics-element">
                     <div class="summary-num-text">
-                        <span class="summary-num">2</span>
+                        <span class="summary-num">0</span>
                         <span>Awaiting Feedback</span>
                     </div>
                 </div>
