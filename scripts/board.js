@@ -55,6 +55,14 @@ function truncateTaskDescription(description) {
     }
 }
 
+function renderTaskPriority(prio){
+    if(prio !== null){
+        return boardTaskPriorityTemplate(prio)
+    } else {
+        return ''
+    }
+}
+
 function finishedTasks(subtasks) {
     const finishedCount = subtasks.filter(subtask => subtask.finished === true).length;
     return finishedCount;
@@ -175,6 +183,7 @@ function renderOverlayEditor(id, columnIndex) {
     overlay.innerHTML += boardOverlayEditorTemplate(task, columnIndex);
     renderOverlayEditorAssigned(contactList);
     rendertaskOverviewSubtasksList(task.subtasks);
+    changeTaskPriority(editTask.priority, `boardEditor${firstLetterToUpperCase(editTask.priority)}Btn`);
 };
 
 function renderOverlayEditorAssigned(contactsToRender) {
@@ -234,7 +243,7 @@ function rendertaskOverviewSubtasksList(subtasks) {
 
 function closeAssignedSelection() {
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection');
-    if (taskOverlayEditorAssignedSelection.classList.includes('d-none')) {
+    if (!taskOverlayEditorAssignedSelection.classList.contains('d-none')) {
         taskOverlayEditorAssignedSelection.classList.add('d-none')
     }
 }
@@ -261,15 +270,6 @@ function changeTaskDate() {
 
 function changeTaskPriority(newPrio, buttonID) {
     editTask.priority = newPrio;
-    const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
-    }
-    document.getElementById(buttonID).classList.toggle(`active-priority-button-${newPrio}`);
-}
-
-function setTaskPriority(newPrio, buttonID) {
-    newTask.priority = newPrio;
     const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
