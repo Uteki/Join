@@ -422,6 +422,30 @@ dialog {
     }
 }
 
+#contact-success {
+    z-index: 10;
+    color: white;
+    width: 311px;
+    height: 72px;
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    position: absolute;
+    text-align: center;
+    padding-left: 25px;
+    border-radius: 20px;
+    padding-right: 25px;
+    align-items: center;
+    background: var(--primary-blue);
+    box-shadow: 0 0 4px 0 #00000026;
+    animation: con-su 1s ease forwards;
+}
+
+#add-form {
+    position: relative;
+}
+
 .btn-mobile {
     right: 3%;
     bottom: 15%;
@@ -524,6 +548,30 @@ dialog {
             transform: translateY(1px);
         }
     }
+}
+
+.con-out {
+    animation: con-us 1s ease forwards !important;
+}
+
+.con-err:after {
+    position: absolute;
+    color: red;
+    font-size: 14px;
+    bottom: -20px;
+    left: 0;
+}
+
+.con-name:after {
+    content: "Check your Name. Please try again.";
+}
+
+.con-mail:after {
+    content: "Check your Email. Please try again.";
+}
+
+.con-pone:after {
+    content: "Check your Phone. Please try again.";
 }
 
 @media (max-width: 1118px) {

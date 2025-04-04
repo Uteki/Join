@@ -20,7 +20,7 @@
     <script type="module" src="../scripts/state.js" defer></script>
 </head>
 
-<body onload="renderContact()">
+<body onload="renderContact()" style="overflow-x: hidden">
     <header class="header-bar">
         <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
@@ -115,7 +115,6 @@
             </div>
 
             <div class="modal-body">
-                <!-- editC -->
                 <div class="abbr-wrapper">
                     <div id="iniModal" class="abbr-profil">MM</div>
                 </div>
@@ -144,7 +143,6 @@
                         <button class="button dark-bg-btn" onclick="">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
                     </div>
                 </form>
-                <!-- editC -->
             </div>
         </div>
 
@@ -158,27 +156,26 @@
             </div>
 
             <div class="modal-body">
-                <!-- addC -->
                 <div class="abbr-wrapper">
                     <div class="abbr-profil"><i><img src="../assets/svg/contact-icons/anon.svg" alt="Anon"></i></div>
                 </div>
 
-                <form id="add-form">
+                <form id="add-form" onsubmit="return false">
                     <div class="input-group">
                         <label for="add-name"></label>
-                        <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off" required>
+                        <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off">
                         <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
                     </div>
 
                     <div class="input-group">
                         <label for="add-mail"></label>
-                        <input type="email" name="email" id="add-mail" placeholder="Email" autocomplete="off" required>
+                        <input type="email" name="email" id="add-mail" placeholder="Email" autocomplete="off">
                         <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-group con-err">
                         <label for="add-con"></label>
-                        <input type="tel" name="phone" id="add-con" placeholder="Phone" autocomplete="off" required>
+                        <input type="tel" name="phone" id="add-con" placeholder="Phone" autocomplete="off">
                         <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
                     </div>
 
@@ -187,10 +184,11 @@
                         <button class="button dark-bg-btn" type="submit" onclick="createContact()">Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
                     </div>
                 </form>
-                <!-- addC -->
             </div>
         </div>
     </dialog>
+
+    <div id="contact-success" class="d-none">Contact added successfully.</div>
 </body>
 
 </html>

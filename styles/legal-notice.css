@@ -4,7 +4,6 @@
 }
 
 #atHelp {
-
     & > div {
         position: relative;
     }
@@ -39,10 +38,10 @@
 }
 
 @media (max-width: 475px) {
-
     #atHelp {
         padding: 20px 20px 0 20px;
     }
+
     #arrow-help {
         top: 12px !important;
     }
