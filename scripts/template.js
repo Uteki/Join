@@ -354,7 +354,7 @@ function addTaskAssignedListOptionTemplate(contact){
     return `
         <div class="assigned-list-option" onclick="toggleContactToAddTask(${contact.id})" id="contact${contact.id}"> 
             <div>
-                <span class="task-overview-initials">${getContactInitials(contact.name)}</span>
+                <span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span>
                 <span>${contact.name}</span>
             </div>
             <input type="checkbox" class="editor-assigned-list-checkbox" id="contactCheckbox${contact.id}">
@@ -364,7 +364,7 @@ function addTaskAssignedListOptionTemplate(contact){
 
 function addTaskAssignedListTemplate(contact){
     return `
-        <span class="task-overview-initials">${getContactInitials(contact.name)}</span>
+        <span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span>
     `
 }
 
