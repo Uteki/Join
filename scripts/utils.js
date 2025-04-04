@@ -63,7 +63,7 @@ function clearInnerHtml(elementId){
 function firstLetterToUpperCase(word) {
     if (word.length === 0) return word;
     return word.charAt(0).toUpperCase() + word.slice(1);
-  
+}
 function savePath() {
     let path = window.location.pathname;
     let pathElp = path.substring(path.lastIndexOf("/") + 1);
