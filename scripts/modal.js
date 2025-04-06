@@ -43,6 +43,8 @@ function openModal(dialog, id, name, mail, phone, color) {
 }
 
 function mobileCrudMenu() {
+    if (document.querySelector("article") === null) return;
+
     const menu = document.getElementsByClassName("dd-menu").item(0);
     menu.classList.toggle("d-none");
 

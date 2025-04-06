@@ -47,7 +47,7 @@ function contactButtonTemplate(abbr, name, mail ,id, color) {
 
 function dropdownTemplate(id, name, mail, number, color) {
     return  `<li onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number}, '${color}')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
-             <li onclick="deleteContact(${id})"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
+             <li onclick="deleteContact(${id}); toggleContactMenu()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
     `
 }
 

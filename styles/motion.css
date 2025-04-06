@@ -22,9 +22,27 @@
     }
 }
 
+@keyframes tl-out-mobile {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
 @keyframes tl-in {
     to {
         transform: translateX(0);
+    }
+}
+
+@keyframes tl-in-mobile {
+    from {
+        transform: translateY(100vh);
+    }
+    to {
+        transform: translateY(0);
     }
 }
 
@@ -83,6 +101,18 @@
     }
 }
 
+@keyframes con-su-mobile {
+    from {
+        bottom: -80%;
+        right: 15%;
+    }
+
+    to {
+        bottom: 21%;
+        right: 15%;
+    }
+}
+
 @keyframes con-us {
     from {
         bottom: 15%;
@@ -92,6 +122,18 @@
     to {
         bottom: 15%;
         right: -80%;
+    }
+}
+
+@keyframes con-us-mobile {
+    from {
+        bottom: 21%;
+        right: 15%;
+    }
+
+    to {
+        bottom: -80%;
+        right: 15%;
     }
 }
 

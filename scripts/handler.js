@@ -21,7 +21,7 @@ async function createContact (contacts = contactList, path="contactList/", data=
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: addContact.name.value, email: addContact.email.value, phone: addContact.phone.value, id: newId, color: generateColor()})
+        body: JSON.stringify({name: upperSense(addContact.name.value), email: addContact.email.value, phone: addContact.phone.value, id: newId, color: generateColor()})
     });
 
     await response.json(); await waitFor(newId);
@@ -122,8 +122,14 @@ function generateColor() {
     return `${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
+function upperSense(name) {
+    return name.toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
 function wrongConData() {
-    console.log(editContact.name.value.length)
     if (addContact.name.value.length < 1) return showConError(conErr, "con-name", "add-name");
     if (!addContact.email.value.includes("@") || !addContact.email.value.includes(".")) return showConError(conErr, "con-mail", "add-mail");
     if (addContact.phone.value < 1 || isNaN(addContact.phone.value) && addContact !== undefined) return showConError(conErr, "con-pone", "add-con");
