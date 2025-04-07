@@ -144,8 +144,23 @@ function renderOverlayAssignedTo(task) {
 
 function findContact(id) {
     const contactIndex = contactList.findIndex((element) => element.id === id);
-    return contactList[contactIndex]
+    if (contactIndex >= 0) {
+        return contactList[contactIndex]
+    } else {
+        deleteContactFromTask(id)
+    }
+    
 }
+
+function deleteContactFromTask(id) {
+    taskList.forEach(taskGroup => {
+      taskGroup.tasks.forEach(task => {
+        task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
+      });
+    });
+    updateTaskList();
+    renderTasks();
+  }
 
 function renderOverlaySubtasks(task, columnIndex, taskIndex) {
     const taskOverviewSubtasks = document.getElementById('taskOverviewSubtasks')
