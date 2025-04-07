@@ -63,6 +63,14 @@ function renderTaskPriority(prio) {
     }
 }
 
+function getTaskPriority(prio) {
+    if (prio !== null) {
+        return prio;
+    } else {
+        return '';
+    }
+}
+
 function finishedTasks(subtasks) {
     const finishedCount = subtasks.filter(subtask => subtask.finished === true).length;
     return finishedCount;
@@ -131,15 +139,17 @@ async function closeTaskOverlay() {
     await updateTaskList();
     const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
     const boardAddTaskOverlayContainer = document.getElementById('boardAddTaskOverlayContainer')
-    
-    boardAddTaskOverlayContainer.classList.add('slide-out');
-    boardAddTaskOverlayContainer.addEventListener('animationend', async () => {
-        boardAddTaskOverlayContainer.classList.remove('slide-out');
+    if (boardAddTaskOverlayContainer) {
+        boardAddTaskOverlayContainer.classList.add('slide-out');
+        boardAddTaskOverlayContainer.addEventListener('animationend', async () => {
+            boardAddTaskOverlayContainer.classList.remove('slide-out');
+            taskOverviewOverlay.remove()
+            renderTasks();
+        });
+    } else {
         taskOverviewOverlay.remove()
         renderTasks();
-    });
-    
-
+    }
 }
 
 function renderOverlayAssignedTo(task) {

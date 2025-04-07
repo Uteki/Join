@@ -142,7 +142,7 @@ function boardOverlayTemplate(task, columnIndex) {
             <div class="task-overview-container-content">
                 <span class="task-overview-description">${task.description}</span>
                 <span class="task-overview-date task-overview-feature">Due Date: <span class="task-overview-due-date">${task.dueDate}</span></span>
-                <span class="task-overview-priority task-overview-feature">Priority: <span>${task.priority} <img src="../assets/svg/priority-icons/priority-${task.priority}.svg" alt=""></span></span>
+                <span class="task-overview-priority task-overview-feature">Priority: <span>${getTaskPriority(task.priority)}<img src="../assets/svg/priority-icons/priority-${task.priority}.svg" alt=""></span></span>
                 <div class="task-overview-assigned-container" id="taskOverviewAssignedContainer">
                         <span class="task-overview-feature">Assigned To:</span>
 
