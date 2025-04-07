@@ -22,9 +22,27 @@
     }
 }
 
+@keyframes tl-out-mobile {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
 @keyframes tl-in {
     to {
         transform: translateX(0);
+    }
+}
+
+@keyframes tl-in-mobile {
+    from {
+        transform: translateY(100vh);
+    }
+    to {
+        transform: translateY(0);
     }
 }
 
@@ -70,6 +88,73 @@
         bottom: 45%;
     }
 }
+
+@keyframes con-su {
+    from {
+        bottom: 15%;
+        right: -80%;
+    }
+
+    to {
+        bottom: 15%;
+        right: 21%;
+    }
+}
+
+@keyframes con-su-mobile {
+    from {
+        bottom: -80%;
+        right: 15%;
+    }
+
+    to {
+        bottom: 21%;
+        right: 15%;
+    }
+}
+
+@keyframes con-us {
+    from {
+        bottom: 15%;
+        right: 21%;
+    }
+
+    to {
+        bottom: 15%;
+        right: -80%;
+    }
+}
+
+@keyframes con-us-mobile {
+    from {
+        bottom: 21%;
+        right: 15%;
+    }
+
+    to {
+        bottom: -80%;
+        right: 15%;
+    }
+}
+
+@keyframes board-overview-intro{
+    from {
+        right: -50%;
+    }
+
+    to {
+        right: 50%;
+    }
+}
+
+@keyframes board-overview-out {
+    from {
+      right: 50%;
+    }
+    to {
+      right: -50%;
+    }
+  }
 
 @media (max-width: 700px) {
     @keyframes logo {

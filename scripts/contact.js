@@ -18,7 +18,7 @@ async function renderContact() {
             index = contactList[i].name.charAt(0);
         }
 
-        outputMenu.innerHTML += contactButtonTemplate(await getIni(contactList[i].name), contactList[i].name, contactList[i].email, contactList[i].id);
+        outputMenu.innerHTML += contactButtonTemplate(await getIni(contactList[i].name), contactList[i].name, contactList[i].email, contactList[i].id, contactList[i].color);
     }
 }
 
@@ -26,9 +26,9 @@ async function displayContact(id) {
     let contact = contactList.find(el => el.id === id);
 
     displaySection.innerHTML = "";
-    displaySection.innerHTML += contactTemplate(await getIni(contact.name), contact.name, contact.email, contact.phone, contact.id);
+    displaySection.innerHTML += contactTemplate(await getIni(contact.name), contact.name, contact.email, contact.phone, contact.id, contact.color);
 
-    dropdownMenu.innerHTML = dropdownTemplate(id, contact.name, contact.email, contact.phone);
+    dropdownMenu.innerHTML = dropdownTemplate(id, contact.name, contact.email, contact.phone, contact.color);
 
     if (window.innerWidth <= 670) {
         display.classList.remove("d-none");

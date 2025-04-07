@@ -13,26 +13,23 @@ let defaultTask = {
 
 // add task form
 
-function openAddTaskForm(){
+function openAddTaskForm() {
     const body = document.querySelector('body')
     body.innerHTML += boardAddTaskTemplate();
     newTask = JSON.parse(JSON.stringify(defaultTask))
-    console.log(newTask)
     renderAddTaskForm();
 }
 
 // add task
 
-function addNewTask(){
+async function addNewTask() {
     setTitle()
     setTaskDescription()
     setTaskDate()
     setCategory()
     newTask.id = setNewTaskId()
     taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
-    console.log(newTask)
-    updateTaskList()
-    closeTaskOverlay()
+    await closeTaskOverlay()
 }
 
 // set IDs
@@ -53,19 +50,17 @@ function generateNewTaskId() {
 
 // Overlay editor
 
-function renderAddTaskForm(){
-    console.log('wird ausgeführt')
+function renderAddTaskForm() {
     renderAddTaskAssigned(contactList);
     renderAddTaskSubtasksList(newTask.subtasks);
 };
 
-function renderAddTaskAssigned(contactsToRender){
+function renderAddTaskAssigned(contactsToRender) {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection')
     clearInnerHtml('boardAddTaskAssignedSelection')
     for (let index = 0; index < contactsToRender.length; index++) {
         const element = contactsToRender[index];
         boardAddTaskAssignedSelection.innerHTML += addTaskAssignedListOptionTemplate(element)
-        console.log('hier sollte was geladen werden')
     }
     for (let index = 0; index < contactsToRender.length; index++) {
         const element = contactsToRender[index];
@@ -74,7 +69,7 @@ function renderAddTaskAssigned(contactsToRender){
     renderAddTaskAssignedContacts();
 }
 
-function renderAddTaskAssignedContacts(){
+function renderAddTaskAssignedContacts() {
     const boardAddTaskAssignedContacts = document.getElementById('boardAddTaskAssignedContacts')
     clearInnerHtml('boardAddTaskAssignedContacts')
     for (let index = 0; index < newTask.assignedTo.length; index++) {
@@ -83,25 +78,24 @@ function renderAddTaskAssignedContacts(){
     }
 };
 
-function addTaskCheckIfContactIsAssigned(element){
+function addTaskCheckIfContactIsAssigned(element) {
     const check = newTask.assignedTo.includes(element.id)
     const contactElement = document.getElementById(`contact${element.id}`)
     const checkbox = document.getElementById(`contactCheckbox${element.id}`);
-    if(check){
+    if (check) {
         contactElement.classList.add('assigned-list-option-selected')
         contactElement.classList.remove('assigned-list-option')
         checkbox.checked = true;
-    } 
+    }
 }
 
-function boardAddTaskFilterContacts(){
+function boardAddTaskFilterContacts() {
     const query = document.getElementById('boardAddTaskContactQueryInput').value
     const filteredContacts = searchContacts(query);
-    console.log(filteredContacts)
     renderAddTaskAssigned(filteredContacts);
 }
 
-function renderAddTaskSubtasksList(subtasks){
+function renderAddTaskSubtasksList(subtasks) {
     const boardAddTaskSubtasksList = document.getElementById('boardAddTaskSubtasksList')
     clearInnerHtml('boardAddTaskSubtasksList')
     for (let index = 0; index < subtasks.length; index++) {
@@ -110,19 +104,19 @@ function renderAddTaskSubtasksList(subtasks){
     }
 }
 
-function addTaskCloseAssignedSelection(){
+function addTaskCloseAssignedSelection() {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection');
     boardAddTaskAssignedSelection.classList.add('d-none')
 }
 
-function openBoardAddTaskAssignedSelection(){
+function openBoardAddTaskAssignedSelection() {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection');
     boardAddTaskAssignedSelection.classList.remove('d-none')
 }
 
-function toggleContactToAddTask(contactId){
+function toggleContactToAddTask(contactId) {
     const searchInput = document.getElementById('boardAddTaskContactQueryInput')
-    if(newTask.assignedTo.includes(contactId)){
+    if (newTask.assignedTo.includes(contactId)) {
         const contactIndex = newTask.assignedTo.findIndex((element) => element === contactId);
 
         newTask.assignedTo.splice(contactIndex, 1);
@@ -136,7 +130,7 @@ function toggleContactToAddTask(contactId){
 
 // Subtasks
 
-function createSubtaskToNewTask(){
+function createSubtaskToNewTask() {
     const newSubtask = {
         id: addTaskSetSubtaskId(),
         description: document.getElementById('addSubtaskInput').value,
@@ -147,7 +141,7 @@ function createSubtaskToNewTask(){
     renderAddTaskSubtasksList(newTask.subtasks);
 }
 
-function addTaskDeleteSubtask(subtaskId){
+function addTaskDeleteSubtask(subtaskId) {
     const subtaskMatchesId = (element) => element.id === subtaskId;
     const subTaskIndex = newTask.subtasks.findIndex(subtaskMatchesId)
     newTask.subtasks.splice(subTaskIndex, 1)
@@ -155,7 +149,7 @@ function addTaskDeleteSubtask(subtaskId){
     renderAddTaskSubtasksList(newTask.subtasks);
 }
 
-function addTaskStartSubtaskEditing(subtaskId){
+function addTaskStartSubtaskEditing(subtaskId) {
     const subtaskEditorContainer = document.getElementById('subtaskEditorContainer')
     clearInnerHtml('boardAddTaskSubtasksList')
     const subtaskMatchesId = (element) => element.id === subtaskId;
@@ -164,7 +158,7 @@ function addTaskStartSubtaskEditing(subtaskId){
     subtaskEditorContainer.innerHTML += addTaskSubtaskEditorTemplate(subtask);
 }
 
-function addTaskChangeSubtaskDescription(subtaskId){
+function addTaskChangeSubtaskDescription(subtaskId) {
     const editSubtaskInput = document.getElementById('editSubtaskInput')
     const subtaskMatchesId = (element) => element.id === subtaskId;
     const subTaskIndex = newTask.subtasks.findIndex(subtaskMatchesId)
@@ -173,7 +167,7 @@ function addTaskChangeSubtaskDescription(subtaskId){
     renderAddTaskSubtasksList(newTask.subtasks);
 }
 
-function addTaskSetSubtaskId(){
+function addTaskSetSubtaskId() {
     let existingIds = new Set();
     newTask.subtasks.forEach(task => {
         existingIds.add(task.id);
@@ -187,25 +181,35 @@ function addTaskSetSubtaskId(){
 
 
 // submit functions
+function validateForm() {
+    let form = document.getElementById("boardAddTaskForm");
+    let submitButton = document.getElementById("boardAddTaskSubmitButton");
+    submitButton.disabled = !form.checkValidity();
+}
 
-function setTitle(){
+function setTitle() {
     newTask.title = document.getElementById('addTaskTitleInput').value
 }
 
-function setTaskDescription(){
+function setTaskDescription() {
     newTask.description = document.getElementById('addTaskDescriptionInput').value
 }
 
-function setTaskDate(){
+function setTaskDate() {
     newTask.dueDate = document.getElementById('addTaskDateInput').value
 }
 
-function setCategory(){
+function setCategory() {
     newTask.category = document.getElementById('boardAddTaskCategoryInput').value
 }
 
-function setTaskPriority(newPrio){
+function setTaskPriority(newPrio, buttonID) {
     newTask.priority = newPrio;
+    const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
+    }
+    document.getElementById(buttonID).classList.toggle(`active-priority-button-${newPrio}`);
 }
 
 function setNewTaskId() {
@@ -221,5 +225,5 @@ function setNewTaskId() {
         newId++;
     }
 
-    return newId;    
+    return newId;
 }

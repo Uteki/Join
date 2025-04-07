@@ -60,6 +60,10 @@ function clearInnerHtml(elementId){
     document.getElementById(elementId).innerHTML = '';
 }
 
+function firstLetterToUpperCase(word) {
+    if (word.length === 0) return word;
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
 function savePath() {
     let path = window.location.pathname;
     let pathElp = path.substring(path.lastIndexOf("/") + 1);
@@ -71,4 +75,13 @@ function savePath() {
 function getPath() {
     let pathElp = localStorage.getItem("path");
     window.location.href = `../pages/${pathElp}`;
+}
+
+async function deleteContactFromTask(id) {
+    taskList.forEach(taskGroup => {
+        taskGroup.tasks.forEach(task => {
+            task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
+        });
+    });
+    await updateTaskList();
 }

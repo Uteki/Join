@@ -1,4 +1,5 @@
 const modal = document.getElementById("myModal");
+let iniColor = document.getElementById("iniModal");
 
 function closeModal(e) {
     if (e.target === modal) {
@@ -24,13 +25,15 @@ function clearModal() {
     addContact.phone.value = "";
 }
 
-function openModal(dialog, id, name, mail, phone) {
+function openModal(dialog, id, name, mail, phone, color) {
     if (dialog === "edit") {
         editContact.name.value = name;
         editContact.email.value = mail;
         editContact.phone.value = phone;
 
-        getIni(name).then((response) => {document.getElementById("iniModal").innerHTML = response})
+        getIni(name).then((response) => {
+            iniColor.innerHTML = response; iniColor.style.backgroundColor = "#" + color;
+        })
 
         document.getElementById("saveOrDelete").innerHTML = editButtonTemplate(id)
     }
@@ -40,6 +43,8 @@ function openModal(dialog, id, name, mail, phone) {
 }
 
 function mobileCrudMenu() {
+    if (document.querySelector("article") === null) return;
+
     const menu = document.getElementsByClassName("dd-menu").item(0);
     menu.classList.toggle("d-none");
 
