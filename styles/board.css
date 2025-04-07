@@ -427,6 +427,7 @@
     top: 0;
     left: 0;
     z-index: 100;
+    overflow: hidden;
 }
 
 .task-overview-container {
@@ -435,9 +436,9 @@
     width: 525px;
     max-height: 600px;
     position: absolute;
-    left: 50%;
+    right: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(50%, -50%);
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px #00000029;
     padding: 48px 40px 48px 40px;
@@ -1065,9 +1066,9 @@
     height: auto;
     width: 880px;
     position: absolute;
-    left: 50%;
+    right: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(50%, -50%);
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px #00000029;
     padding: 56px 56px 56px 56px;
@@ -1076,7 +1077,12 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 24px;
+    animation: board-overview-intro 0.5s forwards;
 }
+
+.board-add-task-container.slide-out {
+    animation: board-overview-out 0.5s forwards;
+  }  
 
 .board-add-task-header {
     display: flex;
