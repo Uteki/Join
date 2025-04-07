@@ -55,8 +55,8 @@ function truncateTaskDescription(description) {
     }
 }
 
-function renderTaskPriority(prio){
-    if(prio !== null){
+function renderTaskPriority(prio) {
+    if (prio !== null) {
         return boardTaskPriorityTemplate(prio)
     } else {
         return ''
@@ -148,19 +148,10 @@ function findContact(id) {
         return contactList[contactIndex]
     } else {
         deleteContactFromTask(id)
+        renderTasks();
     }
-    
-}
 
-function deleteContactFromTask(id) {
-    taskList.forEach(taskGroup => {
-      taskGroup.tasks.forEach(task => {
-        task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
-      });
-    });
-    updateTaskList();
-    renderTasks();
-  }
+}
 
 function renderOverlaySubtasks(task, columnIndex, taskIndex) {
     const taskOverviewSubtasks = document.getElementById('taskOverviewSubtasks')

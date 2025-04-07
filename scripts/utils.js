@@ -76,3 +76,12 @@ function getPath() {
     let pathElp = localStorage.getItem("path");
     window.location.href = `../pages/${pathElp}`;
 }
+
+async function deleteContactFromTask(id) {
+    taskList.forEach(taskGroup => {
+        taskGroup.tasks.forEach(task => {
+            task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
+        });
+    });
+    await updateTaskList();
+}
