@@ -55,11 +55,19 @@ function truncateTaskDescription(description) {
     }
 }
 
-function renderTaskPriority(prio){
-    if(prio !== null){
+function renderTaskPriority(prio) {
+    if (prio !== null) {
         return boardTaskPriorityTemplate(prio)
     } else {
         return ''
+    }
+}
+
+function getTaskPriority(prio) {
+    if (prio !== null) {
+        return prio;
+    } else {
+        return '';
     }
 }
 
@@ -128,10 +136,20 @@ function openTaskOverlay(taskId, columnIndex) {
 }
 
 async function closeTaskOverlay() {
-    const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
-    taskOverviewOverlay.remove()
     await updateTaskList();
-    renderTasks();
+    const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
+    const boardAddTaskOverlayContainer = document.getElementById('boardAddTaskOverlayContainer')
+    if (boardAddTaskOverlayContainer) {
+        boardAddTaskOverlayContainer.classList.add('slide-out');
+        boardAddTaskOverlayContainer.addEventListener('animationend', async () => {
+            boardAddTaskOverlayContainer.classList.remove('slide-out');
+            taskOverviewOverlay.remove()
+            renderTasks();
+        });
+    } else {
+        taskOverviewOverlay.remove()
+        renderTasks();
+    }
 }
 
 function renderOverlayAssignedTo(task) {
@@ -144,7 +162,13 @@ function renderOverlayAssignedTo(task) {
 
 function findContact(id) {
     const contactIndex = contactList.findIndex((element) => element.id === id);
-    return contactList[contactIndex]
+    if (contactIndex >= 0) {
+        return contactList[contactIndex]
+    } else {
+        deleteContactFromTask(id)
+        renderTasks();
+    }
+
 }
 
 function renderOverlaySubtasks(task, columnIndex, taskIndex) {

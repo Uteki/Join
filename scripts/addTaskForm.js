@@ -22,15 +22,14 @@ function openAddTaskForm() {
 
 // add task
 
-function addNewTask() {
+async function addNewTask() {
     setTitle()
     setTaskDescription()
     setTaskDate()
     setCategory()
     newTask.id = setNewTaskId()
     taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
-    updateTaskList()
-    closeTaskOverlay()
+    await closeTaskOverlay()
 }
 
 // set IDs
