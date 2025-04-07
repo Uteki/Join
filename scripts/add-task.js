@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', setupEventListeners);
 
 
 
-function renderContacts() {
-console.log(contactList);
+async function renderFormData() {
+    await init()
+    console.log(contactList);
 }
