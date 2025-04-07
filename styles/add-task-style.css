@@ -111,8 +111,6 @@ form {
     font-weight: bold; 
 }
 
-/* Bitte prüfen ob checkbox Zeile 116-Zeile 127 verwendet wird ansonsten löschen */    
-
 .checkbox-group {
     max-width: 400px;  
 }
@@ -169,8 +167,6 @@ form {
     margin-right: 10px; 
 }
 
-/* Bitte prüfen ob checkbox Zeile 116-Zeile 127 verwendet wird ansonsten löschen */
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -222,4 +218,20 @@ form {
 
 .priority-button:hover {
     background-color: #e0e0e0; 
+}
+
+.message {
+    display: none; 
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: white;
+}
+
+.success {
+    background-color: green;
+}
+
+.error {
+    background-color: red;
 }

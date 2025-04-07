@@ -10,18 +10,18 @@
     <link rel="stylesheet" href="../style.css">
     <script src="../script.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
-
     <script src="../scripts/firebase.js" defer></script>
     <script type="module" src="../scripts/state.js" defer></script>
     <script src="../scripts/add-task.js" defer></script>
+
 </head>
 
-<body>
+<body onload="renderContacts()">
     <header class="header-bar">
         <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
         <div class="header-bar-menu">
-            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+            <a href="./help.html" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
             <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
                 <span class="user-initials"></span>
             </div>
@@ -97,18 +97,16 @@
 
           <label for="assignedTo">Assigned to</label><br>
         <div class="dropdown" id="assignedTo">
+          
             
-
 
    <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()">
                         <div id="addTaskAssignedToInput-" class="task-overlay-editor-assigned-selection d-none">
-<!-- Template aufrufen  -->
+                           
                         </div>
+</div>   <br><br>
 
 
-
-      
-        </div>   <br><br>
         <label for="category">Category<span class="required">*</span></label><br>
         <select id="category" name="category" class="dropdown" required>
             <option value="" disabled selected>Select task category</option>
@@ -121,20 +119,6 @@
                 </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="required-clear-create">
             <span><span class="required">*</span> This field is required</span>
             <div id="errorMessageContainer" class="error-message" style="display:none; color: red;">
@@ -144,23 +128,9 @@
                 <input type="button" value="Clear" id="clearButton">
                 <input type="button" value="Create Task" id="createButton" onclick="createTask()">
 
-
-
-
-
-
-
-
-        
-         
-    
-        
-
-
-
-
         </div>
 </div>
+<div id="message" class="message"></div>
     </main>
 
 </body>
