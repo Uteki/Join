@@ -1238,7 +1238,7 @@
     .board-add-task-form{
         flex-direction: column;
         overflow-y: auto;
-        max-height: 600px;
+        max-height: 300px;
     }
 
     .board-add-task-form-container{

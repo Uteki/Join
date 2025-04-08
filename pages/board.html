@@ -30,8 +30,8 @@
                 <span class="user-initials"></span>
             </div>
             <div class="logout-menu d-none" id="logout-menu">
-                <a href="./legal-notice.html">Legal Notice</a>
-                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a href="./external/legal-notice.html">Legal Notice</a>
+                <a href="./external/privacy-policy.html">Privacy Policy</a>
                 <a id="log-out">Logout</a>
             </div>
         </div>
@@ -53,8 +53,8 @@
         </div>
         <div class="side-menu-bottom-container">
             <nav class="footer-navigation">
-                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+                <a href="./external/privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                <a href="./external/legal-notice.html" class="footer-navigation-link">Legal notice</a>
             </nav>
         </div>
     </aside>
@@ -64,25 +64,41 @@
             <h1>Board</h1>
             <div class="board-header-menu">
                 <div class="board-search-container">
-                    <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()" id="boardSearchInput">
+                    <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()"
+                        id="boardSearchInput">
                     <div class="board-search-divider"></div>
                     <button class="board-search-button">
                         <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt=""
                             class="board-search-icon">
                     </button>
                 </div>
-                <button class="board-add-task-button" onclick="openAddTaskForm()">Add Task<img src="../assets/svg/plus-white.svg" alt=""></button>
+                <button class="board-add-task-button" onclick="openAddTaskForm()">Add Task<img
+                        src="../assets/svg/plus-white.svg" alt=""></button>
             </div>
-            <button class="board-add-task-button-mobile" onclick="openAddTaskForm()"><img src="../assets/svg/plus-white.svg" alt=""></button>
+            <button class="board-add-task-button-mobile" onclick="openAddTaskForm()"><img
+                    src="../assets/svg/plus-white.svg" alt=""></button>
         </section>
 
         <section class="board-content" id="boardContent">
 
-            
-                
+
+
         </section>
 
     </main>
+
+    <footer class="footer">
+        <nav class="footer-nav">
+            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+            <div class="footer-link-container"><a href="./add-task.html" class="footer-link"><img
+                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+            <div class="footer-link-container side-menu-link-current"><a href="./board.html" class="footer-link"><img
+                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+            <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+        </nav>
+    </footer>
 </body>
 
 </html>

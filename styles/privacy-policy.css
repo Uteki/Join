@@ -36,6 +36,13 @@
     }
 }
 
-#privacy-policy {
+.privacy-policy {
     padding: 96px;
+    overflow-y: auto;
+}
+
+@media (max-width:700px){
+    .privacy-policy{
+        padding: 32px;
+    }
 }

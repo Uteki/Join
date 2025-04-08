@@ -26,7 +26,7 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 232px;
-    height: 100vh;
+    height: 100dvh;
 }
 
 a {
@@ -69,14 +69,14 @@ button{
     }
 
     main {
-        height: calc(100vh - 176px);
+        height: calc(100dvh - 176px);
     }
 }
 
 @media (max-width: 475px){
 
     main {
-        height: calc(100vh - 160px);
+        height: calc(100dvh - 160px);
     }
 
     h1{
