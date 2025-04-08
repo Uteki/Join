@@ -72,6 +72,10 @@
     font-size: 21px;
     height: 48px;
     width: 160px;
+
+    &:hover{
+        background-color: var(--secondary-blue);
+    }
 }
 
 .board-add-task-button-mobile {

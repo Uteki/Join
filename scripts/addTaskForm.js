@@ -4,6 +4,8 @@ let defaultTask = {
     assignedTo: [],
     category: "",
     description: "",
+
+    
     dueDate: null,
     id: null,
     priority: null,

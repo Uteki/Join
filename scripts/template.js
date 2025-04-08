@@ -75,7 +75,7 @@ function boardColumnTemplate(column, index) {
 function boardTaskTemplate(task, columnIndex) {
     return `
         <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})" onclick="openTaskOverlay(${task.id}, ${columnIndex})">
-            <span class="board-task-category">${task.category}</span>
+            <span class="board-task-category" style="background-color: ${task.category === 'Technical Task' ? 'var(--tec-task-bg)' : 'var(--accent-blue)'};">${task.category}</span>
             <div class="board-task-description">
                 <h3 class="board-task-container-title">${task.title}</h3>
                 <p>${truncateTaskDescription(task.description)}</p>
@@ -133,7 +133,7 @@ function boardOverlayTemplate(task, columnIndex) {
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
         <div class="task-overview-container"  id="taskOverviewOverlayContainer" onclick="event.stopPropagation()">
             <div class="task-overview-category">
-                <span>${task.category}</span>
+                <span style="background-color: ${task.category === 'Technical Task' ? 'var(--tec-task-bg)' : 'var(--accent-blue)'};">${task.category}</span>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
             <h3>
