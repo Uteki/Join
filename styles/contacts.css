@@ -630,6 +630,14 @@ dialog {
         height: calc(100% - 60px);
     }
 
+    #con-sidebar {
+        & output {
+            & .button.contact-btn {
+                overflow: hidden;
+            }
+        }
+    }
+
     #edit-modal, #add-modal {
         flex-direction: column;
 
@@ -706,6 +714,11 @@ dialog {
     }
 
     #contact-success {
+        width: 166px;
+        padding-left: 5px;
+        margin-right: 20px;
+        padding-right: 5px;
+        justify-content: center;
         animation: con-su-mobile 1s forwards;
     }
 
