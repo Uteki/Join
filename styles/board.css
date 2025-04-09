@@ -486,6 +486,10 @@
         width: 24px;
         aspect-ratio: 1/1;
         background-color: transparent;
+
+        &:hover img{
+            filter: brightness(0) saturate(100%) invert(72%) sepia(90%) saturate(2740%) hue-rotate(166deg) brightness(88%) contrast(100%);
+        }
     }
 }
 
@@ -1102,6 +1106,10 @@
         width: 24px;
         aspect-ratio: 1/1;
         background-color: transparent;
+
+        &:hover img{
+            filter: brightness(0) saturate(100%) invert(64%) sepia(12%) saturate(5913%) hue-rotate(165deg) brightness(93%) contrast(90%);
+        }
     }
 
     & h1 {
