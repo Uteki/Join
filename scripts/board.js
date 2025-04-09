@@ -227,9 +227,15 @@ function renderOverlayEditorAssigned(contactsToRender) {
 function rendertaskOverlayEditorAssignedContacts() {
     const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
     clearInnerHtml('taskOverlayEditorAssignedContacts')
-    for (let index = 0; index < editTask.assignedTo.length; index++) {
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(editTask.assignedTo.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
         const element = editTask.assignedTo[index];
         taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
+    }
+    if (editTask.assignedTo.length > maxDisplayCount) {
+        const excessCount = editTask.assignedTo.length - maxDisplayCount;
+        taskOverlayEditorAssignedContacts.innerHTML += ` +${excessCount}`;
     }
 };
 

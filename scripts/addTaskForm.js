@@ -4,8 +4,6 @@ let defaultTask = {
     assignedTo: [],
     category: "",
     description: "",
-
-    
     dueDate: null,
     id: null,
     priority: null,
@@ -31,6 +29,7 @@ async function addNewTask() {
     setCategory()
     newTask.id = setNewTaskId()
     taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
+    updateTaskList();
     await closeTaskOverlay()
 }
 
@@ -74,9 +73,30 @@ function renderAddTaskAssigned(contactsToRender) {
 function renderAddTaskAssignedContacts() {
     const boardAddTaskAssignedContacts = document.getElementById('boardAddTaskAssignedContacts')
     clearInnerHtml('boardAddTaskAssignedContacts')
-    for (let index = 0; index < newTask.assignedTo.length; index++) {
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(newTask.assignedTo.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
         const element = newTask.assignedTo[index];
         boardAddTaskAssignedContacts.innerHTML += addTaskAssignedListTemplate(findContact(element));
+    }
+    if (newTask.assignedTo.length > maxDisplayCount) {
+        const excessCount = newTask.assignedTo.length - maxDisplayCount;
+        boardAddTaskAssignedContacts.innerHTML += ` +${excessCount}`;
+    }
+};
+
+function rendertaskOverlayEditorAssignedContacts() {
+    const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
+    clearInnerHtml('taskOverlayEditorAssignedContacts')
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(editTask.assignedTo.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
+        const element = editTask.assignedTo[index];
+        taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
+    }
+    if (editTask.assignedTo.length > maxDisplayCount) {
+        const excessCount = editTask.assignedTo.length - maxDisplayCount;
+        taskOverlayEditorAssignedContacts.innerHTML += ` +${excessCount}`;
     }
 };
 

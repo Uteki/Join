@@ -879,7 +879,8 @@
 
 .task-overlay-editor-assigned-contacts {
     display: flex;
-    gap: 8px;
+    align-items: center;
+    gap: 5px;
     padding-left: 8px;
 }
 
