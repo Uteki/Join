@@ -384,7 +384,8 @@ function searchTasks(query) {
     return taskList
         .map(category => {
             const filteredTasks = category.tasks.filter(task =>
-                task.title.toLowerCase().includes(lowerQuery)
+                task.title.toLowerCase().includes(lowerQuery) ||
+                (task.description && task.description.toLowerCase().includes(lowerQuery))
             );
             return {
                 ...category,
