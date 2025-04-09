@@ -48,8 +48,7 @@ async function changeContact(ID) {
         })
     });
 
-    await renderChanges(ID)
-    return response.json();
+    await renderChanges(ID); return response.json();
 }
 
 async function renderChanges(ID) {
@@ -131,9 +130,14 @@ function upperSense(name) {
 }
 
 function wrongConData() {
-    if (addContact.name.value.length < 1) return showConError(conErr, "con-name", "add-name");
+    if (addContact.name.value.length < 1 || regexNum(addContact.name.value)) return showConError(conErr, "con-name", "add-name");
     if (!addContact.email.value.includes("@") || !addContact.email.value.includes(".")) return showConError(conErr, "con-mail", "add-mail");
     if (addContact.phone.value < 1 || isNaN(addContact.phone.value) && addContact !== undefined) return showConError(conErr, "con-pone", "add-con");
+}
+
+function regexNum(a) {
+    const regex = /\d/;
+    return regex.test(a);
 }
 
 function showConError(err, content, input) {
