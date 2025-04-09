@@ -142,7 +142,7 @@ function boardOverlayTemplate(task, columnIndex) {
             <div class="task-overview-container-content">
                 <span class="task-overview-description">${task.description}</span>
                 <span class="task-overview-date task-overview-feature">Due Date: <span class="task-overview-due-date">${task.dueDate}</span></span>
-                <span class="task-overview-priority task-overview-feature">Priority: <span>${getTaskPriority(task.priority)}<img src="../assets/svg/priority-icons/priority-${task.priority}.svg" alt=""></span></span>
+                <span class="task-overview-priority task-overview-feature">Priority: <span>${getTaskPriority(task.priority)} ${renderTaskPriority(task.priority)}</span></span>
                 <div class="task-overview-assigned-container" id="taskOverviewAssignedContainer">
                         <span class="task-overview-feature">Assigned To:</span>
 
@@ -211,7 +211,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 </div>
                 <div class="task-overview-feature task-overview-editor-form-content" id="taskOverviewSubtasks">
                     <span class="task-overview-feature">Subtasks:</span>
-                    <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"/><button onclick="addSubtask(${task.id}, ${columnIndex})">+</button></div>
+                    <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"  onkeydown="if(event.key === 'Enter') { addSubtask(${task.id}, ${columnIndex}); return false; }"/><button onclick="addSubtask(${task.id}, ${columnIndex})">+</button></div>
                     <div id="subtaskEditorContainer">
 
                     </div>
@@ -288,7 +288,7 @@ function boardAddTaskTemplate() {
             <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="addNewTask()">
             <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
-                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="4" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
                 </div>
@@ -327,7 +327,7 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskSubtasks">
                         <span class="task-overview-feature">Subtasks</span>
-                        <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"/><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
+                        <div class="task-overlay-editor-add-subtask"><input type="text" minlength="5" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
                         <div id="subtaskEditorContainer">
 
                         </div>

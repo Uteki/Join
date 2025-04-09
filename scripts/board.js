@@ -323,14 +323,16 @@ function toggleContactToTask(contactId) {
 // Subtasks
 
 function addSubtask() {
-    const newSubtask = {
-        id: generateNewSubtaskId(),
-        description: document.getElementById('addSubtaskInput').value,
-        finished: false,
+    if (document.getElementById('addSubtaskInput').value.length >= 4) {
+        const newSubtask = {
+            id: generateNewSubtaskId(),
+            description: document.getElementById('addSubtaskInput').value,
+            finished: false,
+        }
+        editTask.subtasks.push(newSubtask)
+        document.getElementById('addSubtaskInput').value = '';
+        rendertaskOverviewSubtasksList(editTask.subtasks);
     }
-    editTask.subtasks.push(newSubtask)
-    document.getElementById('addSubtaskInput').value = '';
-    rendertaskOverviewSubtasksList(editTask.subtasks);
 }
 
 function generateNewSubtaskId() {

@@ -28,8 +28,8 @@ async function addNewTask() {
     setTaskDate()
     setCategory()
     newTask.id = setNewTaskId()
-    taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
-    updateTaskList();
+    await taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
+    await updateTaskList();
     await closeTaskOverlay()
 }
 
@@ -52,6 +52,7 @@ function generateNewTaskId() {
 // Overlay editor
 
 function renderAddTaskForm() {
+    setTaskPriority('medium', 'addTaskFormMediumBtn');
     renderAddTaskAssigned(contactList);
     renderAddTaskSubtasksList(newTask.subtasks);
 };
@@ -153,14 +154,16 @@ function toggleContactToAddTask(contactId) {
 // Subtasks
 
 function createSubtaskToNewTask() {
-    const newSubtask = {
-        id: addTaskSetSubtaskId(),
-        description: document.getElementById('addSubtaskInput').value,
-        finished: false,
+    if (document.getElementById('addSubtaskInput').value.length >= 4) {
+        const newSubtask = {
+            id: addTaskSetSubtaskId(),
+            description: document.getElementById('addSubtaskInput').value,
+            finished: false,
+        }
+        newTask.subtasks.push(newSubtask)
+        document.getElementById('addSubtaskInput').value = '';
+        renderAddTaskSubtasksList(newTask.subtasks);
     }
-    newTask.subtasks.push(newSubtask)
-    document.getElementById('addSubtaskInput').value = '';
-    renderAddTaskSubtasksList(newTask.subtasks);
 }
 
 function addTaskDeleteSubtask(subtaskId) {
