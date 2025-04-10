@@ -35,7 +35,7 @@ Dieses Projekt ist eine webbasierte Aufgabenverwaltung im Stil von "Kanban" mit 
 
 ---
 
-### 🧪 Test-Zugang (Demo)
+## 🧪 Test-Zugang (Demo)
 
 - E-Mail: `maxmustermann@join.de`
 - Passwort: `123456`
