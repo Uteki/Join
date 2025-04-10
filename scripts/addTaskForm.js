@@ -1,4 +1,5 @@
 let newTask;
+let selectedColumn;
 
 let defaultTask = {
     assignedTo: [],
@@ -13,9 +14,10 @@ let defaultTask = {
 
 // add task form
 
-function openAddTaskForm() {
+function openAddTaskForm(column) {
     const body = document.querySelector('body')
     body.innerHTML += boardAddTaskTemplate();
+    selectedColumn = column;
     newTask = JSON.parse(JSON.stringify(defaultTask))
     renderAddTaskForm();
 }
@@ -28,7 +30,7 @@ async function addNewTask() {
     setTaskDate()
     setCategory()
     newTask.id = setNewTaskId()
-    await taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
+    await taskList[taskList.findIndex((element) => element.name === selectedColumn)].tasks.push(newTask);
     await updateTaskList();
     await closeTaskOverlay()
 }

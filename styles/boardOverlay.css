@@ -484,6 +484,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    margin-top: 0;
 }
 
 .task-overlay-editor-subtask {

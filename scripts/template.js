@@ -64,7 +64,7 @@ function boardColumnTemplate(column, index) {
         <div class="board-column" id="boardColumn${index}">
             <div class="board-column-header">
                 <h2>${column.name}</h2>
-                <button type="button" onclick="openAddTaskForm()">+</button>
+                <button type="button" onclick="openAddTaskForm('${column.name}')">+</button>
             </div>
             <div class="board-column-tasks" id="boardColumnTasks${index}" ondrop="dropHandler(event, ${index})" ondragleave="removeHighlightDropArea('boardColumnTasks${index}')" ondragover="allowDrop(event); highlightDropArea('boardColumnTasks${index}')">
             </div>   
