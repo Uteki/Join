@@ -62,7 +62,6 @@ async function renderChanges(ID) {
 
 async function deleteContact (ID) {
     const updatedList = {};
-    await deleteContactFromTask(ID)
     let response = await fetch(BASE_URL + `contactList/${await findId(ID)}.json`, {
         method: "DELETE",
         headers: {
@@ -70,10 +69,11 @@ async function deleteContact (ID) {
         },
     });
 
-    await rearrangeIds(updatedList); await pushArranged(updatedList);
-
-    displaySection.innerHTML = "";
-    console.log("what")
+    if (response.ok) {
+        await rearrangeIds(updatedList); await pushArranged(updatedList);
+        displaySection.innerHTML = "";
+    }
+    await deleteContactFromTask(ID)
     return response.json();
 }
 
