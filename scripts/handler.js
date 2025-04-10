@@ -73,6 +73,7 @@ async function deleteContact (ID) {
     await rearrangeIds(updatedList); await pushArranged(updatedList);
 
     displaySection.innerHTML = "";
+    console.log("what")
     return response.json();
 }
 

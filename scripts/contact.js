@@ -1,5 +1,5 @@
 const outputMenu = document.querySelector("#con-sidebar output");
-const displaySection = document.querySelector("section");
+const displaySection = document.getElementById("big-contact");
 
 const display = document.getElementById("con-display");
 const sidebar = document.getElementById("con-sidebar");
