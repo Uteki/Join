@@ -280,15 +280,15 @@ function editorSubtaskEditorTemplate(subtask){
 function boardAddTaskTemplate() {
     return `
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
-        <div class="board-add-task-container"  id="boardAddTaskOverlayContainer" onclick="event.stopPropagation(), addTaskCloseAssignedSelection()">
+        <div class="board-add-task-container"  id="boardAddTaskOverlayContainer" onclick="event.stopPropagation(); addTaskCloseAssignedSelection()">
             <div class="board-add-task-header">
                 <h1>Add Task</h1>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
-            <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="addNewTask()">
+            <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="return false;">
             <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
-                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="4" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="2" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
                 </div>
@@ -341,7 +341,7 @@ function boardAddTaskTemplate() {
             </div>
             <div class="board-add-task-bottom-buttons">
                 <button type="button" onclick="closeTaskOverlay()" class="board-add-task-cancel-button">Cancel<img src="../assets/svg/close.svg" alt=""></button>
-                <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+                <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" onclick="addNewTask()" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
             </form>
         </div>
@@ -394,4 +394,13 @@ function addTaskSubtaskEditorTemplate(subtask){
             </div>
         </div>
     `
+}
+
+function successToastNotificationTemplate(message){
+    return `
+        <div class="toast-notification-container" id="toastNotification">
+            <span>Task added to board ${message}</span>
+            <img src="../assets/svg/board-icon-selected.svg" alt="">
+        </div>
+    `;
 }
