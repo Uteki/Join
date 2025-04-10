@@ -396,10 +396,19 @@ function addTaskSubtaskEditorTemplate(subtask){
     `
 }
 
-function successToastNotificationTemplate(message){
+function successToastNotificationTemplate(message,type){
     return `
-        <div class="toast-notification-container" id="toastNotification">
-            <span>Task added to board ${message}</span>
+        <div class="toast-notification-container success-toast" id="${type}ToastNotification">
+            <span>${message}</span>
+            <img src="../assets/svg/board-icon-selected.svg" alt="">
+        </div>
+    `;
+}
+
+function errorToastNotificationTemplate(message){
+    return `
+        <div class="toast-notification-container error-toast" id="${type}ToastNotification">
+            <span>${message}</span>
             <img src="../assets/svg/board-icon-selected.svg" alt="">
         </div>
     `;

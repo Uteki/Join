@@ -1,0 +1,31 @@
+.toast-notification-container {
+    position: absolute;
+    right: -300px;
+    top: 40px;
+    transform: translateX(50%);
+    border-radius: 20px;
+    box-shadow: 0px 0px 4px 0px #00000026;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    color: white;
+    transition: right 0.5s ease;
+    z-index: 9999;
+
+    & img {
+        height: 24px;
+    }
+}
+
+.toast-notification-container.show {
+    right: 50%;
+}
+
+.success-toast{
+    background-color: var(--primary-blue);
+}
+
+.error-toast{
+    background-color: var(--urgent-orange);
+}

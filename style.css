@@ -6,6 +6,7 @@
 @import url('./styles/header.css');
 @import url('./styles/components.css');
 @import url('./styles/footer.css');
+@import url('./styles/toast.css');
 
 @import url('./styles/motion.css');
 @import url('./styles/utilities.css');

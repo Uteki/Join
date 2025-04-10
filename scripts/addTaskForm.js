@@ -31,8 +31,8 @@ async function addNewTask() {
     setCategory()
     newTask.id = setNewTaskId()
     await taskList[taskList.findIndex((element) => element.name === selectedColumn)].tasks.push(newTask);
-    await updateTaskList();
-    await closeTaskOverlay()
+    await updateTaskList('Task added successfully');
+    await closeTaskOverlay();
 }
 
 // set IDs

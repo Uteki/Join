@@ -112,7 +112,7 @@ async function moveTaskToColumn(taskId, targetColumnIndex) {
     } else {
         taskList[targetColumnIndex].tasks = [taskToMove];
     }
-    await updateTaskList();
+    await updateTaskList(null);
     renderTasks();
 }
 
@@ -136,7 +136,6 @@ function openTaskOverlay(taskId, columnIndex) {
 }
 
 async function closeTaskOverlay() {
-    await updateTaskList();
     const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
     const boardAddTaskOverlayContainer = document.getElementById('boardAddTaskOverlayContainer')
     if (boardAddTaskOverlayContainer) {
@@ -408,19 +407,19 @@ function renderfilteredTasks(filteredTasks) {
 
 // Submit changes
 
-function submitTaskChanges(taskId, columnIndex) {
+async function submitTaskChanges(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks[taskIndex] = editTask;
-    updateTaskList();
+    await updateTaskList();
     closeTaskOverlay();
 }
 
-function deleteTaskFromBoard(taskId, columnIndex) {
+async function deleteTaskFromBoard(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks.splice(taskIndex, 1)
-    updateTaskList();
+    await updateTaskList('Task deleted successfully');
     closeTaskOverlay();
 }
 
