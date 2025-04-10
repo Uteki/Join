@@ -17,10 +17,10 @@ submitSignIn.addEventListener("click", async function (event) {
     const name = document.getElementById("name").value;
 
     try {
-        if (wrongRegData()) return; await createContactSign(name, email);
+        if (wrongRegData()) return;
 
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        const user = userCredential.user; await createContactSign(name, email, user.uid);
 
         await updateProfile(user, { displayName: name });
         await setStorage(user);
@@ -71,7 +71,7 @@ guestLogin.addEventListener("click", function (event) {
         })
 })
 
-async function createContactSign (name, email, path="contactList/", data={}) {
+async function createContactSign (name, email, uid, path="contactList/", data={}) {
     let contacts = await theContacts(); let newKey = contacts?.length || 0;
     let newId = generateId(contactList); document.getElementById("sign-sub").disabled = true;
 
@@ -80,7 +80,7 @@ async function createContactSign (name, email, path="contactList/", data={}) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: upperSense(name), email: email, phone: 0, id: newId, color: generateColor()})
+        body: JSON.stringify({name: upperSense(name), email: email, phone: 0, id: newId, color: generateColor(), uid: uid})
     });
 
     await response.json();
