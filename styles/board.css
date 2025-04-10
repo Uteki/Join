@@ -16,6 +16,13 @@
     justify-content: space-between;
     align-items: center;
     gap: 32px;
+    position: relative;
+
+    & .no-tasks-found-info{
+        position: absolute;
+        top: -24px;
+        color: red;
+    }
 }
 
 .board-search-container {

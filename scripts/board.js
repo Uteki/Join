@@ -1,7 +1,6 @@
 let currentDraggedElement;
 let filteredTasks = [];
 let editTask;
-let filteredContacts;
 
 // Render functions
 
@@ -377,6 +376,11 @@ function changeSubtaskDescription(subtaskId) {
 function filterTasks() {
     const query = document.getElementById('boardSearchInput').value
     const filteredTasks = searchTasks(query);
+    if (!taskSearchCheck(filteredTasks)) {
+        document.getElementById('noTasksFoundInfo').classList.remove('d-none')
+    } else if (taskSearchCheck(filteredTasks) && document.getElementById('noTasksFoundInfo')){
+        document.getElementById('noTasksFoundInfo').classList.add('d-none')
+    }
     renderfilteredTasks(filteredTasks);
 }
 
@@ -393,6 +397,11 @@ function searchTasks(query) {
                 tasks: filteredTasks
             };
         });
+}
+
+function taskSearchCheck(filteredTasks) {
+    return filteredTasks.some(list => Array.isArray(list.tasks) && list.tasks.length > 0);
+
 }
 
 function renderfilteredTasks(filteredTasks) {

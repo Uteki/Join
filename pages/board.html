@@ -63,7 +63,8 @@
     <main class="board-wrapper">
         <section class="board-header">
             <h1>Board</h1>
-            <div class="board-header-menu">
+            <div class="board-header-menu" id="boardHeaderMenu">
+                <span class="no-tasks-found-info d-none" id="noTasksFoundInfo">Keine Aufgaben gefunden...</span>
                 <div class="board-search-container">
                     <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()"
                         id="boardSearchInput">
