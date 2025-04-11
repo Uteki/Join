@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
     <link rel="stylesheet" href="../style.css">
+    
     <script src="../scripts/template.js" defer></script>
     <script src="../scripts/firebase.js" defer></script>
     <script src="../script.js" defer></script>
@@ -97,17 +98,16 @@
                         <br>      
 
           <label for="assignedTo">Assigned to</label><br>
-        <div class="dropdown" id="assignedTo">
-          
-            
-
-   <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openAssignedSelection()">
+        <div class="dropdown" id="assignedTo">    
+   <input type="text" class="task-overlay-editor-assigned-selection" 
+   placeholder="Select contacts to assign" 
+   onfocus="openAssignedSelection()">
                         <div id="addTaskAssignedToInput-" class="task-overlay-editor-assigned-selection d-none">
-                           
-                        </div>
-</div>   <br><br>
+                            <div id="contactList"></div>             
+                        </div>                      
+</div>  
 
-
+<br><br>
         <label for="category">Category<span class="required">*</span></label><br>
         <select id="category" name="category" class="dropdown" required>
             <option value="" disabled selected>Select task category</option>

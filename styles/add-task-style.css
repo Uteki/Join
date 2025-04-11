@@ -235,3 +235,19 @@ form {
 .error {
     background-color: red;
 }
+/* Kommentar wird noch entfernt. Ist für die Checkbox der Style. */
+.contact-item {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    padding: 5px 0; 
+}
+
+.contact-name {
+    flex: 1; 
+}
+
+.contact-checkbox {
+    margin-left: 10px; 
+}
+

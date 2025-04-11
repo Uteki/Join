@@ -95,7 +95,33 @@ document.addEventListener('DOMContentLoaded', setupEventListeners);
 
 
 
+
+// Lädt die Funktion, wartet bis sie geladen hat, und ruft dann ContactList auf.
 async function renderFormData() {
-    await init()
+    await init();   
     console.log(contactList);
+    displayContactList(contactList);   
+}
+
+// Öffnet ContactList und leert sie, damit keine Namen doppelt drinnen stehen
+function displayContactList(contactList) {
+    const contactListContainer = document.getElementById('contactList');
+    contactListContainer.innerHTML = ''; 
+
+    // zeigt an, dass keine Kontakte vorhanden sind. 
+    if (contactList.length === 0) {
+        contactListContainer.textContent = 'Keine Kontakte vorhanden'; 
+        return;
+    }
+
+    // Schleife zum Rendern der Kontakte
+    contactList.forEach(contact => {
+        const contactHTML = createContactTemplate(contact); 
+        contactListContainer.insertAdjacentHTML('beforeend', contactHTML); 
+    });
+}
+
+function openAssignedSelection() {
+    const container = document.getElementById('addTaskAssignedToInput-');
+    container.classList.remove('d-none');
 }

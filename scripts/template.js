@@ -395,3 +395,11 @@ function addTaskSubtaskEditorTemplate(subtask){
         </div>
     `
 }
+
+// Template Funktion von Tomas zum rendern der Kontakte. Kommentar kann gelöscht werden wollte nur dass ihr wisst woher die Änderung kommt in der Datei.
+function createContactTemplate(contact) {
+    return `<div class="contact-item">
+                <span>${contact.name}</span>
+                <input type="checkbox" class="contact-checkbox" id="contact-${contact.id}">
+            </div>`;
+}
