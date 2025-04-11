@@ -6,50 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy</title>
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
-    
-    <link rel="stylesheet" href="../style.css">
-    <script src="../script.js" defer></script>
-    <script src="../scripts/utils.js" defer></script>
 
-    <script src="../scripts/firebase.js" defer></script>
-    <script type="module" src="../scripts/state.js" defer></script>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer=""></script>
+    <script src="../scripts/utils.js" defer=""></script>
+    <style>
+        #inline-active {
+            width: 100%;
+            scale: 1.05;
+            padding: 0 5px;
+            text-align: center;
+            background-color: #091931;
+        }
+
+        #inline-active:hover {
+            color: var(--unselected-grey-dark);
+        }
+    </style>
 </head>
 
 <body>
     <header class="header-bar">
-        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <a href="../pages/summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials"></span>
-            </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="./legal-notice.html">Legal Notice</a>
-                <a href="./privacy-policy.html">Privacy Policy</a>
-                <a id="log-out">Logout</a>
-            </div>
-        </div>
     </header>
 
     <aside class="side-menu">
         <div class="side-menu-top-container">
-            <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+            <img src="../assets/svg/Join%20logo%20vector.svg" alt="join logo" class="side-menu-icon">
             <nav class="site-navigation">
-                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
-                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                <div class="side-menu-link-container"><a href="./add-task.html" class="side-menu-link"><img
-                            src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
-                            src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
-                <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
-                            src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+                <div class="side-menu-link-container"><a href="../index.html" class="side-menu-link"><img src="../assets/svg/login.svg" alt="Login symbol">Log In</a></div>
             </nav>
         </div>
         <div class="side-menu-bottom-container">
             <nav class="footer-navigation">
-                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+                <a id="inline-active" href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                <a href="legal-notice.html" class="footer-navigation-link">Legal notice</a>
             </nav>
         </div>
     </aside>
@@ -86,13 +78,13 @@
     <footer class="footer">
         <nav class="footer-nav">
             <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
-                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
             <div class="footer-link-container"><a href="./add-task.html" class="footer-link"><img
-                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
             <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
-                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                    src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
             <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
-                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
         </nav>
     </footer>
   

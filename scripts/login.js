@@ -20,7 +20,7 @@ submitSignIn.addEventListener("click", async function (event) {
         if (wrongRegData()) return;
 
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        const user = userCredential.user; await createContactSign(name, email, user.uid);
 
         await updateProfile(user, { displayName: name });
         await setStorage(user);
@@ -28,6 +28,7 @@ submitSignIn.addEventListener("click", async function (event) {
 
         loginAfter();
     } catch (error) {
+        console.log(error);
         document.querySelector(".signUpError").classList.add("upMail");
     }
 });
@@ -69,6 +70,28 @@ guestLogin.addEventListener("click", function (event) {
             alert(error.code + " " + error.message);
         })
 })
+
+async function createContactSign (name, email, uid, path="contactList/", data={}) {
+    let contacts = await theContacts(); let newKey = contacts?.length || 0;
+    let newId = generateId(contactList); document.getElementById("sign-sub").disabled = true;
+
+    let response = await fetch(BASE_URL + path + `${newKey}.json`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({name: upperSense(name), email: email, phone: 0, id: newId, color: generateColor(), uid: uid})
+    });
+
+    await response.json();
+}
+
+async function theContacts() {
+    let response = await fetch(BASE_URL + ".json");
+    let json = await response.json();
+
+    return contactList = json.contactList.sort((a, b) => a.name.localeCompare(b.name));
+}
 
 function loginAfter() {
     document.getElementById("sign-success").classList.toggle("d-none");

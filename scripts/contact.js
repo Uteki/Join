@@ -1,5 +1,5 @@
 const outputMenu = document.querySelector("#con-sidebar output");
-const displaySection = document.querySelector("section");
+const displaySection = document.getElementById("big-contact");
 
 const display = document.getElementById("con-display");
 const sidebar = document.getElementById("con-sidebar");
@@ -8,7 +8,7 @@ const dropdownMenu = document.querySelector(".dd-menu");
 
 async function renderContact() {
     let index;
-    await init();
+    await init(); windowContact();
     outputMenu.innerHTML = "";
 
     for (let i = 0; i < contactList.length; i++) {
@@ -44,4 +44,11 @@ async function getIni(contact) {
     if (abbr !== -1) {
         initials += name.slice(abbr + 1, abbr + 2);
     } return initials;
+}
+
+function windowContact() {
+    if (window.innerWidth <= 670) {
+        document.getElementById("con-display").classList.add("d-none");
+        document.getElementById("con-sidebar").style.display = "unset";
+    }
 }

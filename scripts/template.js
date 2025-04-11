@@ -64,7 +64,7 @@ function boardColumnTemplate(column, index) {
         <div class="board-column" id="boardColumn${index}">
             <div class="board-column-header">
                 <h2>${column.name}</h2>
-                <button type="button" onclick="openAddTaskForm()">+</button>
+                <button type="button" onclick="openAddTaskForm('${column.name}')">+</button>
             </div>
             <div class="board-column-tasks" id="boardColumnTasks${index}" ondrop="dropHandler(event, ${index})" ondragleave="removeHighlightDropArea('boardColumnTasks${index}')" ondragover="allowDrop(event); highlightDropArea('boardColumnTasks${index}')">
             </div>   
@@ -75,7 +75,7 @@ function boardColumnTemplate(column, index) {
 function boardTaskTemplate(task, columnIndex) {
     return `
         <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})" onclick="openTaskOverlay(${task.id}, ${columnIndex})">
-            <span class="board-task-category">${task.category}</span>
+            <span class="board-task-category" style="background-color: ${task.category === 'Technical Task' ? 'var(--tec-task-bg)' : 'var(--accent-blue)'};">${task.category}</span>
             <div class="board-task-description">
                 <h3 class="board-task-container-title">${task.title}</h3>
                 <p>${truncateTaskDescription(task.description)}</p>
@@ -133,7 +133,7 @@ function boardOverlayTemplate(task, columnIndex) {
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
         <div class="task-overview-container"  id="taskOverviewOverlayContainer" onclick="event.stopPropagation()">
             <div class="task-overview-category">
-                <span>${task.category}</span>
+                <span style="background-color: ${task.category === 'Technical Task' ? 'var(--tec-task-bg)' : 'var(--accent-blue)'};">${task.category}</span>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
             <h3>
@@ -142,7 +142,7 @@ function boardOverlayTemplate(task, columnIndex) {
             <div class="task-overview-container-content">
                 <span class="task-overview-description">${task.description}</span>
                 <span class="task-overview-date task-overview-feature">Due Date: <span class="task-overview-due-date">${task.dueDate}</span></span>
-                <span class="task-overview-priority task-overview-feature">Priority: <span>${getTaskPriority(task.priority)}<img src="../assets/svg/priority-icons/priority-${task.priority}.svg" alt=""></span></span>
+                <span class="task-overview-priority task-overview-feature">Priority: <span>${getTaskPriority(task.priority)} ${renderTaskPriority(task.priority)}</span></span>
                 <div class="task-overview-assigned-container" id="taskOverviewAssignedContainer">
                         <span class="task-overview-feature">Assigned To:</span>
 
@@ -211,7 +211,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
                 </div>
                 <div class="task-overview-feature task-overview-editor-form-content" id="taskOverviewSubtasks">
                     <span class="task-overview-feature">Subtasks:</span>
-                    <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"/><button onclick="addSubtask(${task.id}, ${columnIndex})">+</button></div>
+                    <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"  onkeydown="if(event.key === 'Enter') { addSubtask(${task.id}, ${columnIndex}); return false; }"/><button onclick="addSubtask(${task.id}, ${columnIndex})">+</button></div>
                     <div id="subtaskEditorContainer">
 
                     </div>
@@ -280,15 +280,15 @@ function editorSubtaskEditorTemplate(subtask){
 function boardAddTaskTemplate() {
     return `
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
-        <div class="board-add-task-container"  id="boardAddTaskOverlayContainer" onclick="event.stopPropagation(), addTaskCloseAssignedSelection()">
+        <div class="board-add-task-container"  id="boardAddTaskOverlayContainer" onclick="event.stopPropagation(); addTaskCloseAssignedSelection()">
             <div class="board-add-task-header">
                 <h1>Add Task</h1>
                 <button onclick="closeTaskOverlay()"><img src="../assets/svg/close.svg" alt=""></button>
             </div>
-            <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="addNewTask()">
+            <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="return false;">
             <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
-                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="2" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
                 </div>
@@ -327,7 +327,7 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskSubtasks">
                         <span class="task-overview-feature">Subtasks</span>
-                        <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput"/><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
+                        <div class="task-overlay-editor-add-subtask"><input type="text" minlength="5" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
                         <div id="subtaskEditorContainer">
 
                         </div>
@@ -341,7 +341,7 @@ function boardAddTaskTemplate() {
             </div>
             <div class="board-add-task-bottom-buttons">
                 <button type="button" onclick="closeTaskOverlay()" class="board-add-task-cancel-button">Cancel<img src="../assets/svg/close.svg" alt=""></button>
-                <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+                <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" onclick="addNewTask()" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
             </div>
             </form>
         </div>
@@ -394,6 +394,24 @@ function addTaskSubtaskEditorTemplate(subtask){
             </div>
         </div>
     `
+}
+           
+function successToastNotificationTemplate(message,type){
+    return `
+        <div class="toast-notification-container success-toast" id="${type}ToastNotification">
+            <span>${message}</span>
+            <img src="../assets/svg/board-icon-selected.svg" alt="">
+        </div>
+    `;
+}
+
+function errorToastNotificationTemplate(message){
+    return `
+        <div class="toast-notification-container error-toast" id="${type}ToastNotification">
+            <span>${message}</span>
+            <img src="../assets/svg/board-icon-selected.svg" alt="">
+        </div>
+    `;
 }
 
 // Template Funktion von Tomas zum rendern der Kontakte. Kommentar kann gelöscht werden wollte nur dass ihr wisst woher die Änderung kommt in der Datei.

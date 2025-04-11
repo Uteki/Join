@@ -5,6 +5,8 @@
 @import url('./styles/login.css');
 @import url('./styles/header.css');
 @import url('./styles/components.css');
+@import url('./styles/footer.css');
+@import url('./styles/toast.css');
 
 @import url('./styles/motion.css');
 @import url('./styles/utilities.css');
@@ -13,5 +15,7 @@
 @import url('./styles/privacy-policy.css');
 @import url('./styles/legal-notice.css');
 @import url('./styles/board.css');
+@import url('./styles/boardOverlay.css');
+@import url('./styles/boardAddTask.css');
 @import url('./styles/contacts.css');
 @import url('./styles/summary.css');

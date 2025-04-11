@@ -1,4 +1,5 @@
 let newTask;
+let selectedColumn;
 
 let defaultTask = {
     assignedTo: [],
@@ -13,9 +14,10 @@ let defaultTask = {
 
 // add task form
 
-function openAddTaskForm() {
+function openAddTaskForm(column) {
     const body = document.querySelector('body')
     body.innerHTML += boardAddTaskTemplate();
+    selectedColumn = column;
     newTask = JSON.parse(JSON.stringify(defaultTask))
     renderAddTaskForm();
 }
@@ -28,8 +30,9 @@ async function addNewTask() {
     setTaskDate()
     setCategory()
     newTask.id = setNewTaskId()
-    taskList[taskList.findIndex((element) => element.name === 'To do')].tasks.push(newTask);
-    await closeTaskOverlay()
+    await taskList[taskList.findIndex((element) => element.name === selectedColumn)].tasks.push(newTask);
+    await updateTaskList('Task added successfully');
+    await closeTaskOverlay();
 }
 
 // set IDs
@@ -51,6 +54,7 @@ function generateNewTaskId() {
 // Overlay editor
 
 function renderAddTaskForm() {
+    setTaskPriority('medium', 'addTaskFormMediumBtn');
     renderAddTaskAssigned(contactList);
     renderAddTaskSubtasksList(newTask.subtasks);
 };
@@ -72,9 +76,30 @@ function renderAddTaskAssigned(contactsToRender) {
 function renderAddTaskAssignedContacts() {
     const boardAddTaskAssignedContacts = document.getElementById('boardAddTaskAssignedContacts')
     clearInnerHtml('boardAddTaskAssignedContacts')
-    for (let index = 0; index < newTask.assignedTo.length; index++) {
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(newTask.assignedTo.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
         const element = newTask.assignedTo[index];
         boardAddTaskAssignedContacts.innerHTML += addTaskAssignedListTemplate(findContact(element));
+    }
+    if (newTask.assignedTo.length > maxDisplayCount) {
+        const excessCount = newTask.assignedTo.length - maxDisplayCount;
+        boardAddTaskAssignedContacts.innerHTML += ` +${excessCount}`;
+    }
+};
+
+function rendertaskOverlayEditorAssignedContacts() {
+    const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
+    clearInnerHtml('taskOverlayEditorAssignedContacts')
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(editTask.assignedTo.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
+        const element = editTask.assignedTo[index];
+        taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
+    }
+    if (editTask.assignedTo.length > maxDisplayCount) {
+        const excessCount = editTask.assignedTo.length - maxDisplayCount;
+        taskOverlayEditorAssignedContacts.innerHTML += ` +${excessCount}`;
     }
 };
 
@@ -131,14 +156,16 @@ function toggleContactToAddTask(contactId) {
 // Subtasks
 
 function createSubtaskToNewTask() {
-    const newSubtask = {
-        id: addTaskSetSubtaskId(),
-        description: document.getElementById('addSubtaskInput').value,
-        finished: false,
+    if (document.getElementById('addSubtaskInput').value.length >= 4) {
+        const newSubtask = {
+            id: addTaskSetSubtaskId(),
+            description: document.getElementById('addSubtaskInput').value,
+            finished: false,
+        }
+        newTask.subtasks.push(newSubtask)
+        document.getElementById('addSubtaskInput').value = '';
+        renderAddTaskSubtasksList(newTask.subtasks);
     }
-    newTask.subtasks.push(newSubtask)
-    document.getElementById('addSubtaskInput').value = '';
-    renderAddTaskSubtasksList(newTask.subtasks);
 }
 
 function addTaskDeleteSubtask(subtaskId) {

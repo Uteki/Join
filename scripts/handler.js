@@ -11,9 +11,10 @@ let editContact = {
 }
 
 let conErr = document.querySelector("#add-form .input-group:nth-child(3)");
+let ediErr = document.querySelector("#edit-form .input-group:nth-child(3)");
 
 async function createContact (contacts = contactList, path="contactList/", data={}) {
-    if (wrongConData()) return;
+    if (wrongConData(addContact, conErr, "add-name", "add-mail", "add-con")) return;
 
     let newKey = contacts?.length || 0; let newId = generateId(contactList);
     let response = await fetch(BASE_URL + path + `${newKey}.json`, {
@@ -36,20 +37,19 @@ async function waitFor(newId) {
 }
 
 async function changeContact(ID) {
+    let finder = contactList.findIndex((contact) => contact.id === ID); let uID = contactList[finder].uid
+
+    if (wrongConData(editContact, ediErr, "edit-name", "edit-mail", "edit-con")) return;
+    if (uID) window.profileUpdater(uID, editContact)
+
     let response = await fetch(BASE_URL + `contactList/${await findId(ID)}.json`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            email: editContact.email.value || "no@mail",
-            name: editContact.name.value || "Anon",
-            phone: editContact.phone.value || "0",
-        })
+        body: JSON.stringify({email: editContact.email.value, name: editContact.name.value, phone: editContact.phone.value})
     });
-
-    await renderChanges(ID)
-    return response.json();
+    await renderChanges(ID); return response.json();
 }
 
 async function renderChanges(ID) {
@@ -61,7 +61,6 @@ async function renderChanges(ID) {
 
 async function deleteContact (ID) {
     const updatedList = {};
-    await deleteContactFromTask(ID)
     let response = await fetch(BASE_URL + `contactList/${await findId(ID)}.json`, {
         method: "DELETE",
         headers: {
@@ -69,9 +68,11 @@ async function deleteContact (ID) {
         },
     });
 
-    await rearrangeIds(updatedList); await pushArranged(updatedList);
-
-    displaySection.innerHTML = "";
+    if (response.ok) {
+        await rearrangeIds(updatedList); await pushArranged(updatedList);
+        displaySection.innerHTML = "";
+    }
+    await deleteContactFromTask(ID)
     return response.json();
 }
 
@@ -130,10 +131,15 @@ function upperSense(name) {
         .join(' ');
 }
 
-function wrongConData() {
-    if (addContact.name.value.length < 1) return showConError(conErr, "con-name", "add-name");
-    if (!addContact.email.value.includes("@") || !addContact.email.value.includes(".")) return showConError(conErr, "con-mail", "add-mail");
-    if (addContact.phone.value < 1 || isNaN(addContact.phone.value) && addContact !== undefined) return showConError(conErr, "con-pone", "add-con");
+function wrongConData(contact, err, name, mail, con) {
+    if (contact.name.value.length < 1 || regexNum(contact.name.value)) return showConError(err, "con-name", name);
+    if (!contact.email.value.includes("@") || !contact.email.value.includes(".")) return showConError(err, "con-mail", mail);
+    if (contact.phone.value < 1 || isNaN(contact.phone.value) && addContact !== undefined) return showConError(err, "con-pone", con);
+}
+
+function regexNum(a) {
+    const regex = /\d/;
+    return regex.test(a);
 }
 
 function showConError(err, content, input) {

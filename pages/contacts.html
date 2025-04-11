@@ -15,8 +15,10 @@
     <script src="../scripts/contact.js" defer></script>
     <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/modal.js" defer></script>
+    <script src="../scripts/toast.js" defer></script>
     <script src="../script.js" defer></script>
 
+    <script type="module" src="../scripts/profile.js" defer></script>
     <script type="module" src="../scripts/state.js" defer></script>
 </head>
 
@@ -85,7 +87,7 @@
                     <h2 class="m-right-10">Better with a team</h2>
                 </div>
 
-                <section>
+                <section id="big-contact">
                     <!-- contact -->
                 </section>
             </div>
@@ -100,6 +102,19 @@
             </div>
         </div>
     </main>
+
+    <footer class="footer">
+        <nav class="footer-nav">
+            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+            <div class="footer-link-container"><a href="./add-task.html" class="footer-link"><img
+                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+            <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
+                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+            <div class="footer-link-container side-menu-link-current"><a href="./contacts.html" class="footer-link"><img
+                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+        </nav>
+    </footer>
 
     <dialog id="myModal" class="tl-in" onclick="closeModal(event)">
         <button class="btn-close" onclick="quitModal()">
@@ -122,25 +137,25 @@
                 <form id="edit-form">
                     <div class="input-group">
                         <label for="edit-name"></label>
-                        <input type="text" name="name" id="edit-name" placeholder="Name" autocomplete="off" required>
+                        <input type="text" name="name" id="edit-name" placeholder="Name" autocomplete="off" oninput="valueEmpty('edit-form')" required>
                         <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
                     </div>
 
                     <div class="input-group">
                         <label for="edit-mail"></label>
-                        <input type="email" name="email" id="edit-mail" placeholder="Email" autocomplete="off" required>
+                        <input type="email" name="email" id="edit-mail" placeholder="Email" autocomplete="off" oninput="valueEmpty('edit-form')" required>
                         <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-group con-err">
                         <label for="edit-con"></label>
-                        <input type="tel" name="phone" id="edit-con" placeholder="Phone" autocomplete="off" required>
+                        <input type="tel" name="phone" id="edit-con" placeholder="Phone" autocomplete="off" oninput="valueEmpty('edit-form')" required>
                         <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
                     </div>
 
                     <div id="saveOrDelete" class="btn-group">
                         <button class="button outline-btn" type="submit">Delete</button>
-                        <button class="button dark-bg-btn" onclick="">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
+                        <button id="edit-save" class="button dark-bg-btn" onclick="">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
                     </div>
                 </form>
             </div>
@@ -160,28 +175,28 @@
                     <div class="abbr-profil"><i><img src="../assets/svg/contact-icons/anon.svg" alt="Anon"></i></div>
                 </div>
 
-                <form id="add-form" onsubmit="return false">
+                <form id="add-form" onsubmit="return false" novalidate="novalidate">
                     <div class="input-group">
                         <label for="add-name"></label>
-                        <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off">
+                        <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off" oninput="valueEmpty('add-form')">
                         <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
                     </div>
 
                     <div class="input-group">
                         <label for="add-mail"></label>
-                        <input type="email" name="email" id="add-mail" placeholder="Email" autocomplete="off">
+                        <input type="email" name="email" id="add-mail" placeholder="Email" autocomplete="off" oninput="valueEmpty('add-form')">
                         <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
                     </div>
 
                     <div class="input-group con-err">
                         <label for="add-con"></label>
-                        <input type="tel" name="phone" id="add-con" placeholder="Phone" autocomplete="off">
+                        <input type="tel" name="phone" id="add-con" placeholder="Phone" autocomplete="off" oninput="valueEmpty('add-form')">
                         <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
                     </div>
 
                     <div class="btn-group">
                         <button class="button outline-btn" onclick="quitModal('yes')">Cancel<i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i></button>
-                        <button class="button dark-bg-btn" type="submit" onclick="createContact()">Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
+                        <button id="add-create" class="button dark-bg-btn" type="submit" onclick="createContact()" disabled>Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
                     </div>
                 </form>
             </div>
@@ -189,6 +204,7 @@
     </dialog>
 
     <div id="contact-success" class="d-none">Contact added successfully.</div>
+
 </body>
 
 </html>

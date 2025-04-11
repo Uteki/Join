@@ -1,7 +1,6 @@
 let currentDraggedElement;
 let filteredTasks = [];
 let editTask;
-let filteredContacts;
 
 // Render functions
 
@@ -112,7 +111,7 @@ async function moveTaskToColumn(taskId, targetColumnIndex) {
     } else {
         taskList[targetColumnIndex].tasks = [taskToMove];
     }
-    await updateTaskList();
+    await updateTaskList(null);
     renderTasks();
 }
 
@@ -136,7 +135,6 @@ function openTaskOverlay(taskId, columnIndex) {
 }
 
 async function closeTaskOverlay() {
-    await updateTaskList();
     const taskOverviewOverlay = document.getElementById('taskOverviewOverlay')
     const boardAddTaskOverlayContainer = document.getElementById('boardAddTaskOverlayContainer')
     if (boardAddTaskOverlayContainer) {
@@ -227,9 +225,15 @@ function renderOverlayEditorAssigned(contactsToRender) {
 function rendertaskOverlayEditorAssignedContacts() {
     const taskOverlayEditorAssignedContacts = document.getElementById('taskOverlayEditorAssignedContacts')
     clearInnerHtml('taskOverlayEditorAssignedContacts')
-    for (let index = 0; index < editTask.assignedTo.length; index++) {
+    const maxDisplayCount = 4;
+    let displayedCount = Math.min(editTask.assignedTo.length, maxDisplayCount);
+    for (let index = 0; index < displayedCount; index++) {
         const element = editTask.assignedTo[index];
         taskOverlayEditorAssignedContacts.innerHTML += assignedListTemplate(findContact(element));
+    }
+    if (editTask.assignedTo.length > maxDisplayCount) {
+        const excessCount = editTask.assignedTo.length - maxDisplayCount;
+        taskOverlayEditorAssignedContacts.innerHTML += ` +${excessCount}`;
     }
 };
 
@@ -317,14 +321,16 @@ function toggleContactToTask(contactId) {
 // Subtasks
 
 function addSubtask() {
-    const newSubtask = {
-        id: generateNewSubtaskId(),
-        description: document.getElementById('addSubtaskInput').value,
-        finished: false,
+    if (document.getElementById('addSubtaskInput').value.length >= 4) {
+        const newSubtask = {
+            id: generateNewSubtaskId(),
+            description: document.getElementById('addSubtaskInput').value,
+            finished: false,
+        }
+        editTask.subtasks.push(newSubtask)
+        document.getElementById('addSubtaskInput').value = '';
+        rendertaskOverviewSubtasksList(editTask.subtasks);
     }
-    editTask.subtasks.push(newSubtask)
-    document.getElementById('addSubtaskInput').value = '';
-    rendertaskOverviewSubtasksList(editTask.subtasks);
 }
 
 function generateNewSubtaskId() {
@@ -370,6 +376,11 @@ function changeSubtaskDescription(subtaskId) {
 function filterTasks() {
     const query = document.getElementById('boardSearchInput').value
     const filteredTasks = searchTasks(query);
+    if (!taskSearchCheck(filteredTasks)) {
+        document.getElementById('noTasksFoundInfo').classList.remove('d-none')
+    } else if (taskSearchCheck(filteredTasks) && document.getElementById('noTasksFoundInfo')){
+        document.getElementById('noTasksFoundInfo').classList.add('d-none')
+    }
     renderfilteredTasks(filteredTasks);
 }
 
@@ -378,13 +389,19 @@ function searchTasks(query) {
     return taskList
         .map(category => {
             const filteredTasks = category.tasks.filter(task =>
-                task.title.toLowerCase().includes(lowerQuery)
+                task.title.toLowerCase().includes(lowerQuery) ||
+                (task.description && task.description.toLowerCase().includes(lowerQuery))
             );
             return {
                 ...category,
                 tasks: filteredTasks
             };
         });
+}
+
+function taskSearchCheck(filteredTasks) {
+    return filteredTasks.some(list => Array.isArray(list.tasks) && list.tasks.length > 0);
+
 }
 
 function renderfilteredTasks(filteredTasks) {
@@ -399,19 +416,19 @@ function renderfilteredTasks(filteredTasks) {
 
 // Submit changes
 
-function submitTaskChanges(taskId, columnIndex) {
+async function submitTaskChanges(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks[taskIndex] = editTask;
-    updateTaskList();
+    await updateTaskList();
     closeTaskOverlay();
 }
 
-function deleteTaskFromBoard(taskId, columnIndex) {
+async function deleteTaskFromBoard(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks.splice(taskIndex, 1)
-    updateTaskList();
+    await updateTaskList('Task deleted successfully');
     closeTaskOverlay();
 }
 

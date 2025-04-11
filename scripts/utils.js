@@ -1,3 +1,12 @@
+async function deleteContactFromTask(id) {
+    taskList.forEach(taskGroup => {
+        taskGroup.tasks.forEach(task => {
+            task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
+        });
+    });
+    await updateTaskList("Contact deleted");
+}
+
 function toggleLogoutMenu(){
     const logoutMenu = document.getElementById('logout-menu')
     logoutMenu.classList.toggle('d-none');
@@ -77,11 +86,16 @@ function getPath() {
     window.location.href = `../pages/${pathElp}`;
 }
 
-async function deleteContactFromTask(id) {
-    taskList.forEach(taskGroup => {
-        taskGroup.tasks.forEach(task => {
-            task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
-        });
-    });
-    await updateTaskList();
+function valueEmpty(form, signUp) {
+    const inputs = document.querySelectorAll(`#${form} .input-group input`);
+
+    let button;
+
+    if (signUp) {
+        button = document.getElementById(`sign-sub`)
+    } else {
+        button = document.querySelector(`#${form} button:nth-child(2)`)
+    }
+
+    button.disabled = Array.from(inputs).some(input => input.value === "");
 }

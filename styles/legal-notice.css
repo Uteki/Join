@@ -36,6 +36,11 @@
 .highlight {
     color: var(--secondary-blue);
 }
+@media (max-width: 600px) {
+    #legal-notice{
+        padding: 32px;
+    }
+}
 
 @media (max-width: 475px) {
     #atHelp {

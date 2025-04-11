@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./style.css">
 
     <script src="./scripts/firebase.js" defer></script>
+    <script src="./scripts/handler.js" defer></script>
     <script src="./scripts/utils.js" defer></script>
     <script src="./script.js" defer></script>
 
@@ -59,19 +60,19 @@
 
                 <div class="input-group">
                     <label for="name"></label>
-                    <input type="text" name="name" id="name" placeholder="Name" autocomplete="off" required>
+                    <input type="text" name="name" id="name" placeholder="Name" autocomplete="off" oninput="valueEmpty('signUp-form', 1)" required>
                     <i><img src="assets/svg/form-icons/person.svg" alt="Person"></i>
                 </div>
 
                 <div class="input-group">
                     <label for="mail-sign"></label>
-                    <input type="email" name="email" id="mail-sign" placeholder="Email" autocomplete="off" required>
+                    <input type="email" name="email" id="mail-sign" placeholder="Email" autocomplete="off" oninput="valueEmpty('signUp-form', 1)" required>
                     <i><img src="assets/svg/form-icons/mail.svg" alt="Mail"></i>
                 </div>
 
                 <div class="input-group">
                     <label for="pw-sign"></label>
-                    <input type="password" name="password" id="pw-sign" placeholder="Password" autocomplete="off" oninput="inputPassword('pw-sign')" required>
+                    <input type="password" name="password" id="pw-sign" placeholder="Password" autocomplete="off" oninput="inputPassword('pw-sign'); valueEmpty('signUp-form', 1)" required>
                     <i>
                         <img src="assets/svg/form-icons/lock.svg" alt="Lock">
                         <picture class="d-none" onclick="showPassword('pw-sign')"></picture>
@@ -80,7 +81,7 @@
 
                 <div class="input-group signUpError">
                     <label for="pw-signUp"></label>
-                    <input type="password" name="password" id="pw-signUp" placeholder="Confirm Password" autocomplete="off" oninput="inputPassword('pw-signUp')" required>
+                    <input type="password" name="password" id="pw-signUp" placeholder="Confirm Password" autocomplete="off" oninput="inputPassword('pw-signUp'); valueEmpty('signUp-form', 1)" required>
                     <i>
                         <img src="assets/svg/form-icons/lock.svg" alt="Lock">
                         <picture class="d-none" onclick="showPassword('pw-signUp')"></picture>
@@ -96,7 +97,7 @@
                     </label>
                 </div>
 
-                <button id="sign-sub" type="submit" class="button dark-bg-btn">Sign up</button>
+                <button id="sign-sub" type="submit" class="button dark-bg-btn" disabled>Sign up</button>
             </form>
 
             <div id="sign-success" class="d-none">You Signed Up successfully, you will be logged in.</div>
@@ -104,8 +105,8 @@
 
         <footer>
             <nav>
-                <a href="./pages/external/privacy-policy.html">Privacy Policy</a>
-                <a href="./pages/external/legal-notice.html">Legal notice</a>
+                <a href="exPages/privacy-policy.html">Privacy Policy</a>
+                <a href="exPages/legal-notice.html">Legal notice</a>
             </nav>
         </footer>
     </div>

@@ -15,6 +15,7 @@
     <script src="../scripts/utils.js" defer></script>
     <script src="../scripts/board.js" defer></script>
     <script src="../scripts/addTaskForm.js" defer></script>
+    <script src="../scripts/toast.js" defer></script>
     <script type="module" src="../scripts/state.js" defer></script>
 
 </head>
@@ -62,27 +63,45 @@
     <main class="board-wrapper">
         <section class="board-header">
             <h1>Board</h1>
-            <div class="board-header-menu">
+            <div class="board-header-menu" id="boardHeaderMenu">
+                <span class="no-tasks-found-info d-none" id="noTasksFoundInfo">Keine Aufgaben gefunden...</span>
                 <div class="board-search-container">
-                    <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()" id="boardSearchInput">
+                    <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()"
+                        id="boardSearchInput">
                     <div class="board-search-divider"></div>
                     <button class="board-search-button">
-                        <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt=""
-                            class="board-search-icon">
+                        <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt="">
                     </button>
                 </div>
-                <button class="board-add-task-button" onclick="openAddTaskForm()">Add Task<img src="../assets/svg/plus-white.svg" alt=""></button>
+                <button class="board-add-task-button" onclick="openAddTaskForm('To do')">Add Task<img
+                        src="../assets/svg/plus-white.svg" alt=""></button>
             </div>
-            <button class="board-add-task-button-mobile" onclick="openAddTaskForm()"><img src="../assets/svg/plus-white.svg" alt=""></button>
+            <button class="board-add-task-button-mobile" onclick="openAddTaskForm('To do')"><img
+                    src="../assets/svg/plus-white.svg" alt=""></button>
         </section>
 
         <section class="board-content" id="boardContent">
 
-            
-                
+
+
         </section>
 
     </main>
+
+    <footer class="footer">
+        <nav class="footer-nav">
+            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+            <div class="footer-link-container"><a href="./add-task.html" class="footer-link"><img
+                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+            <div class="footer-link-container side-menu-link-current"><a href="./board.html" class="footer-link"><img
+                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+            <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+        </nav>
+    </footer>
+
+
 </body>
 
 </html>

@@ -17,16 +17,19 @@ async function connect() {
     taskList = await JSON.parse(json.tasks);
 }
 
-async function updateTaskList() {
-    await fetch(BASE_URL + '.json', {
+async function updateTaskList(successMessage) {
+    const response = await fetch(BASE_URL + '.json', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+        },
+        body: JSON.stringify({
             tasks: JSON.stringify(taskList),
-          })
+        })
     });
+    if (successMessage !== null) {
+        response.ok ? createSuccessToast(successMessage || 'Successful Submit') : createErrorToast('An error occured');
+    }
 }
 
 async function updateUl() {
