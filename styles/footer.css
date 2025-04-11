@@ -85,6 +85,15 @@
     .footer{
         display: flex;
     }
+
+    #legal-policy {
+        display: flex;
+        text-align: center;
+
+        .legal-policy-active {
+            background-color: var(--primary-blue-dark);
+        }
+    }
 }
 
 @media (max-width: 475px){

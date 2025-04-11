@@ -37,18 +37,17 @@ async function waitFor(newId) {
 }
 
 async function changeContact(ID) {
+    let finder = contactList.findIndex((contact) => contact.id === ID); let uID = contactList[finder].uid
+
     if (wrongConData(editContact, ediErr, "edit-name", "edit-mail", "edit-con")) return;
+    if (uID) window.profileUpdater(uID, editContact)
 
     let response = await fetch(BASE_URL + `contactList/${await findId(ID)}.json`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            email: editContact.email.value,
-            name: editContact.name.value,
-            phone: editContact.phone.value,
-        })
+        body: JSON.stringify({email: editContact.email.value, name: editContact.name.value, phone: editContact.phone.value})
     });
     await renderChanges(ID); return response.json();
 }

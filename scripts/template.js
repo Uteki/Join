@@ -395,7 +395,7 @@ function addTaskSubtaskEditorTemplate(subtask){
         </div>
     `
 }
-
+           
 function successToastNotificationTemplate(message,type){
     return `
         <div class="toast-notification-container success-toast" id="${type}ToastNotification">
@@ -412,4 +412,12 @@ function errorToastNotificationTemplate(message){
             <img src="../assets/svg/board-icon-selected.svg" alt="">
         </div>
     `;
+}
+
+// Template Funktion von Tomas zum rendern der Kontakte. Kommentar kann gelöscht werden wollte nur dass ihr wisst woher die Änderung kommt in der Datei.
+function createContactTemplate(contact) {
+    return `<div class="contact-item">
+                <span>${contact.name}</span>
+                <input type="checkbox" class="contact-checkbox" id="contact-${contact.id}">
+            </div>`;
 }
