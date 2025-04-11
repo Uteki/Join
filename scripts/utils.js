@@ -4,7 +4,7 @@ async function deleteContactFromTask(id) {
             task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
         });
     });
-    await updateTaskList();
+    await updateTaskList("Contact deleted");
 }
 
 function toggleLogoutMenu(){
