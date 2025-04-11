@@ -123,6 +123,112 @@ function removeHighlightDropArea(id) {
     document.getElementById(`${id}`).classList.remove('drag-area-highlight')
 }
 
+// Touch Drag and Drop
+
+const scrollThreshold = 100; // Bereich (in Pixel) am oberen/unteren Rand, in dem das Auto-Scrollen aktiviert wird
+const scrollSpeed = 10;     // Scroll-Geschwindigkeit (Pixel pro Event-Aufruf)
+
+// Schwellenwert für den Long-Touch in Millisekunden
+const longPressThreshold = 2000;
+
+// Globale Variable zum Speichern des aktuell "gezogenen" Elements (Task-ID)
+// let currentTouchDraggedElement = null;
+
+// Wird aufgerufen, wenn der Benutzer den Finger auf ein Task-Element legt
+function mobileTouchStart(event, taskId) {
+    event.preventDefault();
+    
+    // Setze globalen Wert des aktuell "gezogen" Elements
+    startDragging(taskId);
+    
+    // Über das Event-Target (das Task-Element) wird der Timer gespeichert
+    event.currentTarget.longPressTimeout = setTimeout(() => {
+        // Visual: Z. B. Hinweis, dass der Drag-Modus aktiv ist
+        event.currentTarget.classList.add('dragging');
+        // (Optional) Hier kannst du weitere Logik zum „visuellen Start“ des Drag-Prozesses einbauen
+    }, longPressThreshold);
+}
+
+// Wird aufgerufen, sobald sich der Finger bewegt
+function mobileTouchMove(event, taskId) {
+    event.preventDefault();
+    const target = event.currentTarget;
+    
+    // Falls der Timer noch aktiv ist, abbrechen
+    if (target.longPressTimeout) {
+        clearTimeout(target.longPressTimeout);
+        target.longPressTimeout = null;
+    }
+    
+    // Ermittle über die Touchposition die darunter liegende Drop-Zone:
+    const touch = event.touches[0];
+    target.style.position = 'fixed'
+    target.style.left = touch.pageX + 'px'
+    target.style.top = touch.pageY + 'px'
+    const dropZoneElement = document.elementFromPoint(touch.clientX, touch.clientY);
+    
+    // Entferne zunächst alle Highlight-Effekte von vorhandenen Drop-Zonen
+    const dropZones = document.getElementsByClassName('board-column-tasks');
+    Array.from(dropZones).forEach(zone => zone.classList.remove('drag-area-highlight'));
+    
+    // Überprüfe, ob die unter der Fingerposition befindliche Zone eine gültige Drop-Zone ist.
+    if (dropZoneElement) {
+        // Suche über closest() nach einer übergeordneten Box, die als Drop-Zone definiert ist.
+        const validDropZone = dropZoneElement.closest('.board-column-tasks');
+        if (validDropZone) {
+            validDropZone.classList.add('drag-area-highlight');
+        }
+    }
+    // --- Auto-Scroll Logik ---
+    // Prüfe, ob sich der Finger im oberen oder unteren Bereich des Viewports befindet und scrolle entsprechend.
+    const container = document.getElementById('boardContent')
+    if (touch.clientY < scrollThreshold) {
+        // Scrollen nach oben
+        container.scrollBy(0, -scrollSpeed);
+    } else if (touch.clientY > (window.innerHeight - scrollThreshold)) {
+        // Scrollen nach unten
+        container.scrollBy(0, scrollSpeed);
+    }
+}
+
+// Wird aufgerufen, wenn der Finger vom Screen abhebt
+function mobileTouchEnd(event, taskId) {
+    event.preventDefault();
+    const target = event.currentTarget;
+    
+    // Falls der Timer noch aktiv ist, abbrechen
+    if (target.longPressTimeout) {
+        clearTimeout(target.longPressTimeout);
+        target.longPressTimeout = null;
+    }
+    
+    // Entferne den "dragging"-State vom Task
+    target.classList.remove('dragging');
+    
+    // Ermittle die Position, an der der Finger den Screen verlassen hat
+    const touch = event.changedTouches[0];
+    const dropZoneElement = document.elementFromPoint(touch.clientX, touch.clientY);
+    
+    if (dropZoneElement) {
+        const validDropZone = dropZoneElement.closest('.board-column-tasks');
+        if (validDropZone) {
+            // Extrahiere die Spalten-ID bzw. den Index aus der ID-Notation des Elements,
+            // z. B. "boardColumnTasks2" -> Index 2
+            const zoneId = validDropZone.getAttribute('id');
+            const targetColumnIndex = parseInt(zoneId.replace('boardColumnTasks', ''));
+            // Entferne auch den Highlight-Effekt
+            removeHighlightDropArea(zoneId);
+            // Führe den Drop (Verschiebe-Vorgang) aus
+            moveTaskToColumn(currentDraggedElement, targetColumnIndex);
+        }
+    }
+    
+    // Entferne Highlight-Effekte von allen Drop-Zonen
+    const dropZones = document.getElementsByClassName('board-column-tasks');
+    Array.from(dropZones).forEach(zone => zone.classList.remove('drag-area-highlight'));
+}
+
+
 // Overlay
 function openTaskOverlay(taskId, columnIndex) {
     const body = document.querySelector('body')
