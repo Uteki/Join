@@ -74,7 +74,7 @@ function boardColumnTemplate(column, index) {
 
 function boardTaskTemplate(task, columnIndex) {
     return `
-        <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})" onclick="openTaskOverlay(${task.id}, ${columnIndex})">
+        <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})" onclick="openTaskOverlay(${task.id}, ${columnIndex})" ontouchstart="mobileTouchStart(event, ${task.id})" ontouchmove="mobileTouchMove(event, ${task.id})" ontouchend="mobileTouchEnd(event, ${task.id})">
             <span class="board-task-category" style="background-color: ${task.category === 'Technical Task' ? 'var(--tec-task-bg)' : 'var(--accent-blue)'};">${task.category}</span>
             <div class="board-task-description">
                 <h3 class="board-task-container-title">${task.title}</h3>
