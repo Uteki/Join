@@ -101,11 +101,12 @@
         <div class="dropdown" id="assignedTo">    
    <input type="text" class="task-overlay-editor-assigned-selection" 
    placeholder="Select contacts to assign" 
-   onfocus="openAssignedSelection()">
+   onfocus="openAssignedSelection()"
+   oninput="filterContacts(this.value)">
                         <div id="addTaskAssignedToInput-" class="task-overlay-editor-assigned-selection d-none">
-                            <div id="contactList"></div>             
-                        </div>                      
-</div>  
+                            <div id="contactList" ></div>             
+                        </div>
+                    </div>
 
 <br><br>
         <label for="category">Category<span class="required">*</span></label><br>

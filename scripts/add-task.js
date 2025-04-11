@@ -83,19 +83,6 @@ function setupEventListeners() {
 document.addEventListener('DOMContentLoaded', setupEventListeners);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Lädt die Funktion, wartet bis sie geladen hat, und ruft dann ContactList auf.
 async function renderFormData() {
     await init();   
@@ -121,7 +108,33 @@ function displayContactList(contactList) {
     });
 }
 
+// Funktion zum Namen anzeigen
 function openAssignedSelection() {
     const container = document.getElementById('addTaskAssignedToInput-');
     container.classList.remove('d-none');
+}
+
+
+// Funktion zum Namen ausblenden 
+function closeAssignedSelection() {
+    const container = document.getElementById('addTaskAssignedToInput-');
+    container.classList.add('d-none');
+}
+
+document.onclick = function(event) {
+    const assignedInput = document.querySelector('.task-overlay-editor-assigned-selection');
+    const dropdown = document.getElementById('addTaskAssignedToInput-');
+
+    // Damit wird überprüft ob man außerhalb des Inputs oder Dropdowns geklickt hat falls ja wird es geschlossen
+    if (!assignedInput.contains(event.target) && !dropdown.contains(event.target)) {
+        closeAssignedSelection(); 
+    }
+};
+
+// Filterfunktion man kann also z.b. M eingeben um nur die Kontakte zu laden die mit M beginnen
+function filterContacts(query) {
+    const filteredContacts = contactList.filter(contact => 
+        contact.name.toLowerCase().startsWith(query.toLowerCase())
+    );
+    displayContactList(filteredContacts); 
 }
