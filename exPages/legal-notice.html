@@ -8,7 +8,6 @@
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon.png">
 
     <link rel="stylesheet" href="../style.css">
-    <script src="../script.js" defer=""></script>
     <script src="../scripts/utils.js" defer=""></script>
     <style>
         #inline-active {
@@ -27,7 +26,7 @@
 
 <body>
     <header class="header-bar">
-        <a href="../pages/summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <a href="../index.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
         <span class="kanban-title">Kanban Project Management Tool</span>
     </header>
 
@@ -121,14 +120,16 @@ be liable for any direct, indirect, incidental, special, consequential or exempl
 
 <footer class="footer">
     <nav class="footer-nav">
-        <div class="footer-link-container"><a href="../pages/summary.html" class="footer-link"><img
-                src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-        <div class="footer-link-container"><a href="../pages/add-task.html" class="footer-link"><img
-                src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-        <div class="footer-link-container"><a href="../pages/board.html" class="footer-link"><img
-                src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-        <div class="footer-link-container"><a href="../pages/contacts.html" class="footer-link"><img
-                src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+        <div style="width: min-content" class="side-menu-link-container"><a href="../index.html" class="side-menu-link"><img src="../assets/svg/login.svg" alt="Login symbol">Log In</a></div>
+
+        <div id="legal-policy">
+            <div class="footer-link-container">
+                <a href="./privacy-policy.html" class="footer-link">Privacy Policy</a>
+            </div>
+            <div class="footer-link-container legal-policy-active">
+                <a href="./legal-notice.html" class="footer-link">Legal Notice</a>
+            </div>
+        </div>
     </nav>
 </footer>
 
