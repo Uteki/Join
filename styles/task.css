@@ -1,0 +1,13 @@
+.task-container {
+    background-color: var(--primary-background-color);
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    display: flex;
+    height: auto;
+    width: 880px;
+    gap: 24px;
+
+    margin-top: 90px;
+    margin-left: 40px;
+}
