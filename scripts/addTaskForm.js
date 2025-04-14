@@ -280,4 +280,6 @@ function clearNewTask() {
     newTask.priority = "medium"; setTaskPriority('medium', 'addTaskFormMediumBtn');
     newTask.subtasks = []; document.getElementById('boardAddTaskSubtasksList').innerHTML = '';
     newTask.assignedTo = []; document.getElementById('boardAddTaskAssignedContacts').innerHTML = '';
+
+    renderAddTaskAssigned(contactList);
 }
