@@ -277,7 +277,7 @@ function clearNewTask() {
     newTask.category = document.getElementById('boardAddTaskCategoryInput').value = "";
     newTask.description = document.getElementById('addTaskDescriptionInput').value = "";
 
-    newTask.priority = "medium";setTaskPriority('medium', 'addTaskFormMediumBtn');
+    newTask.priority = "medium"; setTaskPriority('medium', 'addTaskFormMediumBtn');
     newTask.subtasks = []; document.getElementById('boardAddTaskSubtasksList').innerHTML = '';
     newTask.assignedTo = []; document.getElementById('boardAddTaskAssignedContacts').innerHTML = '';
 }
