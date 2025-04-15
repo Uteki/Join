@@ -24,7 +24,7 @@ Dieses Projekt ist eine webbasierte Aufgabenverwaltung im Stil von "Kanban" mit 
 ## 🔥 Firebase Projekt einrichten
 
 1. Gehe zu [https://console.firebase.google.com](https://console.firebase.google.com)
-2. Klicke auf **Projekt erstellen** → z. B. `join`
+2. Klicke auf **Projekt erstellen** → z. B. `join` (Erstelle eine Realtime DB)
 3. Aktiviere:
     - **Authentication**
         - Tab **Anmeldemethoden** öffnen
