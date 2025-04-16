@@ -18,144 +18,148 @@
 </head>
 
 <body onload="summarize()">
-    <header class="header-bar">
-        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-        <span class="kanban-title">Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials"></span>
-            </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="./legal-notice.html">Legal Notice</a>
-                <a href="./privacy-policy.html">Privacy Policy</a>
-                <a id="log-out">Logout</a>
-            </div>
-        </div>
-    </header>
-
-    <aside class="side-menu">
-        <div class="side-menu-top-container">
-            <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
-            <nav class="site-navigation">
-                <div class="side-menu-link-container side-menu-link-current"><a href="./summary.html"
-                        class="side-menu-link"><img src="../assets/svg/summary-icon-selected.svg" alt="">Summary</a>
+    <div class="content-border">
+        <header class="header-bar">
+            <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+            <span class="kanban-title">Kanban Project Management Tool</span>
+            <div class="header-bar-menu">
+                <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+                <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                    <span class="user-initials"></span>
                 </div>
-                <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
+                <div class="logout-menu d-none" id="logout-menu">
+                    <a href="./legal-notice.html">Legal Notice</a>
+                    <a href="./privacy-policy.html">Privacy Policy</a>
+                    <a id="log-out">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="navi-flex">
+            <aside class="side-menu">
+                <div class="side-menu-top-container">
+                    <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+                    <nav class="site-navigation">
+                        <div class="side-menu-link-container side-menu-link-current"><a href="./summary.html"
+                                class="side-menu-link"><img src="../assets/svg/summary-icon-selected.svg" alt="">Summary</a>
+                        </div>
+                        <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
+                                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                        <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
+                                    src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
+                        <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
+                                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+                    </nav>
+                </div>
+                <div class="side-menu-bottom-container">
+                    <nav class="footer-navigation">
+                        <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                        <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <main>
+                <div class="summary-head">
+                    <h1>Join 360</h1>
+                    <div class="summary-head-divider"></div>
+                    <span>Key Metrics at a Glance</span>
+                </div>
+                <div class="summary-content">
+                    <div class="summary-statistics">
+
+                        <div class="summary-statistics-element">
+                            <div class="summary-icon to-do-icon"></div>
+                            <div class="summary-num-text">
+                                <span class="summary-num">0</span>
+                                <span>To-do</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-statistics-element">
+                            <div class="summary-icon check-icon"></div>
+                            <div class="summary-num-text">
+                                <span class="summary-num">0</span>
+                                <span>Done</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-statistics-element">
+                            <div class="summary-urgent-container-left">
+                                <div class="summary-icon urgent-icon"></div>
+                                <div class="summary-num-text">
+                                    <span class="summary-num">0</span>
+                                    <span>Urgent</span>
+                                </div>
+                            </div>
+                            <div class="summary-third-element-divider">
+
+                            </div>
+                            <div class="summary-urgent-container-right">
+                                <span>Loading...</span>
+                                <span>Upcoming Deadline</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-statistics-element">
+                            <div class="summary-num-text">
+                                <span class="summary-num">0</span>
+                                <span>Tasks in Board</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-statistics-element">
+                            <div class="summary-num-text">
+                                <span class="summary-num">0</span>
+                                <span>Tasks in Progress</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-statistics-element">
+                            <div class="summary-num-text">
+                                <span class="summary-num">0</span>
+                                <span>Awaiting Feedback</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="summary-greeting">
+                        <span></span>
+                        <br>
+                        <span class="summary-user-name"></span>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <nav class="footer-nav">
+                <div class="footer-link-container side-menu-link-current"><a href="./summary.html" class="footer-link"><img
+                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
                             src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
-                            src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
-                <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
+                <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
+                            src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
                             src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
             </nav>
-        </div>
-        <div class="side-menu-bottom-container">
-            <nav class="footer-navigation">
-                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
-            </nav>
-        </div>
-    </aside>
+        </footer>
 
-    <main>
-        <div class="summary-head">
-            <h1>Join 360</h1>
-            <div class="summary-head-divider"></div> 
-            <span>Key Metrics at a Glance</span>
-        </div>
-        <div class="summary-content">
-            <div class="summary-statistics">
+        <script>
+            const time = new Date();
+            let greeting = document.getElementsByClassName("summary-greeting")[0].children[0];
 
-                <div class="summary-statistics-element">
-                    <div class="summary-icon to-do-icon"></div>
-                    <div class="summary-num-text">
-                        <span class="summary-num">0</span>
-                        <span>To-do</span>
-                    </div>
-                </div>
-
-                <div class="summary-statistics-element">
-                    <div class="summary-icon check-icon"></div>
-                    <div class="summary-num-text">
-                        <span class="summary-num">0</span>
-                        <span>Done</span>
-                    </div>
-                </div>
-
-                <div class="summary-statistics-element">
-                    <div class="summary-urgent-container-left">
-                        <div class="summary-icon urgent-icon"></div>
-                        <div class="summary-num-text">
-                            <span class="summary-num">0</span>
-                            <span>Urgent</span>
-                        </div>
-                    </div>
-                    <div class="summary-third-element-divider">
-
-                    </div>
-                    <div class="summary-urgent-container-right">
-                        <span>Loading...</span>
-                        <span>Upcoming Deadline</span>
-                    </div>
-                </div>
-
-                <div class="summary-statistics-element">
-                    <div class="summary-num-text">
-                        <span class="summary-num">0</span>
-                        <span>Tasks in Board</span>
-                    </div>
-                </div>
-
-                <div class="summary-statistics-element">
-                    <div class="summary-num-text">
-                        <span class="summary-num">0</span>
-                        <span>Tasks in Progress</span>
-                    </div>
-                </div>
-
-                <div class="summary-statistics-element">
-                    <div class="summary-num-text">
-                        <span class="summary-num">0</span>
-                        <span>Awaiting Feedback</span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="summary-greeting">
-                <span></span>
-                <br>
-                <span class="summary-user-name"></span>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <nav class="footer-nav">
-            <div class="footer-link-container side-menu-link-current"><a href="./summary.html" class="footer-link"><img
-                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-            <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
-                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-            <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
-                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-            <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
-                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-        </nav>
-    </footer>
-
-    <script>
-        const time = new Date();
-        let greeting = document.getElementsByClassName("summary-greeting")[0].children[0];
-
-        if (time.getHours() >= 5 && time.getHours() <= 12) {
-            greeting.innerText = "Good morning,";
-        } else if (time.getHours() >= 13 && time.getHours() < 18) {
-            greeting.innerText = "Good afternoon,";
-        } else if (time.getHours() >= 18 && time.getHours() < 22) {
-            greeting.innerText = "Good evening,";
-        } else {
-            greeting.innerText = "Good night,";
-        }
-    </script>
+            if (time.getHours() >= 5 && time.getHours() <= 12) {
+                greeting.innerText = "Good morning,";
+            } else if (time.getHours() >= 13 && time.getHours() < 18) {
+                greeting.innerText = "Good afternoon,";
+            } else if (time.getHours() >= 18 && time.getHours() < 22) {
+                greeting.innerText = "Good evening,";
+            } else {
+                greeting.innerText = "Good night,";
+            }
+        </script>
+    </div>
 </body>
 
 </html>

@@ -23,188 +23,191 @@
 </head>
 
 <body onload="renderContact()" style="overflow-x: hidden">
-    <header class="header-bar">
-        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-        <span class="kanban-title">Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials"></span>
+    <div class="content-border">
+        <header class="header-bar">
+            <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+            <span class="kanban-title">Kanban Project Management Tool</span>
+            <div class="header-bar-menu">
+                <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+                <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                    <span class="user-initials"></span>
+                </div>
+                <div class="logout-menu d-none" id="logout-menu">
+                    <a href="./legal-notice.html">Legal Notice</a>
+                    <a href="./privacy-policy.html">Privacy Policy</a>
+                    <a id="log-out">Logout</a>
+                </div>
             </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="./legal-notice.html">Legal Notice</a>
-                <a href="./privacy-policy.html">Privacy Policy</a>
-                <a id="log-out">Logout</a>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <aside class="side-menu">
-        <div class="side-menu-top-container">
-            <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
-            <nav class="site-navigation">
-                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img 
-                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
+        <div class="navi-flex">
+            <aside class="side-menu">
+                <div class="side-menu-top-container">
+                    <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+                    <nav class="site-navigation">
+                        <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                        <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
+                                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                        <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
+                                    src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
+                        <div class="side-menu-link-container side-menu-link-current"><a href="./contacts.html" class="side-menu-link"><img
+                                    src="../assets/svg/contacts-selected.svg" alt="">Contacts</a></div>
+                    </nav>
+                </div>
+                <div class="side-menu-bottom-container">
+                    <nav class="footer-navigation">
+                        <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                        <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <main id="con-wrapper">
+                <aside id="con-sidebar">
+                    <div>
+                        <button class="button dark-bg-btn desk-btn" onclick="openModal('add')">
+                            Add new contact <i><img src="../assets/svg/contact-icons/person_add.svg" alt="Add contact"></i>
+                        </button>
+                    </div>
+
+                    <output>
+                        <!-- abbr -->
+                        <!-- contacts -->
+                    </output>
+
+                    <div class="btn-mobile">
+                        <button class="button dark-bg-btn d-none" onclick="openModal('add')"><img src="../assets/svg/contact-icons/person_add.svg" alt="Person +"></button>
+                    </div>
+                </aside>
+
+                <div id="con-display">
+                    <div class="m-left-40">
+                        <div>
+                            <h1>Contacts</h1>
+                            <img id="back-arrow" class="d-none" src="../assets/svg/Property%201=Default%20(2).svg" alt="Back-arrow" onclick="toggleContactMenu()">
+                            <h2 class="m-right-10">Better with a team</h2>
+                        </div>
+
+                        <section id="big-contact">
+                            <!-- contact -->
+                        </section>
+                    </div>
+
+                    <menu class="dd-menu d-none">
+                        <li onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
+                        <li onclick="deleteContact()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
+                    </menu>
+
+                    <div class="btn-mobile">
+                        <button class="button dark-bg-btn d-none" onclick="mobileCrudMenu()"><img src="../assets/svg/contact-icons/more_vert.svg" alt="..."></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <nav class="footer-nav">
+                <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
                             src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
-                            src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
-                <div class="side-menu-link-container side-menu-link-current"><a href="./contacts.html" class="side-menu-link"><img
-                            src="../assets/svg/contacts-selected.svg" alt="">Contacts</a></div>
+                <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
+                            src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                <div class="footer-link-container side-menu-link-current"><a href="./contacts.html" class="footer-link"><img
+                            src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
             </nav>
-        </div>
-        <div class="side-menu-bottom-container">
-            <nav class="footer-navigation">
-                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
-            </nav>
-        </div>
-    </aside>
+        </footer>
 
-    <main id="con-wrapper">
-        <aside id="con-sidebar">
-            <div>
-                <button class="button dark-bg-btn desk-btn" onclick="openModal('add')">
-                    Add new contact <i><img src="../assets/svg/contact-icons/person_add.svg" alt="Add contact"></i>
-                </button>
-            </div>
+        <dialog id="myModal" class="tl-in" onclick="closeModal(event)">
+            <button class="btn-close" onclick="quitModal()">
+                <i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i>
+            </button>
 
-            <output>
-                <!-- abbr -->
-                <!-- contacts -->
-            </output>
-
-            <div class="btn-mobile">
-                <button class="button dark-bg-btn d-none" onclick="openModal('add')"><img src="../assets/svg/contact-icons/person_add.svg" alt="Person +"></button>
-            </div>
-        </aside>
-
-        <div id="con-display">
-            <div class="m-left-40">
-                <div>
-                    <h1>Contacts</h1>
-                    <img id="back-arrow" class="d-none" src="../assets/svg/Property%201=Default%20(2).svg" alt="Back-arrow" onclick="toggleContactMenu()">
-                    <h2 class="m-right-10">Better with a team</h2>
+            <div id="edit-modal" class="d-none">
+                <div class="modal-header">
+                    <div>
+                        <img src="../assets/svg/Join%20logo%20vector.svg" alt="Join">
+                        <h1>Edit contact</h1>
+                    </div>
                 </div>
 
-                <section id="big-contact">
-                    <!-- contact -->
-                </section>
-            </div>
+                <div class="modal-body">
+                    <div class="abbr-wrapper">
+                        <div id="iniModal" class="abbr-profil">MM</div>
+                    </div>
 
-            <menu class="dd-menu d-none">
-                <li onclick="openModal('edit')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
-                <li onclick="deleteContact()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
-            </menu>
+                    <form id="edit-form">
+                        <div class="input-group">
+                            <label for="edit-name"></label>
+                            <input type="text" name="name" id="edit-name" placeholder="Name" autocomplete="off" oninput="valueEmpty('edit-form')" required>
+                            <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
+                        </div>
 
-            <div class="btn-mobile">
-                <button class="button dark-bg-btn d-none" onclick="mobileCrudMenu()"><img src="../assets/svg/contact-icons/more_vert.svg" alt="..."></button>
-            </div>
-        </div>
-    </main>
+                        <div class="input-group">
+                            <label for="edit-mail"></label>
+                            <input type="email" name="email" id="edit-mail" placeholder="Email" autocomplete="off" oninput="valueEmpty('edit-form')" required>
+                            <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
+                        </div>
 
-    <footer class="footer">
-        <nav class="footer-nav">
-            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
-                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-            <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
-                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-            <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
-                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-            <div class="footer-link-container side-menu-link-current"><a href="./contacts.html" class="footer-link"><img
-                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-        </nav>
-    </footer>
+                        <div class="input-group con-err">
+                            <label for="edit-con"></label>
+                            <input type="tel" name="phone" id="edit-con" placeholder="Phone" autocomplete="off" oninput="valueEmpty('edit-form')" required>
+                            <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
+                        </div>
 
-    <dialog id="myModal" class="tl-in" onclick="closeModal(event)">
-        <button class="btn-close" onclick="quitModal()">
-            <i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i>
-        </button>
-
-        <div id="edit-modal" class="d-none">
-            <div class="modal-header">
-                <div>
-                    <img src="../assets/svg/Join%20logo%20vector.svg" alt="Join">
-                    <h1>Edit contact</h1>
+                        <div id="saveOrDelete" class="btn-group">
+                            <button class="button outline-btn" type="submit">Delete</button>
+                            <button id="edit-save" class="button dark-bg-btn" onclick="">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <div class="modal-body">
-                <div class="abbr-wrapper">
-                    <div id="iniModal" class="abbr-profil">MM</div>
+            <div id="add-modal" class="d-none">
+                <div class="modal-header">
+                    <div>
+                        <img src="../assets/svg/Join%20logo%20vector.svg" alt="Join">
+                        <h1>Add contact</h1>
+                        <h2>Tasks are better with a team!</h2>
+                    </div>
                 </div>
 
-                <form id="edit-form">
-                    <div class="input-group">
-                        <label for="edit-name"></label>
-                        <input type="text" name="name" id="edit-name" placeholder="Name" autocomplete="off" oninput="valueEmpty('edit-form')" required>
-                        <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
+                <div class="modal-body">
+                    <div class="abbr-wrapper">
+                        <div class="abbr-profil"><i><img src="../assets/svg/contact-icons/anon.svg" alt="Anon"></i></div>
                     </div>
 
-                    <div class="input-group">
-                        <label for="edit-mail"></label>
-                        <input type="email" name="email" id="edit-mail" placeholder="Email" autocomplete="off" oninput="valueEmpty('edit-form')" required>
-                        <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
-                    </div>
+                    <form id="add-form" onsubmit="return false" novalidate="novalidate">
+                        <div class="input-group">
+                            <label for="add-name"></label>
+                            <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off" oninput="valueEmpty('add-form')">
+                            <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
+                        </div>
 
-                    <div class="input-group con-err">
-                        <label for="edit-con"></label>
-                        <input type="tel" name="phone" id="edit-con" placeholder="Phone" autocomplete="off" oninput="valueEmpty('edit-form')" required>
-                        <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
-                    </div>
+                        <div class="input-group">
+                            <label for="add-mail"></label>
+                            <input type="email" name="email" id="add-mail" placeholder="Email" autocomplete="off" oninput="valueEmpty('add-form')">
+                            <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
+                        </div>
 
-                    <div id="saveOrDelete" class="btn-group">
-                        <button class="button outline-btn" type="submit">Delete</button>
-                        <button id="edit-save" class="button dark-bg-btn" onclick="">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                        <div class="input-group con-err">
+                            <label for="add-con"></label>
+                            <input type="tel" name="phone" id="add-con" placeholder="Phone" autocomplete="off" oninput="valueEmpty('add-form')">
+                            <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
+                        </div>
 
-        <div id="add-modal" class="d-none">
-            <div class="modal-header">
-                <div>
-                    <img src="../assets/svg/Join%20logo%20vector.svg" alt="Join">
-                    <h1>Add contact</h1>
-                    <h2>Tasks are better with a team!</h2>
+                        <div class="btn-group">
+                            <button class="button outline-btn" onclick="quitModal('yes')">Cancel<i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i></button>
+                            <button id="add-create" class="button dark-bg-btn" type="submit" onclick="createContact()" disabled>Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </dialog>
 
-            <div class="modal-body">
-                <div class="abbr-wrapper">
-                    <div class="abbr-profil"><i><img src="../assets/svg/contact-icons/anon.svg" alt="Anon"></i></div>
-                </div>
-
-                <form id="add-form" onsubmit="return false" novalidate="novalidate">
-                    <div class="input-group">
-                        <label for="add-name"></label>
-                        <input type="text" name="name" id="add-name" placeholder="Name" autocomplete="off" oninput="valueEmpty('add-form')">
-                        <i><img src="../assets/svg/form-icons/person.svg" alt="Mail"></i>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="add-mail"></label>
-                        <input type="email" name="email" id="add-mail" placeholder="Email" autocomplete="off" oninput="valueEmpty('add-form')">
-                        <i><img src="../assets/svg/form-icons/mail.svg" alt="Mail"></i>
-                    </div>
-
-                    <div class="input-group con-err">
-                        <label for="add-con"></label>
-                        <input type="tel" name="phone" id="add-con" placeholder="Phone" autocomplete="off" oninput="valueEmpty('add-form')">
-                        <i><img src="../assets/svg/contact-icons/call.svg" alt="Call"></i>
-                    </div>
-
-                    <div class="btn-group">
-                        <button class="button outline-btn" onclick="quitModal('yes')">Cancel<i><img src="../assets/svg/contact-icons/close.svg" alt="Close"></i></button>
-                        <button id="add-create" class="button dark-bg-btn" type="submit" onclick="createContact()" disabled>Create contact<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <div id="contact-success" class="d-none">Contact added successfully.</div>
-
+        <div id="contact-success" class="d-none">Contact added successfully.</div>
+    </div>
 </body>
 
 </html>

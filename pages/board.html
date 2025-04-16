@@ -22,87 +22,89 @@
 </head>
 
 <body onload="renderTasks()">
-    <header class="header-bar">
-        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-        <span class="kanban-title">Kanban Project Management Tool</span>
-        <div class="header-bar-menu">
-            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt=""
-                    class="help-icon"></a>
-            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                <span class="user-initials"></span>
+    <div class="content-border">
+        <header class="header-bar">
+            <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+            <span class="kanban-title">Kanban Project Management Tool</span>
+            <div class="header-bar-menu">
+                <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt=""
+                        class="help-icon"></a>
+                <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                    <span class="user-initials"></span>
+                </div>
+                <div class="logout-menu d-none" id="logout-menu">
+                    <a href="./legal-notice.html">Legal Notice</a>
+                    <a href="./privacy-policy.html">Privacy Policy</a>
+                    <a id="log-out">Logout</a>
+                </div>
             </div>
-            <div class="logout-menu d-none" id="logout-menu">
-                <a href="./legal-notice.html">Legal Notice</a>
-                <a href="./privacy-policy.html">Privacy Policy</a>
-                <a id="log-out">Logout</a>
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <aside class="side-menu">
-        <div class="side-menu-top-container">
-            <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
-            <nav class="site-navigation">
-                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+        <div class="navi-flex">
+            <aside class="side-menu">
+                <div class="side-menu-top-container">
+                    <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+                    <nav class="site-navigation">
+                        <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+                                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                        <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
+                                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                        <div class="side-menu-link-container side-menu-link-current"><a href="./board.html"
+                                class="side-menu-link"><img src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                        <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
+                                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+                    </nav>
+                </div>
+                <div class="side-menu-bottom-container">
+                    <nav class="footer-navigation">
+                        <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                        <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <main class="board-wrapper">
+                <section class="board-header">
+                    <h1>Board</h1>
+                    <div class="board-header-menu" id="boardHeaderMenu">
+                        <span class="no-tasks-found-info d-none" id="noTasksFoundInfo">Keine Aufgaben gefunden...</span>
+                        <div class="board-search-container">
+                            <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()"
+                                id="boardSearchInput">
+                            <div class="board-search-divider"></div>
+                            <button class="board-search-button">
+                                <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt="">
+                            </button>
+                        </div>
+                        <button class="board-add-task-button" onclick="openAddTaskForm('To do')">Add Task<img
+                                src="../assets/svg/plus-white.svg" alt=""></button>
+                    </div>
+                    <button class="board-add-task-button-mobile" onclick="openAddTaskForm('To do')"><img
+                            src="../assets/svg/plus-white.svg" alt=""></button>
+                </section>
+
+                <section class="board-content" id="boardContent">
+
+
+
+                </section>
+
+            </main>
+        </div>
+
+        <footer class="footer">
+            <nav class="footer-nav">
+                <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
                             src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
+                <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
                             src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="side-menu-link-container side-menu-link-current"><a href="./board.html"
-                        class="side-menu-link"><img src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-                <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
+                <div class="footer-link-container side-menu-link-current"><a href="./board.html" class="footer-link"><img
+                            src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
                             src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
             </nav>
-        </div>
-        <div class="side-menu-bottom-container">
-            <nav class="footer-navigation">
-                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
-            </nav>
-        </div>
-    </aside>
-
-    <main class="board-wrapper">
-        <section class="board-header">
-            <h1>Board</h1>
-            <div class="board-header-menu" id="boardHeaderMenu">
-                <span class="no-tasks-found-info d-none" id="noTasksFoundInfo">Keine Aufgaben gefunden...</span>
-                <div class="board-search-container">
-                    <input type="search" placeholder="Find Task" class="board-search-input" oninput="filterTasks()"
-                        id="boardSearchInput">
-                    <div class="board-search-divider"></div>
-                    <button class="board-search-button">
-                        <img src="../assets/svg/search-dark.svg" class="board-search-icon" alt="">
-                    </button>
-                </div>
-                <button class="board-add-task-button" onclick="openAddTaskForm('To do')">Add Task<img
-                        src="../assets/svg/plus-white.svg" alt=""></button>
-            </div>
-            <button class="board-add-task-button-mobile" onclick="openAddTaskForm('To do')"><img
-                    src="../assets/svg/plus-white.svg" alt=""></button>
-        </section>
-
-        <section class="board-content" id="boardContent">
-
-
-
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <nav class="footer-nav">
-            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
-                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-            <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
-                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-            <div class="footer-link-container side-menu-link-current"><a href="./board.html" class="footer-link"><img
-                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-            <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
-                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-        </nav>
-    </footer>
-
-
+        </footer>
+    </div>
 </body>
 
 </html>

@@ -222,6 +222,11 @@
     animation: logo 1s 250ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
+#g-login:disabled {
+    border: 2px solid transparent;
+    color: white;
+}
+
 .loginError:after {
     content: "Check your email and password. Please try again.";
     position: absolute;

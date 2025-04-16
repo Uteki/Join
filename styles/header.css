@@ -3,16 +3,24 @@
 }
 
 .side-menu{
-    height: 100vh;
+    position: unset;
+    height: unset;
+
+    transform: translateY(-96px);
+    margin-bottom: -96px;
+
     width: 232px;
-    background-color: var(--primary-blue);
     display: flex;
     align-items: center;
-    justify-content: space-between;
     flex-direction: column;
-    position: fixed;
+    justify-content: space-between;
+    background-color: var(--primary-blue);
     top: 0;
     left: 0;
+}
+
+.kanban-title {
+    transform: translateX(213px);
 }
 
 .side-menu-top-container{

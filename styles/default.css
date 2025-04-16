@@ -24,8 +24,10 @@
 
 body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e293b, #f1f5f9);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 232px;
     height: 100dvh;
 }
 
@@ -63,6 +65,15 @@ button:disabled {
 
 button:disabled:hover {
     background-color: #cccccc;
+}
+
+.content-border {
+    max-width: 1920px;
+    width: 100%;
+}
+
+.navi-flex {
+    display: flex;
 }
 
 .d-none {

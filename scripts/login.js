@@ -53,7 +53,7 @@ submitLogin.addEventListener("click", function (event) {
 })
 
 guestLogin.addEventListener("click", function (event) {
-    event.preventDefault();
+    event.preventDefault(); guestLogin.disabled = true
 
     signInAnonymously(auth)
         .then((per) => {
@@ -66,8 +66,8 @@ guestLogin.addEventListener("click", function (event) {
                 })
         })
         .catch((error) => {
-            console.error(error);
-            alert(error.code + " " + error.message);
+            console.error(error); alert(error.code + " " + error.message)
+            guestLogin.disabled = false;
         })
 })
 

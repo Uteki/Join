@@ -21,132 +21,134 @@
 </head>
 
 <body onload="singleTask()">
-<header class="header-bar">
-    <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-    <span class="kanban-title">Kanban Project Management Tool</span>
-    <div class="header-bar-menu">
-        <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt=""
-                                                       class="help-icon"></a>
-        <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-            <span class="user-initials"></span>
-        </div>
-        <div class="logout-menu d-none" id="logout-menu">
-            <a href="./legal-notice.html">Legal Notice</a>
-            <a href="./privacy-policy.html">Privacy Policy</a>
-            <a id="log-out">Logout</a>
-        </div>
-    </div>
-</header>
-
-<aside class="side-menu">
-    <div class="side-menu-top-container">
-        <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
-        <nav class="site-navigation">
-            <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
-                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-            <div class="side-menu-link-container side-menu-link-current"><a href="./task.html" class="side-menu-link"><img
-                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-            <div class="side-menu-link-container"><a href="./board.html"
-                                                                            class="side-menu-link"><img src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-            <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
-                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-        </nav>
-    </div>
-    <div class="side-menu-bottom-container">
-        <nav class="footer-navigation">
-            <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-            <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
-        </nav>
-    </div>
-</aside>
-
-<main id="single-task" class="board-wrapper">
-        <div class="task-container"  id="boardAddTaskOverlayContainer" onclick="event.stopPropagation(); addTaskCloseAssignedSelection()">
-            <div class="board-add-task-header">
-                <h1>Add Task</h1>
+    <div class="content-border">
+        <header class="header-bar">
+            <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+            <span class="kanban-title">Kanban Project Management Tool</span>
+            <div class="header-bar-menu">
+                <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt=""
+                                                               class="help-icon"></a>
+                <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                    <span class="user-initials"></span>
+                </div>
+                <div class="logout-menu d-none" id="logout-menu">
+                    <a href="./legal-notice.html">Legal Notice</a>
+                    <a href="./privacy-policy.html">Privacy Policy</a>
+                    <a id="log-out">Logout</a>
+                </div>
             </div>
-            <form oninput="validateForm()" id="boardAddTaskForm" class="height_m" onsubmit="return false;">
-                <div class="task-wrapper single-tasks">
-                    <div class="board-add-task-form-container">
-                        <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="2" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
-                        <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
-                        <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
+        </header>
+
+        <div class="navi-flex">
+            <aside class="side-menu">
+                    <div class="side-menu-top-container">
+                        <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+                        <nav class="site-navigation">
+                            <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+                                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                            <div class="side-menu-link-container side-menu-link-current"><a href="./task.html" class="side-menu-link"><img
+                                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                            <div class="side-menu-link-container"><a href="./board.html"
+                                                                                            class="side-menu-link"><img src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                            <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
+                                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+                        </nav>
                     </div>
-
-                    <div class="board-add-task-form-divider"></div>
-
-                    <div class="board-add-task-form-container">
-
-                        <div class="task-overview-feature task-overview-editor-form-content">Priority
-                            <div class="task-overview-priority-buttons">
-                                <button type="button" id="addTaskFormUrgentBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('urgent', 'addTaskFormUrgentBtn')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
-                                <button type="button" id="addTaskFormMediumBtn" class="task-overview-editor-priority-button active-priority-button-medium" onclick="setTaskPriority('medium', 'addTaskFormMediumBtn')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
-                                <button type="button" id="addTaskFormLowBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('low', 'addTaskFormLowBtn')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
-                            </div>
-                        </div>
-
-                        <div class="task-overview-feature task-overview-editor-form-content" onclick="event.stopPropagation()" style="position: relative;">
-                            <span class="task-overview-feature">Assigned To</span>
-                            <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openBoardAddTaskAssignedSelection()" oninput="boardAddTaskFilterContacts()" id="boardAddTaskContactQueryInput">
-                            <div id="boardAddTaskAssignedSelection" class="task-overlay-editor-assigned-selection d-none" style="position:absolute; top:95px; background-color: white; width: 100%; z-index: 100;">
-
-                            </div>
-                            <div id="boardAddTaskAssignedContacts" class="task-overlay-editor-assigned-contacts">
-
-                            </div>
-                        </div>
-
-                        <div class="task-overview-feature task-overview-editor-form-content">
-                            <label for="boardAddTaskCategoryInput"><span>Category</span><span class="board-add-tadk-required-icon">*</span></label>
-                            <select name="category" id="boardAddTaskCategoryInput" required>
-                                <option value="" selected>Please choose a category</option>
-                                <option value="Technical Task">Technical Task</option>
-                                <option value="User Story">User Story</option>
-                            </select>
-                        </div>
-
-                        <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskSubtasks">
-                            <span class="task-overview-feature">Subtasks</span>
-                            <div class="task-overlay-editor-add-subtask"><input type="text" minlength="5" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
-                            <div id="subtaskEditorContainer">
-
-                            </div>
-
-                            <ul id="boardAddTaskSubtasksList" class="board-add-task-subtask-list">
-
-                            </ul>
-
-                        </div>
-                        <p id="req-p2"><span class="board-add-tadk-required-icon">*</span>This field is required</p>
+                    <div class="side-menu-bottom-container">
+                        <nav class="footer-navigation">
+                            <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                            <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+                        </nav>
                     </div>
-                </div>
+            </aside>
 
-                <div id="single-button-field" class="board-add-task-bottom-buttons">
-                    <p id="req-p"><span class="board-add-tadk-required-icon">*</span>This field is required</p>
+            <main id="single-task" class="board-wrapper">
+                    <div class="task-container"  id="boardAddTaskOverlayContainer" onclick="event.stopPropagation(); addTaskCloseAssignedSelection()">
+                        <div class="board-add-task-header">
+                            <h1>Add Task</h1>
+                        </div>
+                        <form oninput="validateForm()" id="boardAddTaskForm" class="height_m" onsubmit="return false;">
+                            <div class="task-wrapper single-tasks">
+                                <div class="board-add-task-form-container">
+                                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="2" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
+                                    <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
+                                    <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
+                                </div>
 
-                    <div class="single-buttons">
-                        <button type="button" onclick="clearNewTask()" class="board-add-task-cancel-button">Clear<img src="../assets/svg/close.svg" alt=""></button>
-                        <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" onclick="singleAddNewTask()" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+                                <div class="board-add-task-form-divider"></div>
+
+                                <div class="board-add-task-form-container">
+
+                                    <div class="task-overview-feature task-overview-editor-form-content">Priority
+                                        <div class="task-overview-priority-buttons">
+                                            <button type="button" id="addTaskFormUrgentBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('urgent', 'addTaskFormUrgentBtn')">Urgent<img src="../assets/svg/priority-icons/priority-urgent.svg" alt=""></button>
+                                            <button type="button" id="addTaskFormMediumBtn" class="task-overview-editor-priority-button active-priority-button-medium" onclick="setTaskPriority('medium', 'addTaskFormMediumBtn')">Medium<img src="../assets/svg/priority-icons/priority-medium.svg" alt=""></button>
+                                            <button type="button" id="addTaskFormLowBtn" class="task-overview-editor-priority-button" onclick="setTaskPriority('low', 'addTaskFormLowBtn')">Low<img src="../assets/svg/priority-icons/priority-low.svg" alt=""></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="task-overview-feature task-overview-editor-form-content" onclick="event.stopPropagation()" style="position: relative;">
+                                        <span class="task-overview-feature">Assigned To</span>
+                                        <input type="text" class="task-overlay-editor-assigned-selection" placeholder="Select contacts to assign" onfocus="openBoardAddTaskAssignedSelection()" oninput="boardAddTaskFilterContacts()" id="boardAddTaskContactQueryInput">
+                                        <div id="boardAddTaskAssignedSelection" class="task-overlay-editor-assigned-selection d-none" style="position:absolute; top:95px; background-color: white; width: 100%; z-index: 100;">
+
+                                        </div>
+                                        <div id="boardAddTaskAssignedContacts" class="task-overlay-editor-assigned-contacts">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="task-overview-feature task-overview-editor-form-content">
+                                        <label for="boardAddTaskCategoryInput"><span>Category</span><span class="board-add-tadk-required-icon">*</span></label>
+                                        <select name="category" id="boardAddTaskCategoryInput" required>
+                                            <option value="" selected>Please choose a category</option>
+                                            <option value="Technical Task">Technical Task</option>
+                                            <option value="User Story">User Story</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskSubtasks">
+                                        <span class="task-overview-feature">Subtasks</span>
+                                        <div class="task-overlay-editor-add-subtask"><input type="text" minlength="5" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
+                                        <div id="subtaskEditorContainer">
+
+                                        </div>
+
+                                        <ul id="boardAddTaskSubtasksList" class="board-add-task-subtask-list">
+
+                                        </ul>
+
+                                    </div>
+                                    <p id="req-p2"><span class="board-add-tadk-required-icon">*</span>This field is required</p>
+                                </div>
+                            </div>
+
+                            <div id="single-button-field" class="board-add-task-bottom-buttons">
+                                <p id="req-p"><span class="board-add-tadk-required-icon">*</span>This field is required</p>
+
+                                <div class="single-buttons">
+                                    <button type="button" onclick="clearNewTask()" class="board-add-task-cancel-button">Clear<img src="../assets/svg/close.svg" alt=""></button>
+                                    <button type="submit" id="boardAddTaskSubmitButton" class="board-add-task-submit-button" onclick="singleAddNewTask()" disabled>Create Task<img src="../assets/svg/summary-icons/check-white.svg" alt=""></button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
-            </form>
+            </main>
         </div>
-</main>
 
-<footer class="footer">
-    <nav class="footer-nav">
-        <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
-                src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-        <div class="footer-link-container side-menu-link-current"><a href="./task.html" class="footer-link"><img
-                src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-        <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
-                src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-        <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
-                src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-    </nav>
-</footer>
-
-
+        <footer class="footer">
+            <nav class="footer-nav">
+                <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                <div class="footer-link-container side-menu-link-current"><a href="./task.html" class="footer-link"><img
+                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+                <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
+                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+                <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+            </nav>
+        </footer>
+    </div>
 </body>
 
 </html>
