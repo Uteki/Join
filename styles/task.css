@@ -1,7 +1,7 @@
 #single-task {
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
+    /* overflow-y: visible; */
 }
 
 #single-button-field {
@@ -69,4 +69,10 @@
     #req-p2 {
         display: unset;
     }
+}
+
+@media (max-height: 650px) {
+     .height_m {
+        max-height: 50vh !important;
+     }
 }
