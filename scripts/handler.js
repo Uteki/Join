@@ -25,7 +25,7 @@ async function createContact (contacts = contactList, path="contactList/", data=
         body: JSON.stringify({name: upperSense(addContact.name.value), email: addContact.email.value, phone: addContact.phone.value, id: newId, color: generateColor()})
     });
 
-    await response.json(); await waitFor(newId);
+    await response.json(); await waitFor(newId); document.getElementById("add-create").disabled = true;
 }
 
 async function waitFor(newId) {
@@ -132,9 +132,14 @@ function upperSense(name) {
 }
 
 function wrongConData(contact, err, name, mail, con) {
-    if (contact.name.value.length < 1 || regexNum(contact.name.value)) return showConError(err, "con-name", name);
-    if (!contact.email.value.includes("@") || !contact.email.value.includes(".")) return showConError(err, "con-mail", mail);
-    if (contact.phone.value < 1 || isNaN(contact.phone.value) && addContact !== undefined) return showConError(err, "con-pone", con);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let error = false;
+
+    if (contact.name.value.length <= 2 || regexNum(contact.name.value)) error = showConError(err, "con-name", name);
+    if (!emailRegex.test(contact.email.value)) error = showConError(err, "con-mail", mail);
+    if (contact.phone.value < 1 || isNaN(contact.phone.value) && addContact !== undefined) error = showConError(err, "con-pone", con);
+
+    return error;
 }
 
 function regexNum(a) {

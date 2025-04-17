@@ -23,9 +23,7 @@
 }
 
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
+    margin: 0 0 0 232px;
     background: linear-gradient(135deg, #1e293b, #f1f5f9);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100dvh;
@@ -67,17 +65,8 @@ button:disabled:hover {
     background-color: #cccccc;
 }
 
-.content-border {
-    max-width: 1920px;
-    width: 100%;
-}
-
-.navi-flex {
-    display: flex;
-}
-
 .d-none {
-    display: none!important;
+    display: none !important;
 }
 
 .d-flex {

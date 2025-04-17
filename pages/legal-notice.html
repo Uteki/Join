@@ -16,133 +16,129 @@
 </head>
 
 <body>
-    <div class="content-border">
-        <header class="header-bar">
-            <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-            <span class="kanban-title">Kanban Project Management Tool</span>
-            <div class="header-bar-menu">
-                <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-                <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                    <span class="user-initials"></span>
-                </div>
-                <div class="logout-menu d-none" id="logout-menu">
-                    <a href="./legal-notice.html">Legal Notice</a>
-                    <a href="./privacy-policy.html">Privacy Policy</a>
-                    <a id="log-out">Logout</a>
-                </div>
+    <header class="header-bar">
+        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <span class="kanban-title">Kanban Project Management Tool</span>
+        <div class="header-bar-menu">
+            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                <span class="user-initials"></span>
             </div>
-        </header>
-
-        <div class="navi-flex">
-            <aside class="side-menu">
-                <div class="side-menu-top-container">
-                    <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
-                    <nav class="site-navigation">
-                        <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
-                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                        <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
-                                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                        <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
-                                    src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
-                        <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
-                                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-                    </nav>
-                </div>
-                <div class="side-menu-bottom-container">
-                    <nav class="footer-navigation">
-                        <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                        <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
-                    </nav>
-                </div>
-            </aside>
-
-            <main id="legal-notice">
-               <h1>Legal Notice</h1>
-               <br>
-               <h2>Imprint</h2>
-                Daniel Tran <br>
-                Tomas Pötsch <br>
-                Lucas Hamacher <br>
-               <br>
-               Wellenkampstraße 15, 80933 München
-               <br>
-               Musterstraße 5, 12345 München
-               <br>
-               Kreuzgasse 4, 53894 Mechernich
-               <br>
-               <h2>Exploring the board</h2>
-               <p>
-                danietr99@gmail.com <br>
-                email@mail.de <br>
-                lucashamacher01@gmail.com <br>
-               </p>
-
-             <h2>Acceptance of terms</h2>
-
-            <p>By accessing and using <span class="highlight">Join</span> (Product), you acknowledge and agree to the following
-            terms and conditions, and any policies, guidelines, or amendments thereto that may be presented
-            to you from time to time. We, the listed students, may update or chance the terms and conditions
-            frome time to time without notice.</p>
-
-            <h2>Scope and ownership of the product</h2>
-
-            <p><span class="highlight">Join</span> has been developed as part of a student group project in a web development bootcamp at the
-                <span class="highlight">Developer Akademie GmbH</span>. It has an educational purpose and is not intended for extensive personal
-            & business usage. As such, we cannot guarantee consistent availability, reliability, or
-            andy other aspect of quality regarding this Product.
-            <br>
-            The design of <span class="highlight">Join</span> is owned by the <span class="highlight">Developer Akademie GmbH</span>. Unauthorized use, reproduction,
-            modifications,destribution,or replication of the design is strictly prohibited.</p>
-
-            <h2>Proprietary rights</h2>
-
-            <p>Aside from the design owned by <span class="highlight">Developer Akademie GmbH</span>, we,the listed students,retain
-            all proprietary rights in Join, including any associated copyrighted material,
-            trademarks, and other proprietary information.</p>
-
-            <h2>Use of the product</h2>
-            <p><span class="highlight">Join</span> is intended to be used for lawful purposes only, in accordance with all applicable laws
-            and regulations. Any use of <span class="highlight">Join</span> for illegal activities, or tho harass, harm, threaten, or
-            intimidate another person, is strictly prohibited. You are solely responsible for your
-            interactions with other users of <span class="highlight">Join</span>.</p>
-
-            <h2>Disclaimer  of warranties and limitation of liability</h2>
-
-            <p><span class="highlight">Join</span> is provided "as is"
-            without warranty of any kind, whether express or implied, including but not limited
-            to the implied warranties of merchantability, fitness for a particular purpose,
-            and non-infringement. In no event will we, the listed students, or the <span class="highlight">Developer Akademie</span>,
-            be liable for any direct, indirect, incidental, special, consequential or exemplary damages,
-             including but not limited to, damages for loss of profits, goodwill, use, data, or other
-              intangible losses, even if we have been advised of the possibility of such damages,
-              arising out of or in connection with the use or performance of <span class="highlight">Join</span>.</p>
-
-              <h2>Indemnity</h2>
-
-              <p>You agree to indemnify, defend and hold harmless us, the listed students, the <span class="highlight">Developer Akademie</span>, and our
-                affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (
-                    including reasonable legal feets) arising out of or relating to yours use of <span class="highlight">Join</span> and/or your breach
-                    of this Legal Notice.
-            <br>
-                    For any questions of notices, pleace contact us at team442@join.edu.
-
-                    Date: July 26,2023
-
-            </main>
+            <div class="logout-menu d-none" id="logout-menu">
+                <a href="./legal-notice.html">Legal Notice</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a id="log-out">Logout</a>
+            </div>
         </div>
+    </header>
 
-        <footer class="footer">
-            <nav class="footer-nav">
-                <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
-                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
+    <aside class="side-menu">
+        <div class="side-menu-top-container">
+            <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+            <nav class="site-navigation">
+                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
                             src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
-                            src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-                <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
+                            src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
+                <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
                             src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
             </nav>
-        </footer>
-    </div>
+        </div>
+        <div class="side-menu-bottom-container">
+            <nav class="footer-navigation">
+                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+            </nav>
+        </div>
+    </aside>
+
+    <main id="legal-notice">
+       <h1>Legal Notice</h1>
+       <br>
+       <h2>Imprint</h2>
+        Daniel Tran <br>
+        Tomas Pötsch <br>
+        Lucas Hamacher <br>
+       <br>
+       Wellenkampstraße 15, 80933 München
+       <br>
+       Musterstraße 5, 12345 München
+       <br>
+       Kreuzgasse 4, 53894 Mechernich
+       <br>
+       <h2>Exploring the board</h2>
+       <p>
+        danietr99@gmail.com <br>
+        email@mail.de <br>
+        lucashamacher01@gmail.com <br>
+       </p>
+
+     <h2>Acceptance of terms</h2>
+
+    <p>By accessing and using <span class="highlight">Join</span> (Product), you acknowledge and agree to the following
+    terms and conditions, and any policies, guidelines, or amendments thereto that may be presented
+    to you from time to time. We, the listed students, may update or chance the terms and conditions
+    frome time to time without notice.</p>
+
+    <h2>Scope and ownership of the product</h2>
+
+    <p><span class="highlight">Join</span> has been developed as part of a student group project in a web development bootcamp at the
+        <span class="highlight">Developer Akademie GmbH</span>. It has an educational purpose and is not intended for extensive personal
+    & business usage. As such, we cannot guarantee consistent availability, reliability, or
+    andy other aspect of quality regarding this Product.
+    <br>
+    The design of <span class="highlight">Join</span> is owned by the <span class="highlight">Developer Akademie GmbH</span>. Unauthorized use, reproduction,
+    modifications,destribution,or replication of the design is strictly prohibited.</p>
+
+    <h2>Proprietary rights</h2>
+
+    <p>Aside from the design owned by <span class="highlight">Developer Akademie GmbH</span>, we,the listed students,retain
+    all proprietary rights in Join, including any associated copyrighted material,
+    trademarks, and other proprietary information.</p>
+
+    <h2>Use of the product</h2>
+    <p><span class="highlight">Join</span> is intended to be used for lawful purposes only, in accordance with all applicable laws
+    and regulations. Any use of <span class="highlight">Join</span> for illegal activities, or tho harass, harm, threaten, or
+    intimidate another person, is strictly prohibited. You are solely responsible for your
+    interactions with other users of <span class="highlight">Join</span>.</p>
+
+    <h2>Disclaimer  of warranties and limitation of liability</h2>
+
+    <p><span class="highlight">Join</span> is provided "as is"
+    without warranty of any kind, whether express or implied, including but not limited
+    to the implied warranties of merchantability, fitness for a particular purpose,
+    and non-infringement. In no event will we, the listed students, or the <span class="highlight">Developer Akademie</span>,
+    be liable for any direct, indirect, incidental, special, consequential or exemplary damages,
+     including but not limited to, damages for loss of profits, goodwill, use, data, or other
+      intangible losses, even if we have been advised of the possibility of such damages,
+      arising out of or in connection with the use or performance of <span class="highlight">Join</span>.</p>
+
+      <h2>Indemnity</h2>
+
+      <p>You agree to indemnify, defend and hold harmless us, the listed students, the <span class="highlight">Developer Akademie</span>, and our
+        affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (
+            including reasonable legal feets) arising out of or relating to yours use of <span class="highlight">Join</span> and/or your breach
+            of this Legal Notice.
+    <br>
+            For any questions of notices, pleace contact us at team442@join.edu.
+
+            Date: July 26,2023
+
+    </main>
+
+    <footer class="footer">
+        <nav class="footer-nav">
+            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+            <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
+                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+            <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
+                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+            <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+        </nav>
+    </footer>
 </body>
 </html>

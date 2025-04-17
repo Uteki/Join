@@ -50,8 +50,8 @@ dialog {
     }
 
     & > div {
-        padding-bottom: 20px;
-        background: unset;
+        margin-bottom: 20px;
+        background: white;
         position: sticky;
         width: 100%;
         top: 0;

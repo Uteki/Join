@@ -16,90 +16,86 @@
 </head>
 
 <body>
-    <div class="content-border">
-        <header class="header-bar">
-            <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
-            <span class="kanban-title">Kanban Project Management Tool</span>
-            <div class="header-bar-menu">
-                <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
-                <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
-                    <span class="user-initials"></span>
-                </div>
-                <div class="logout-menu d-none" id="logout-menu">
-                    <a href="./legal-notice.html">Legal Notice</a>
-                    <a href="./privacy-policy.html">Privacy Policy</a>
-                    <a id="log-out">Logout</a>
-                </div>
+    <header class="header-bar">
+        <a href="./summary.html" class="header-bar-logo"><img src="../assets/svg/join-logo-vector-dark.svg" alt=""></a>
+        <span class="kanban-title">Kanban Project Management Tool</span>
+        <div class="header-bar-menu">
+            <a onclick="savePath()" class="help-link"><img src="../assets/svg/questionmark-icon.svg" alt="" class="help-icon"></a>
+            <div class="user-initials-container" id="user-initials-container" onclick="toggleLogoutMenu()">
+                <span class="user-initials"></span>
             </div>
-        </header>
-
-        <div class="navi-flex">
-            <aside class="side-menu">
-                <div class="side-menu-top-container">
-                    <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
-                    <nav class="site-navigation">
-                        <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
-                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                        <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
-                                    src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                        <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
-                                    src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
-                        <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
-                                    src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
-                    </nav>
-                </div>
-                <div class="side-menu-bottom-container">
-                    <nav class="footer-navigation">
-                        <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
-                        <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
-                    </nav>
-                </div>
-            </aside>
-
-            <main id="privacyPolicy" class="privacy-policy">
-                    <h1>Privacy Policy</h1>
-                    <p>This privacy policy applies to the project management tool <strong>Join</strong>, which was
-                        developed as part of
-                        a professional development program.</p>
-                    <p>Developers: Tomas Pötsch, Daniel Tran and Lucas Hamacher</p>
-                    <br>
-                    <h2>1. Collection and Use of Data</h2>
-                    <p>We collect and store personal data only to the extent necessary for the use of Join.
-                        This includes, among others, name, email address, and phone number.</p>
-                    <br>
-                    <h2>2. Storage and Security</h2>
-                    <p>All stored data is protected with modern security measures to prevent unauthorized
-                        access.</p>
-                    <br>
-                    <h2>3. Disclosure to Third Parties</h2>
-                    <p>We do not disclose any personal data to third parties unless required by law
-                        or necessary for the operation of Join.</p>
-                    <br>
-                    <h2>4. User Rights</h2>
-                    <p>Users have the right to access, correct, or delete their data. Requests can be sent by
-                        email to the development team.</p>
-                    <br>
-                    <h2>5. Changes to the Privacy Policy</h2>
-                    <p>This privacy policy may be updated at any time. Changes become effective upon
-                        publication on the website.</p>
-
-                    <p>Last updated: April 2025</p>
-            </main>
+            <div class="logout-menu d-none" id="logout-menu">
+                <a href="./legal-notice.html">Legal Notice</a>
+                <a href="./privacy-policy.html">Privacy Policy</a>
+                <a id="log-out">Logout</a>
+            </div>
         </div>
+    </header>
 
-        <footer class="footer">
-            <nav class="footer-nav">
-                <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
-                            src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
-                <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
+    <aside class="side-menu">
+        <div class="side-menu-top-container">
+            <img src="../assets/svg/Join logo vector.svg" alt="join logo" class="side-menu-icon">
+            <nav class="site-navigation">
+                <div class="side-menu-link-container"><a href="./summary.html" class="side-menu-link"><img
+                    src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+                <div class="side-menu-link-container"><a href="./task.html" class="side-menu-link"><img
                             src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
-                <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
-                            src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
-                <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                <div class="side-menu-link-container"><a href="./board.html" class="side-menu-link"><img
+                            src="../assets/svg/board-icon-unselected.svg" alt="">Board</a></div>
+                <div class="side-menu-link-container"><a href="./contacts.html" class="side-menu-link"><img
                             src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
             </nav>
-        </footer>
-    </div>
+        </div>
+        <div class="side-menu-bottom-container">
+            <nav class="footer-navigation">
+                <a href="./privacy-policy.html" class="footer-navigation-link">Privacy Policy</a>
+                <a href="./legal-notice.html" class="footer-navigation-link">Legal notice</a>
+            </nav>
+        </div>
+    </aside>
+
+    <main id="privacyPolicy" class="privacy-policy">
+            <h1>Privacy Policy</h1>
+            <p>This privacy policy applies to the project management tool <strong>Join</strong>, which was
+                developed as part of
+                a professional development program.</p>
+            <p>Developers: Tomas Pötsch, Daniel Tran and Lucas Hamacher</p>
+            <br>
+            <h2>1. Collection and Use of Data</h2>
+            <p>We collect and store personal data only to the extent necessary for the use of Join.
+                This includes, among others, name, email address, and phone number.</p>
+            <br>
+            <h2>2. Storage and Security</h2>
+            <p>All stored data is protected with modern security measures to prevent unauthorized
+                access.</p>
+            <br>
+            <h2>3. Disclosure to Third Parties</h2>
+            <p>We do not disclose any personal data to third parties unless required by law
+                or necessary for the operation of Join.</p>
+            <br>
+            <h2>4. User Rights</h2>
+            <p>Users have the right to access, correct, or delete their data. Requests can be sent by
+                email to the development team.</p>
+            <br>
+            <h2>5. Changes to the Privacy Policy</h2>
+            <p>This privacy policy may be updated at any time. Changes become effective upon
+                publication on the website.</p>
+
+            <p>Last updated: April 2025</p>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer-nav">
+            <div class="footer-link-container"><a href="./summary.html" class="footer-link"><img
+                        src="../assets/svg/summary-icon-unselected.svg" alt="">Summary</a></div>
+            <div class="footer-link-container"><a href="./task.html" class="footer-link"><img
+                        src="../assets/svg/add-task-unselected.svg" alt="">Add Task</a></div>
+            <div class="footer-link-container"><a href="./board.html" class="footer-link"><img
+                        src="../assets/svg/board-icon-selected.svg" alt="">Board</a></div>
+            <div class="footer-link-container"><a href="./contacts.html" class="footer-link"><img
+                        src="../assets/svg/contacts-unselected.svg" alt="">Contacts</a></div>
+        </nav>
+    </footer>
 </body>
 
 </html>
