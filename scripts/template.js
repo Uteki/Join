@@ -291,7 +291,7 @@ function boardAddTaskTemplate() {
             <form oninput="validateForm()" id="boardAddTaskForm" onsubmit="return false;">
             <div class="board-add-task-form">
                 <div class="board-add-task-form-container">
-                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="2" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
+                    <div class="task-overview-feature task-overview-editor-form-content"> <label for="addTaskTitleInput"><span>Titel</span><span class="board-add-tadk-required-icon">*</span></label> <span class="task-overview-due-date"><input required type="text" minlength="1" value="" id="addTaskTitleInput" placeholder="Gib einen Titel ein"></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDescriptionInput">Description</label><span class="task-overview-due-date"><textarea id="addTaskDescriptionInput" placeholder="Gib eine Beschreibung ein"></textarea></span></div>
                     <div class="task-overview-feature task-overview-editor-form-content"><label for="addTaskDateInput"><span>Due Date</span><span class="board-add-tadk-required-icon">*</span></label><span class="task-overview-due-date"><input required type="date" value="" id="addTaskDateInput"></span></div>
                 </div>
@@ -330,7 +330,7 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskSubtasks">
                         <span class="task-overview-feature">Subtasks</span>
-                        <div class="task-overlay-editor-add-subtask"><input type="text" minlength="5" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
+                        <div class="task-overlay-editor-add-subtask"><input type="text" minlength="1" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
                         <div id="subtaskEditorContainer">
 
                         </div>
