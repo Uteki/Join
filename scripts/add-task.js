@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', setupEventListeners);
 // Lädt die Funktion, wartet bis sie geladen hat, und ruft dann ContactList auf.
 async function renderFormData() {
     await init();   
-    console.log(contactList);
     displayContactList(contactList);   
+    setTodaysDate();
 }
 
 // Öffnet ContactList und leert sie, damit keine Namen doppelt drinnen stehen

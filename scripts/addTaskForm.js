@@ -57,6 +57,7 @@ function renderAddTaskForm() {
     setTaskPriority('medium', 'addTaskFormMediumBtn');
     renderAddTaskAssigned(contactList);
     renderAddTaskSubtasksList(newTask.subtasks);
+    setTodaysDate();
 }
 
 function renderAddTaskAssigned(contactsToRender) {

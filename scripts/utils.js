@@ -10,12 +10,12 @@ async function deleteContactFromTask(id, fromContact) {
     await updateTaskList("Contact deleted");
 }
 
-function toggleLogoutMenu(){
+function toggleLogoutMenu() {
     const logoutMenu = document.getElementById('logout-menu')
     logoutMenu.classList.toggle('d-none');
 }
 
-function toggleContactMenu(){
+function toggleContactMenu() {
     document.getElementById('con-display').classList.toggle('d-none');
     document.getElementById('con-sidebar').style.display = 'unset';
 }
@@ -52,7 +52,7 @@ function inputPassword(pass) {
     }
 }
 
-function getContactInitials(contactName){
+function getContactInitials(contactName) {
     let name = contactName.trim();
     let abbr = name.indexOf(" ");
     let initials = name.slice(0, 1);
@@ -64,11 +64,11 @@ function getContactInitials(contactName){
     return initials.toUpperCase();
 }
 
-function toggleVisibility(id){
+function toggleVisibility(id) {
     document.getElementById(`${id}`).classList.toggle('d-none')
 }
 
-function clearInnerHtml(elementId){
+function clearInnerHtml(elementId) {
     document.getElementById(elementId).innerHTML = '';
 }
 
@@ -101,4 +101,9 @@ function valueEmpty(form, signUp) {
     }
 
     button.disabled = Array.from(inputs).some(input => input.value === "");
+}
+
+function setTodaysDate() {
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelector('input[type="date"]').setAttribute('min', today);
 }
