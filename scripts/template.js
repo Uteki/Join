@@ -34,7 +34,7 @@ function addAbbreviation(letter) {
 }
 
 function contactButtonTemplate(abbr, name, mail ,id, color) {
-    return `<button class="button contact-btn" onclick="displayContact(${id})">
+    return `<button id="${"contact" + id}" class="button contact-btn" onclick="displayContact(${id})">
         <div style="background-color: #${color}" class="abbr-profil">${abbr}</div>
         
         <div class="m-left-40">

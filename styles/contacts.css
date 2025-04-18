@@ -50,9 +50,7 @@ dialog {
     }
 
     & > div {
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
-        margin-bottom: 20px;
+        padding-bottom: 20px;
         background: white;
         position: sticky;
         width: 100%;
@@ -105,7 +103,11 @@ dialog {
             height: max-content;
             justify-content: flex-start;
             align-items: center;
-            
+
+            &:hover {
+                background: linear-gradient(to bottom, #F9F9F9, #F0F0F0);
+
+            }
 
             & .abbr-profil {
                 height: 42px;
@@ -187,6 +189,8 @@ dialog {
             margin-top: 24px;
 
             & p {
+                padding-right: 40px;
+
                 &:nth-child(2) {
                     font-size: 22px;
                     margin-bottom: 40px;
@@ -584,6 +588,11 @@ dialog {
     content: "Check your Phone. Please try again.";
 }
 
+.contact-active {
+    color: white;
+    background: var(--primary-blue) !important;
+}
+
 @media (max-width: 1118px) {
     #con-sidebar {
         & output {
@@ -846,6 +855,8 @@ dialog {
                 }
 
                 & p {
+                    padding-right: 10px;
+
                     &:nth-child(2) {
                         margin-bottom: 20px;
                     }

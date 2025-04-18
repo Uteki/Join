@@ -143,8 +143,8 @@ function wrongConData(contact, err, name, mail, con) {
 }
 
 function regexNum(a) {
-    const regex = /\d/;
-    return regex.test(a);
+    const regexNumEx = /^[A-Za-zÄäÖöÜüß\s'-]+$/;
+    return !regexNumEx.test(a);
 }
 
 function showConError(err, content, input) {

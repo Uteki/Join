@@ -23,7 +23,8 @@ async function renderContact() {
 }
 
 async function displayContact(id) {
-    let contact = contactList.find(el => el.id === id);
+    let contact = contactList.find(el => el.id === id); removeActiveContact()
+    document.getElementById(`contact${id}`).classList.add("contact-active");
 
     displaySection.innerHTML = "";
     displaySection.innerHTML += contactTemplate(await getIni(contact.name), contact.name, contact.email, contact.phone, contact.id, contact.color);
@@ -51,4 +52,10 @@ function windowContact() {
         document.getElementById("con-display").classList.add("d-none");
         document.getElementById("con-sidebar").style.display = "unset";
     }
+}
+
+function removeActiveContact() {
+    document.querySelectorAll("#con-sidebar output button").forEach((button) => {
+        button.classList.remove("contact-active");
+    })
 }
