@@ -158,6 +158,7 @@ dialog {
 
 #con-display {
     background: var(--primary-background-color);
+    overflow-y: auto;
     flex-basis: 60%;
     height: 100%;
     width: 100%;

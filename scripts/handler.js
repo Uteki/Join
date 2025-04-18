@@ -133,11 +133,13 @@ function upperSense(name) {
 
 function wrongConData(contact, err, name, mail, con) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = contact.phone.value.replace(/\D/g, '');
+
     let error = false;
 
     if (contact.name.value.length <= 2 || contact.name.value.length >= 35 || regexNum(contact.name.value)) error = showConError(err, "con-name", name);
     if (!emailRegex.test(contact.email.value)) error = showConError(err, "con-mail", mail);
-    if (contact.phone.value < 1 || isNaN(contact.phone.value) && addContact !== undefined) error = showConError(err, "con-pone", con);
+    if (!/^\+?[0-9\s\-()]{7,20}$/.test(contact.phone.value) || phoneRegex.length < 7 || phoneRegex.length > 15) error = showConError(err, "con-pone", con);
 
     return error;
 }
