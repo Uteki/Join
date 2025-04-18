@@ -109,6 +109,11 @@ dialog {
 
             }
 
+            &:focus {
+                color: white;
+                background: var(--primary-blue-dark);
+            }
+
             & .abbr-profil {
                 height: 42px;
                 font-size: 10px;
@@ -871,6 +876,7 @@ dialog {
         & output {
             & .button.contact-btn {
                 & .m-left-40 {
+                    font-size: 12px;
                     margin-left: 20px;
                 }
             }
