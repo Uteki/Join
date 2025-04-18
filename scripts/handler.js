@@ -33,7 +33,7 @@ async function waitFor(newId) {
     await displayContact(newId);
 
     quitModal("yes");
-    successContact();
+    successContact("Contact added successfully.");
 }
 
 async function changeContact(ID) {
@@ -72,7 +72,7 @@ async function deleteContact (ID) {
         await rearrangeIds(updatedList); await pushArranged(updatedList);
         displaySection.innerHTML = "";
     }
-    await deleteContactFromTask(ID)
+    await deleteContactFromTask(ID, "From");
     return response.json();
 }
 
@@ -135,7 +135,7 @@ function wrongConData(contact, err, name, mail, con) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let error = false;
 
-    if (contact.name.value.length <= 2 || regexNum(contact.name.value)) error = showConError(err, "con-name", name);
+    if (contact.name.value.length <= 2 || contact.name.value.length >= 35 || regexNum(contact.name.value)) error = showConError(err, "con-name", name);
     if (!emailRegex.test(contact.email.value)) error = showConError(err, "con-mail", mail);
     if (contact.phone.value < 1 || isNaN(contact.phone.value) && addContact !== undefined) error = showConError(err, "con-pone", con);
 
@@ -172,8 +172,9 @@ function timeItOut(id) {
     }, 5000);
 }
 
-function successContact() {
+function successContact(message) {
     const success = document.getElementById("contact-success");
+    success.innerHTML = message;
     success.classList.toggle("d-none");
 
     setTimeout(() =>

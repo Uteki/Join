@@ -1,9 +1,12 @@
-async function deleteContactFromTask(id) {
+async function deleteContactFromTask(id, fromContact) {
     taskList.forEach(taskGroup => {
         taskGroup.tasks.forEach(task => {
             task.assignedTo = task.assignedTo.filter(contactId => contactId !== id);
         });
     });
+    if (fromContact) {
+        return successContact("Contact deleted successfully.");
+    }
     await updateTaskList("Contact deleted");
 }
 

@@ -50,6 +50,8 @@ dialog {
     }
 
     & > div {
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
         margin-bottom: 20px;
         background: white;
         position: sticky;
@@ -95,6 +97,7 @@ dialog {
         }
 
         & > button {
+            word-break: break-word;
             margin-top: 20px;
             display: flex;
             flex-direction: row;
@@ -102,6 +105,7 @@ dialog {
             height: max-content;
             justify-content: flex-start;
             align-items: center;
+            
 
             & .abbr-profil {
                 height: 42px;
@@ -190,6 +194,7 @@ dialog {
 
                 &:nth-child(4) a {
                     color: var(--mail-color);
+                    word-break: break-word;
                 }
 
                 &:nth-child(6) a {
@@ -213,6 +218,7 @@ dialog {
                     & h2 {
                         font-size: 37px;
                         margin-bottom: 5px;
+                        word-break: break-word;
                     }
 
                     & div {
@@ -631,9 +637,19 @@ dialog {
     }
 
     #con-sidebar {
+        & > div {
+            & button {
+                flex-direction: column;
+
+                & i {
+                    margin: 0;
+                }
+            }
+        }
+
         & output {
             & .button.contact-btn {
-                overflow: hidden;
+                word-break: break-word;
             }
         }
     }
@@ -824,6 +840,7 @@ dialog {
                     & div:nth-child(2) {
                         & h2 {
                             font-size: 36px;
+                            word-break: break-word;
                         }
                     }
                 }
