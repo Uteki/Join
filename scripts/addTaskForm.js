@@ -177,7 +177,7 @@ function showCategoryAndSubtaskInput() {
 // Subtasks
 
 function createSubtaskToNewTask() {
-    if (document.getElementById('addSubtaskInput').value.length >= 4) {
+    if (document.getElementById('addSubtaskInput').value.length >= 1) {
         const newSubtask = {
             id: addTaskSetSubtaskId(),
             description: document.getElementById('addSubtaskInput').value,
