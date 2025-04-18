@@ -330,7 +330,7 @@ function boardAddTaskTemplate() {
 
                     <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskSubtasks">
                         <span class="task-overview-feature">Subtasks</span>
-                        <div class="task-overlay-editor-add-subtask"><input type="text" minlength="1" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
+                        <div class="task-overlay-editor-add-subtask"><input type="text" placeholder="Add new subtask" id="addSubtaskInput" onkeydown="if(event.key === 'Enter') { createSubtaskToNewTask(); return false; }" /><button type="button" onclick="createSubtaskToNewTask()">+</button></div>
                         <div id="subtaskEditorContainer">
 
                         </div>

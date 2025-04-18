@@ -210,7 +210,11 @@ function addTaskChangeSubtaskDescription(subtaskId) {
     const editSubtaskInput = document.getElementById('editSubtaskInput')
     const subtaskMatchesId = (element) => element.id === subtaskId;
     const subTaskIndex = newTask.subtasks.findIndex(subtaskMatchesId)
-    newTask.subtasks[subTaskIndex].description = editSubtaskInput.value
+    if(editSubtaskInput.value !== ''){
+        newTask.subtasks[subTaskIndex].description = editSubtaskInput.value
+    } else {
+        addTaskDeleteSubtask(subtaskId);
+    }
     clearInnerHtml('subtaskEditorContainer')
     renderAddTaskSubtasksList(newTask.subtasks);
 }
