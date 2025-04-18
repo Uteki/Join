@@ -306,5 +306,5 @@ function clearNewTask() {
     newTask.subtasks = []; document.getElementById('boardAddTaskSubtasksList').innerHTML = '';
     newTask.assignedTo = []; document.getElementById('boardAddTaskAssignedContacts').innerHTML = '';
 
-    renderAddTaskAssigned(contactList);
+    renderAddTaskAssigned(contactList); document.getElementById("boardAddTaskSubmitButton").disabled = true;
 }
