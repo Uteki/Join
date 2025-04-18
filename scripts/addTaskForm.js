@@ -133,11 +133,13 @@ function renderAddTaskSubtasksList(subtasks) {
 function addTaskCloseAssignedSelection() {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection');
     boardAddTaskAssignedSelection.classList.add('d-none')
+    showCategoryAndSubtaskInput();
 }
 
 function openBoardAddTaskAssignedSelection() {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection');
     boardAddTaskAssignedSelection.classList.remove('d-none')
+    hideCategoryAndSubtaskInput();
 }
 
 function toggleContactToAddTask(contactId) {
@@ -152,6 +154,24 @@ function toggleContactToAddTask(contactId) {
     }
     searchInput.value = '';
     renderAddTaskAssigned(contactList);
+}
+
+function hideCategoryAndSubtaskInput() {
+    const list = ['boardAddTaskCategory', 'boardAddTaskSubtasks'];
+    for (let index = 0; index < list.length; index++) {
+        const element = document.getElementById(list[index]);
+
+        element.classList.add('v-hidden');
+    }
+}
+
+function showCategoryAndSubtaskInput() {
+    const list = ['boardAddTaskCategory', 'boardAddTaskSubtasks'];
+    for (let index = 0; index < list.length; index++) {
+        const element = document.getElementById(list[index]);
+
+        element.classList.remove('v-hidden');
+    }
 }
 
 // Subtasks

@@ -73,6 +73,10 @@ button:disabled:hover {
     display: flex;
 }
 
+.v-hidden{
+    visibility: hidden!important;
+}
+
 @media (max-width: 900px){
     body{
         margin-left: 0px;

@@ -319,7 +319,7 @@ function boardAddTaskTemplate() {
                             </div>
                     </div>
 
-                    <div class="task-overview-feature task-overview-editor-form-content">
+                    <div class="task-overview-feature task-overview-editor-form-content" id="boardAddTaskCategory">
                         <label for="boardAddTaskCategoryInput"><span>Category</span><span class="board-add-tadk-required-icon">*</span></label>
                         <select name="category" id="boardAddTaskCategoryInput" required>
                             <option value="" selected>Please choose a category</option>
