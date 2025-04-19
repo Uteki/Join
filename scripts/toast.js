@@ -21,5 +21,5 @@ function showToast(type) {
         toast.remove();
       }, 500);
     }, 3000);
-  }
+}
   

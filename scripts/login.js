@@ -11,35 +11,25 @@ const guestLogin = document.getElementById("g-login");
 
 submitSignIn.addEventListener("click", async function (event) {
     event.preventDefault();
-
     const email = document.getElementById("mail-sign").value;
     const password = document.getElementById("pw-sign").value;
     const name = document.getElementById("name").value;
-
     try {
         if (wrongRegData()) return;
-
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user; await createContactSign(name, email, user.uid);
-
-        await updateProfile(user, { displayName: name });
-        await setStorage(user);
-        await setUserData(user.uid, name, email);
-
+        await updateProfile(user, { displayName: name }); await setStorage(user); await setUserData(user.uid, name, email);
         loginAfter();
     } catch (error) {
-        console.log(error);
-        document.querySelector(".signUpError").classList.add("upMail");
+        console.log(error); document.querySelector(".signUpError").classList.add("upMail");
     }
 });
 
 
 submitLogin.addEventListener("click", function (event) {
     event.preventDefault();
-
     const email = document.getElementById("mail-login").value;
     const password = document.getElementById("pw-login").value;
-
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -54,19 +44,16 @@ submitLogin.addEventListener("click", function (event) {
 
 guestLogin.addEventListener("click", function (event) {
     event.preventDefault(); guestLogin.disabled = true
-
     signInAnonymously(auth)
         .then((per) => {
             let anon = per.user;
-
             updateProfile(anon, { displayName: 'Guest' })
                 .then(() => {
-                    setStorage(anon);
-                    window.location.href = "../pages/summary.html";
+                    setStorage(anon); window.location.href = "../pages/summary.html";
                 })
         })
-        .catch((error) => {
-            console.error(error); alert(error.code + " " + error.message)
+        .catch((error) => { console.error(error);
+            alert(error.code + " " + error.message)
             guestLogin.disabled = false;
         })
 })
@@ -82,7 +69,6 @@ async function createContactSign (name, email, uid, path="contactList/", data={}
         },
         body: JSON.stringify({name: upperSense(name), email: email, phone: 0, id: newId, color: generateColor(), uid: uid})
     });
-
     await response.json();
 }
 
@@ -97,7 +83,8 @@ function loginAfter() {
     document.getElementById("sign-success").classList.toggle("d-none");
 
     setTimeout(() => {
-        window.location.href = "../pages/summary.html";
+        signUp();
+        document.getElementById("sign-success").classList.toggle("d-none");
     }, 2500);
 }
 
@@ -144,13 +131,13 @@ function wrongRegData() {
     const area = {
         name: document.getElementById("name"), email: document.getElementById("mail-sign"),
         pw1: document.getElementById("pw-sign"), pw2: document.getElementById("pw-signUp")
-    }
+    }; let error = false;
 
-    if (box.checked !== true) return showError(err, "upCheckbox");
-    if (area.pw1.value !== area.pw2.value) return showError(err, "upPassword", "pw-sign", "pw-signUp");
-    if (area.pw1.value.length < 6) return showError(err, "upPass", "pw-sign");
-    if (!area.email.value.includes("@") || !area.email.value.includes(".")) return showError(err, "upEmail", "mail-sign");
-    if (area.name.value.length < 1) return showError(err, "upName", "name");
+    if (box.checked !== true) error = showError(err, "upCheckbox");
+    if (area.pw1.value !== area.pw2.value) error = showError(err, "upPassword", "pw-sign", "pw-signUp");
+    if (area.pw1.value.length < 6) error = showError(err, "upPass", "pw-sign");
+    if (!area.email.value.includes("@") || !area.email.value.includes(".")) error = showError(err, "upEmail", "mail-sign");
+    if (area.name.value.length < 1) error = showError(err, "upName", "name"); return error;
 }
 
 function timeout(id) {

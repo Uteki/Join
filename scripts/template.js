@@ -1,5 +1,3 @@
-// Contact
-
 function contactTemplate(abbr, name, mail, number, id, color) {
     return `<article>
         <div>
@@ -56,8 +54,6 @@ function editButtonTemplate(id) {
             <button type="button" class="button dark-bg-btn" onclick="changeContact(${id})">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
     `
 }
-
-// Board
 
 function boardColumnTemplate(column, index) {
     return `
@@ -165,7 +161,6 @@ function boardOverlayTemplate(task, columnIndex) {
 `
 }
 
-// user implementation is missing
 function overviewAssignedTemplate(contact) {
     return `
         <div><span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span> <span>${contact.name}</span></div>
@@ -181,7 +176,6 @@ function overviewSubtaskTemplate(subtask, columnIndex, taskIndex, subtaskIndex) 
 `
 }
 
-// board task editor 
 function boardOverlayEditorTemplate(task, columnIndex) {
     return `
         <div class="task-overview-container"  id="taskEditorOverlayContainer" onclick="event.stopPropagation(), closeAssignedSelection()">
@@ -278,8 +272,6 @@ function editorSubtaskEditorTemplate(subtask){
     `
 }
 
-// add task form template
-
 function boardAddTaskTemplate() {
     return `
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
@@ -352,7 +344,6 @@ function boardAddTaskTemplate() {
 `
 }
 
-
 function addTaskAssignedListOptionTemplate(contact){
     return `
         <div class="assigned-list-option" onclick="toggleContactToAddTask(${contact.id})" id="contact${contact.id}"> 
@@ -415,12 +406,4 @@ function errorToastNotificationTemplate(message){
             <img src="../assets/svg/board-icon-selected.svg" alt="">
         </div>
     `;
-}
-
-// Template Funktion von Tomas zum rendern der Kontakte. Kommentar kann gelöscht werden wollte nur dass ihr wisst woher die Änderung kommt in der Datei.
-function createContactTemplate(contact) {
-    return `<div class="contact-item">
-                <span>${contact.name}</span>
-                <input type="checkbox" class="contact-checkbox" id="contact-${contact.id}">
-            </div>`;
 }

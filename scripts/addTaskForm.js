@@ -12,8 +12,6 @@ let defaultTask = {
     title: "",
 };
 
-// add task form
-
 function openAddTaskForm(column, singleTask) {
     const body = document.querySelector('body')
     if (!singleTask) body.innerHTML += boardAddTaskTemplate();
@@ -21,8 +19,6 @@ function openAddTaskForm(column, singleTask) {
     newTask = JSON.parse(JSON.stringify(defaultTask))
     renderAddTaskForm();
 }
-
-// add task
 
 async function addNewTask() {
     setTitle()
@@ -34,8 +30,6 @@ async function addNewTask() {
     await updateTaskList('Task added successfully');
     await closeTaskOverlay();
 }
-
-// set IDs
 
 function generateNewTaskId() {
     let existingIds = new Set();
@@ -50,8 +44,6 @@ function generateNewTaskId() {
     }
     return newId;
 }
-
-// Overlay editor
 
 function renderAddTaskForm() {
     setTaskPriority('medium', 'addTaskFormMediumBtn');
@@ -174,8 +166,6 @@ function showCategoryAndSubtaskInput() {
     }
 }
 
-// Subtasks
-
 function createSubtaskToNewTask() {
     if (document.getElementById('addSubtaskInput').value.length >= 1) {
         const newSubtask = {
@@ -231,8 +221,6 @@ function addTaskSetSubtaskId() {
     return newId;
 }
 
-
-// submit functions
 function validateForm() {
     let form = document.getElementById("boardAddTaskForm");
     let submitButton = document.getElementById("boardAddTaskSubmitButton");
@@ -275,12 +263,8 @@ function setNewTaskId() {
     let newId = 0;
     while (existingIds.has(newId)) {
         newId++;
-    }
-
-    return newId;
+    } return newId;
 }
-
-// singleAddTaskForm
 
 async function singleTask() {
     await init();

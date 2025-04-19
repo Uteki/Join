@@ -12,12 +12,10 @@ async function renderContact() {
     outputMenu.innerHTML = "";
 
     for (let i = 0; i < contactList.length; i++) {
-
         if (contactList[i].name.charAt(0) !== index) {
             outputMenu.innerHTML += addAbbreviation(contactList[i].name.charAt(0));
             index = contactList[i].name.charAt(0);
         }
-
         outputMenu.innerHTML += contactButtonTemplate(await getIni(contactList[i].name), contactList[i].name, contactList[i].email, contactList[i].id, contactList[i].color);
     }
 }

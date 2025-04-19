@@ -2,8 +2,6 @@ let currentDraggedElement;
 let filteredTasks = [];
 let editTask;
 
-// Render functions
-
 async function renderTasks() {
     await init();
     await renderColumns();
@@ -80,7 +78,6 @@ function progressBarWidth(subtasks) {
     return width;
 }
 
-// Overlay
 function openTaskOverlay(taskId, columnIndex) {
     const body = document.querySelector('body')
     const taskMatchesId = (element) => element.id === taskId;
@@ -99,11 +96,11 @@ async function closeTaskOverlay() {
         boardAddTaskOverlayContainer.addEventListener('animationend', async () => {
             boardAddTaskOverlayContainer.classList.remove('slide-out');
             taskOverviewOverlay.remove()
-            renderTasks();
+            await renderTasks();
         });
     } else {
         taskOverviewOverlay.remove()
-        renderTasks();
+        await renderTasks();
     }
 }
 
@@ -113,7 +110,7 @@ function renderOverlayAssignedTo(task) {
         const element = task.assignedTo[index];
         taskOverviewAssignedContainer.innerHTML += overviewAssignedTemplate(findContact(element));
     }
-};
+}
 
 function findContact(id) {
     const contactIndex = contactList.findIndex((element) => element.id === id);
@@ -123,7 +120,6 @@ function findContact(id) {
         deleteContactFromTask(id)
         renderTasks();
     }
-
 }
 
 function renderOverlaySubtasks(task, columnIndex, taskIndex) {
@@ -132,14 +128,12 @@ function renderOverlaySubtasks(task, columnIndex, taskIndex) {
         const element = task.subtasks[index];
         taskOverviewSubtasks.innerHTML += overviewSubtaskTemplate(element, columnIndex, taskIndex, index);
     }
-};
+}
 
 function toggleSubtaskCheckbox(columnIndex, taskIndex, subtaskIndex) {
     const task = taskList[columnIndex].tasks[taskIndex]
     task.subtasks[subtaskIndex].finished = !task.subtasks[subtaskIndex].finished;
 }
-
-// Overlay editor
 
 async function startOverlayEditor(taskId, columnIndex) {
     const taskOverviewOverlayContainer = document.getElementById('taskOverviewOverlayContainer')
@@ -163,7 +157,7 @@ function renderOverlayEditor(id, columnIndex) {
     renderOverlayEditorAssigned(contactList);
     rendertaskOverviewSubtasksList(task.subtasks);
     changeTaskPriority(editTask.priority, `boardEditor${firstLetterToUpperCase(editTask.priority)}Btn`);
-};
+}
 
 function renderOverlayEditorAssigned(contactsToRender) {
     const taskOverlayEditorAssignedSelection = document.getElementById('taskOverlayEditorAssignedSelection')
@@ -192,7 +186,7 @@ function rendertaskOverlayEditorAssignedContacts() {
         const excessCount = editTask.assignedTo.length - maxDisplayCount;
         taskOverlayEditorAssignedContacts.innerHTML += ` +${excessCount}`;
     }
-};
+}
 
 function checkIfContactIsAssigned(element) {
     const check = editTask.assignedTo.includes(element.id)
@@ -238,9 +232,6 @@ function openAssignedSelection() {
     taskOverlayEditorAssignedSelection.classList.remove('d-none')
 }
 
-// Overlay Editor edit functions
-
-
 function changeTitle() {
     editTask.title = document.getElementById('editorTitleInput').value
 }
@@ -256,7 +247,7 @@ function changeTaskDate() {
 function changeTaskPriority(newPrio, buttonID) {
     editTask.priority = newPrio;
     const buttons = document.getElementsByClassName('task-overview-editor-priority-button');
-    for (var i = 0; i < buttons.length; i++) {
+    for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove('active-priority-button-urgent', 'active-priority-button-medium', 'active-priority-button-low');
     }
     document.getElementById(buttonID).classList.toggle(`active-priority-button-${newPrio}`);
@@ -275,7 +266,6 @@ function toggleContactToTask(contactId) {
     searchInput.value = '';
     renderOverlayEditorAssigned(contactList);
 }
-// Subtasks
 
 function addSubtask() {
     if (document.getElementById('addSubtaskInput').value.length >= 4) {
@@ -328,8 +318,6 @@ function changeSubtaskDescription(subtaskId) {
     rendertaskOverviewSubtasksList(editTask.subtasks);
 }
 
-// Board Task filter functions
-
 function filterTasks() {
     const query = document.getElementById('boardSearchInput').value
     const filteredTasks = searchTasks(query);
@@ -369,16 +357,14 @@ function renderfilteredTasks(filteredTasks) {
         boardContent.innerHTML += boardColumnTemplate(element, index);
         renderTaskContainer(element.tasks, index);
     }
-};
-
-// Submit changes
+}
 
 async function submitTaskChanges(taskId, columnIndex) {
     const taskMatchesId = (element) => element.id === taskId;
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks[taskIndex] = editTask;
     await updateTaskList();
-    closeTaskOverlay();
+    await closeTaskOverlay();
 }
 
 async function deleteTaskFromBoard(taskId, columnIndex) {
@@ -386,9 +372,5 @@ async function deleteTaskFromBoard(taskId, columnIndex) {
     const taskIndex = taskList[columnIndex].tasks.findIndex(taskMatchesId)
     taskList[columnIndex].tasks.splice(taskIndex, 1)
     await updateTaskList('Task deleted successfully');
-    closeTaskOverlay();
+    await closeTaskOverlay();
 }
-
-
-
-

@@ -24,7 +24,6 @@ async function createContact (contacts = contactList, path="contactList/", data=
         },
         body: JSON.stringify({name: upperSense(addContact.name.value), email: addContact.email.value, phone: addContact.phone.value, id: newId, color: generateColor()})
     });
-
     await response.json(); await waitFor(newId); document.getElementById("add-create").disabled = true;
 }
 
@@ -38,7 +37,6 @@ async function waitFor(newId) {
 
 async function changeContact(ID) {
     let finder = contactList.findIndex((contact) => contact.id === ID); let uID = contactList[finder].uid
-
     if (wrongConData(editContact, ediErr, "edit-name", "edit-mail", "edit-con")) return;
     if (uID) window.profileUpdater(uID, editContact)
 
@@ -67,7 +65,6 @@ async function deleteContact (ID) {
             "Content-Type": "application/json"
         },
     });
-
     if (response.ok) {
         await rearrangeIds(updatedList); await pushArranged(updatedList);
         displaySection.innerHTML = "";

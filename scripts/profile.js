@@ -10,27 +10,16 @@ export async function profileUpdater(uID, editContact) {
     if (user && user.uid === uID) {
         try {
             const firebaseUser = auth.currentUser;
-
             if (firebaseUser && firebaseUser.uid === user.uid) {
-                // if (firebaseUser.email !== editContact.email.value) {
-                //     await updateEmail(firebaseUser, editContact.email.value);
-                // }
-
                 if (firebaseUser.displayName !== editContact.name.value) {
                     await updateProfile(firebaseUser, { displayName: editContact.name.value });
-
                     user.displayName = editContact.name.value;
                     localStorage.setItem("user", JSON.stringify(user))
-
                     document.getElementsByClassName("user-initials")[0].textContent = user.displayName.trim().split(" ").map(name => name[0]).join("").slice(0, 2);
                 }
             }
-        } catch (error) {
-            console.error(error);
-        }
-    } else {
-        console.log("Cannot change the data");
-    }
+        } catch (error) { console.error(error) }
+    } else { console.log("Cannot change the data") }
 }
 
 window.profileUpdater = profileUpdater;

@@ -11,20 +11,18 @@ const scrollSpeed = 20;
 
 const DRAG_THRESHOLD = 10;
 
-// Drag&Drop Desktop
-
 function startDragging(id) {
     currentDraggedElement = id;
-};
+}
 
 function allowDrop(event) {
     event.preventDefault();
-};
+}
 
 function dropHandler(event, targetColumnIndex) {
     event.preventDefault();
     moveTaskToColumn(currentDraggedElement, targetColumnIndex);
-};
+}
 
 async function moveTaskToColumn(taskId, targetColumnIndex) {
     let taskToMove = null;
@@ -37,13 +35,8 @@ async function moveTaskToColumn(taskId, targetColumnIndex) {
             }
         }
     });
-    if (taskList[targetColumnIndex].tasks) {
-        taskList[targetColumnIndex].tasks.push(taskToMove);
-    } else {
-        taskList[targetColumnIndex].tasks = [taskToMove];
-    }
-    await updateTaskList(null);
-    renderTasks();
+    taskList[targetColumnIndex].tasks ? taskList[targetColumnIndex].tasks.push(taskToMove) : taskList[targetColumnIndex].tasks = [taskToMove]
+    await updateTaskList(null); await renderTasks();
 }
 
 function highlightDropArea(id) {
@@ -53,8 +46,6 @@ function highlightDropArea(id) {
 function removeHighlightDropArea(id) {
     document.getElementById(`${id}`).classList.remove('drag-area-highlight')
 }
-
-// Touch Drag and Drop
 
 function handleTouchStart(e, taskId, columnIndex) {
     draggedEl = e.currentTarget;
@@ -67,7 +58,6 @@ function handleTouchStart(e, taskId, columnIndex) {
         draggedEl.style.position = 'fixed';
         draggedEl.style.top = startY + 'px';
         draggedEl.style.left = startX + 'px';
-        // draggedEl.style.width = draggedEl.offsetWidth + 'px';
         draggedEl.style.zIndex = '9999';
     }, 800);
 }
