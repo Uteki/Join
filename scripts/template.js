@@ -99,10 +99,11 @@ function editButtonTemplate(id) {
 }
 
 /**
+ * Board column template
  *
- * @param column
- * @param index
- * @returns {string}
+ * @param {*} column
+ * @param {*} index
+ * @returns {string} - Board column template
  */
 function boardColumnTemplate(column, index) {
     return `
@@ -118,10 +119,11 @@ function boardColumnTemplate(column, index) {
 }
 
 /**
+ * Board task template
  *
- * @param task
- * @param columnIndex
- * @returns {string}
+ * @param {*} task
+ * @param {*} columnIndex
+ * @returns {string} - Board task template
  */
 function boardTaskTemplate(task, columnIndex) {
     return `
@@ -147,6 +149,12 @@ function boardTaskTemplate(task, columnIndex) {
         `
 }
 
+/**
+ * Board task progress template
+ *
+ * @param {*} subtasks
+ * @returns {string} - Board task progress template
+ */
 function boardTaskProgressTemplate(subtasks) {
     if(subtasks.length > 0){
         return `
@@ -162,18 +170,36 @@ function boardTaskProgressTemplate(subtasks) {
     }
 }
 
+/**
+ * Board task initials template
+ *
+ * @param {*} contact
+ * @returns {string} - Board task initials template
+ */
 function boardTaskInitalsTemplate(contact) {
     return `
         <div class="board-task-initial" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</div>
     `
 }
 
+/**
+ * Board task priority template
+ *
+ * @param {*} prio
+ * @returns {string} - Board task priority template
+ */
 function boardTaskPriorityTemplate(prio){
     return `
     <img src="../assets/svg/priority-icons/priority-${prio}.svg" alt="">
     `
 }
 
+/**
+ * Board task template
+ *
+ * @param {*} columnIndex
+ * @returns {string} - Board task template
+ */
 function boardTaskTemplateEmpty(columnIndex) {
     return `
     <div class="board-empty-column">
@@ -182,6 +208,13 @@ function boardTaskTemplateEmpty(columnIndex) {
 `
 }
 
+/**
+ * Board overlay template
+ *
+ * @param {*} task
+ * @param {*} columnIndex
+ * @returns {string} - Board overlay template
+ */
 function boardOverlayTemplate(task, columnIndex) {
     return `
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
@@ -216,12 +249,27 @@ function boardOverlayTemplate(task, columnIndex) {
 `
 }
 
+/**
+ * Overview assigned template
+ *
+ * @param {*} contact
+ * @returns {string} - Overview assigned template
+ */
 function overviewAssignedTemplate(contact) {
     return `
         <div><span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span> <span>${contact.name}</span></div>
 `
 }
 
+/**
+ * Overview subtask template
+ *
+ * @param {*} subtask
+ * @param {*} columnIndex
+ * @param {*} taskIndex
+ * @param {*} subtaskIndex
+ * @returns {string} - Overview subtask template
+ */
 function overviewSubtaskTemplate(subtask, columnIndex, taskIndex, subtaskIndex) {
     return `
         <div>
@@ -231,6 +279,13 @@ function overviewSubtaskTemplate(subtask, columnIndex, taskIndex, subtaskIndex) 
 `
 }
 
+/**
+ * Board overlay editor template
+ *
+ * @param {*} task
+ * @param {*} columnIndex
+ * @returns {string} - Board overlay editor template
+ */
 function boardOverlayEditorTemplate(task, columnIndex) {
     return `
         <div class="task-overview-container"  id="taskEditorOverlayContainer" onclick="event.stopPropagation(), closeAssignedSelection()">
@@ -281,6 +336,12 @@ function boardOverlayEditorTemplate(task, columnIndex) {
 `
 }
 
+/**
+ * Assigned list option template
+ *
+ * @param {*} contact
+ * @returns {string} - Assigned list option template
+ */
 function assignedListOptionTemplate(contact){
     return `
         <div class="assigned-list-option" onclick="toggleContactToTask(${contact.id})" id="contact${contact.id}"> 
@@ -293,12 +354,24 @@ function assignedListOptionTemplate(contact){
     `
 }
 
+/**
+ * Assigned list template
+ *
+ * @param {*} contact
+ * @returns {string} - Assigned list template
+ */
 function assignedListTemplate(contact){
     return `
         <span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span>
     `
 }
 
+/**
+ * Subtask list template
+ *
+ * @param {*} subtask
+ * @returns {string} - Subtask list template
+ */
 function editorSubtaskListTemplate(subtask){
     return `
         <li>
@@ -314,6 +387,12 @@ function editorSubtaskListTemplate(subtask){
     `
 }
 
+/**
+ * Subtask editor template
+ *
+ * @param {*} subtask
+ * @returns {string} - Subtask editor template
+ */
 function editorSubtaskEditorTemplate(subtask){
     return `
         <div class="task-subtask-editor">
@@ -327,6 +406,11 @@ function editorSubtaskEditorTemplate(subtask){
     `
 }
 
+/**
+ * Board task template
+ *
+ * @returns {string} - Board task template
+ */
 function boardAddTaskTemplate() {
     return `
     <section class="task-overview-overlay" id="taskOverviewOverlay"  onclick="closeTaskOverlay()">
@@ -399,6 +483,12 @@ function boardAddTaskTemplate() {
 `
 }
 
+/**
+ * Assigned task list option template
+ *
+ * @param {*} contact
+ * @returns {string} - Assigned task list option template
+ */
 function addTaskAssignedListOptionTemplate(contact){
     return `
         <div class="assigned-list-option" onclick="toggleContactToAddTask(${contact.id})" id="contact${contact.id}"> 
@@ -411,6 +501,12 @@ function addTaskAssignedListOptionTemplate(contact){
     `
 }
 
+/**
+ * Assigned task list template
+ *
+ * @param {*} contact
+ * @returns {string} - Assigned list template
+ */
 function addTaskAssignedListTemplate(contact){
     return `
         <span class="task-overview-initials" style="background-color: #${contact.color}">${getContactInitials(contact.name)}</span>
@@ -418,9 +514,10 @@ function addTaskAssignedListTemplate(contact){
 }
 
 /**
+ * Subtask template
  *
- * @param subtask
- * @returns {string}
+ * @param {*} subtask
+ * @returns {string} - Subtask template
  */
 function addTaskSubtaskListTemplate(subtask){
     return `
@@ -438,9 +535,10 @@ function addTaskSubtaskListTemplate(subtask){
 }
 
 /**
+ * Subtask edit template
  *
- * @param subtask
- * @returns {string}
+ * @param {*} subtask
+ * @returns {string} - Subtask edit template
  */
 function addTaskSubtaskEditorTemplate(subtask){
     return `
@@ -458,8 +556,8 @@ function addTaskSubtaskEditorTemplate(subtask){
 /**
  * Success notification template
  *
- * @param message
- * @param type
+ * @param {string} message - Message given
+ * @param {string} type - Type id
  * @returns {string} - Success notification template
  */
 function successToastNotificationTemplate(message,type){
@@ -474,7 +572,7 @@ function successToastNotificationTemplate(message,type){
 /**
  * Error notification template
  *
- * @param {string} message
+ * @param {string} message - Message given
  * @returns {string} - Error notification template
  */
 function errorToastNotificationTemplate(message){
