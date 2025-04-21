@@ -9,6 +9,9 @@ const userIn = JSON.parse(localStorage.getItem("user"));
 
 const userName = document.getElementsByClassName("summary-user-name")[0];
 
+/**
+ * Displays user initials and name if available in local storage
+ */
 if (userIn) {
     let name = userIn.displayName.trim();
     let abbr = name.indexOf(" ");
@@ -23,6 +26,10 @@ if (userIn) {
     if (userName) userName.textContent = name;
 }
 
+/**
+ * Handles user logout
+ * Signs the user out using Firebase Auth, clears local storage, and redirects to login page
+ */
 logOut.addEventListener("click", function (event) {
     signOut(auth).then(() => {
         localStorage.removeItem("user");
@@ -34,6 +41,10 @@ logOut.addEventListener("click", function (event) {
     })
 })
 
+/**
+ * Auth state observer
+ * Monitors authentication state and updates the UI or redirects if the user is not logged in
+ */
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid;

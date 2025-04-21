@@ -6,6 +6,13 @@ const auth = getAuth(app);
 
 const user = JSON.parse(localStorage.getItem("user"));
 
+/**
+ * Changes the profile name if user edits their own contact
+ *
+ * @param {string} uID - Firebase auth code
+ * @param {object} editContact - Contact object
+ * @returns {Promise<void>} - Completes all steps
+ */
 export async function profileUpdater(uID, editContact) {
     if (user && user.uid === uID) {
         try {

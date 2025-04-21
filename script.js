@@ -4,10 +4,20 @@ let user = [];
 let contactList = [];
 let taskList;
 
+/**
+ * Initializes the connection
+ *
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function init() {
     await connect()
 }
 
+/**
+ * Fetch data from firebase and loads it into different lists
+ *
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function connect() {
     let response = await fetch(BASE_URL + ".json");
     let json = await response.json();
@@ -17,6 +27,12 @@ async function connect() {
     taskList = await JSON.parse(json.tasks);
 }
 
+/**
+ * Updates the taskList string
+ *
+ * @param {string} successMessage - Toast message
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function updateTaskList(successMessage) {
     const response = await fetch(BASE_URL + '.json', {
         method: 'PATCH',
@@ -32,6 +48,11 @@ async function updateTaskList(successMessage) {
     }
 }
 
+/**
+ * Fetch contact data as an unsorted list
+ *
+ * @returns {Promise<*>} - Resolves after all steps are complete
+ */
 async function updateUl() {
     let response = await fetch(BASE_URL + ".json");
     let json = await response.json();

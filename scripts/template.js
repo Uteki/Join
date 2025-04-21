@@ -1,3 +1,14 @@
+/**
+ * Contact template for the display
+ *
+ * @param {string} abbr - Abbreviation of a contact
+ * @param {string} name - Name of a contact
+ * @param {string} mail - Mail of a contact
+ * @param {number} number - Phone number of a contact
+ * @param {number} id - ID of a contact
+ * @param {string} color - Hex code like f*6
+ * @returns {string} - Template for displayed contact
+ */
 function contactTemplate(abbr, name, mail, number, id, color) {
     return `<article>
         <div>
@@ -24,6 +35,12 @@ function contactTemplate(abbr, name, mail, number, id, color) {
     `
 }
 
+/**
+ * Reference legend template
+ *
+ * @param {string} letter - Letter like <MM> Max Mustermann
+ * @returns {string} - Reference legend template
+ */
 function addAbbreviation(letter) {
     return `<div>
         <h5>${letter}</h5>
@@ -31,6 +48,16 @@ function addAbbreviation(letter) {
     `
 }
 
+/**
+ * Contact button template
+ *
+ * @param {string} abbr - Abbreviation of a contact
+ * @param {string} name - Name of a contact
+ * @param {string} mail - Mail of a contact
+ * @param {number} id - ID of a contact
+ * @param {string} color - Hex code like f*6
+ * @returns {string} - Contact button template
+ */
 function contactButtonTemplate(abbr, name, mail ,id, color) {
     return `<button id="${"contact" + id}" class="button contact-btn" onclick="displayContact(${id})">
         <div style="background-color: #${color}" class="abbr-profil">${abbr}</div>
@@ -43,18 +70,40 @@ function contactButtonTemplate(abbr, name, mail ,id, color) {
     `
 }
 
+/**
+ * Dropdown link template
+ *
+ * @param {number} id - ID of a contact
+ * @param {string} name - Name of a contact
+ * @param {string} mail - Mail of a contact
+ * @param {number} number - Phone number of a contact
+ * @param {string} color - Hex code like f*6
+ * @returns {string} - Dropdown link template
+ */
 function dropdownTemplate(id, name, mail, number, color) {
     return  `<li onclick="openModal('edit', ${id}, '${name}', '${mail}', ${number}, '${color}')"><i><img src="../assets/svg/contact-icons/edit.svg" alt="Edit"></i> Edit</li>
              <li onclick="deleteContact(${id}); toggleContactMenu()"><i><img src="../assets/svg/contact-icons/delete.svg" alt="Delete"></i> Delete</li>
     `
 }
 
+/**
+ * Edit button template
+ *
+ * @param {number} id - ID of a contact
+ * @returns {string} - Edit button template
+ */
 function editButtonTemplate(id) {
     return `<button type="button" class="button outline-btn" onclick="deleteContact(${id}); quitModal()">Delete</button>
             <button type="button" class="button dark-bg-btn" onclick="changeContact(${id})">Save<i><img src="../assets/svg/contact-icons/check.svg" alt="Check"></i></button>
     `
 }
 
+/**
+ *
+ * @param column
+ * @param index
+ * @returns {string}
+ */
 function boardColumnTemplate(column, index) {
     return `
         <div class="board-column" id="boardColumn${index}">
@@ -68,6 +117,12 @@ function boardColumnTemplate(column, index) {
         `
 }
 
+/**
+ *
+ * @param task
+ * @param columnIndex
+ * @returns {string}
+ */
 function boardTaskTemplate(task, columnIndex) {
     return `
         <div class="board-task-container" draggable="true" ondragstart="startDragging(${task.id})" onclick="openTaskOverlay(${task.id}, ${columnIndex})" 
@@ -362,6 +417,11 @@ function addTaskAssignedListTemplate(contact){
     `
 }
 
+/**
+ *
+ * @param subtask
+ * @returns {string}
+ */
 function addTaskSubtaskListTemplate(subtask){
     return `
         <li>
@@ -377,6 +437,11 @@ function addTaskSubtaskListTemplate(subtask){
     `
 }
 
+/**
+ *
+ * @param subtask
+ * @returns {string}
+ */
 function addTaskSubtaskEditorTemplate(subtask){
     return `
         <div class="task-subtask-editor">
@@ -389,7 +454,14 @@ function addTaskSubtaskEditorTemplate(subtask){
         </div>
     `
 }
-           
+
+/**
+ * Success notification template
+ *
+ * @param message
+ * @param type
+ * @returns {string} - Success notification template
+ */
 function successToastNotificationTemplate(message,type){
     return `
         <div class="toast-notification-container success-toast" id="${type}ToastNotification">
@@ -399,6 +471,12 @@ function successToastNotificationTemplate(message,type){
     `;
 }
 
+/**
+ * Error notification template
+ *
+ * @param {string} message
+ * @returns {string} - Error notification template
+ */
 function errorToastNotificationTemplate(message){
     return `
         <div class="toast-notification-container error-toast" id="${type}ToastNotification">

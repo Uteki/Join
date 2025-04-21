@@ -9,6 +9,9 @@ const submitSignIn = document.getElementById("sign-sub");
 const submitLogin = document.getElementById("sub-login");
 const guestLogin = document.getElementById("g-login");
 
+/**
+ * Registering option to make an account
+ */
 submitSignIn.addEventListener("click", async function (event) {
     event.preventDefault();
     const email = document.getElementById("mail-sign").value;
@@ -25,7 +28,9 @@ submitSignIn.addEventListener("click", async function (event) {
     }
 });
 
-
+/**
+ * Log in functionality, checks the backend if it worked
+ */
 submitLogin.addEventListener("click", function (event) {
     event.preventDefault();
     const email = document.getElementById("mail-login").value;
@@ -42,6 +47,9 @@ submitLogin.addEventListener("click", function (event) {
         });
 })
 
+/**
+ * Anonymous data for guest to be able to try out
+ */
 guestLogin.addEventListener("click", function (event) {
     event.preventDefault(); guestLogin.disabled = true
     signInAnonymously(auth)
@@ -58,6 +66,16 @@ guestLogin.addEventListener("click", function (event) {
         })
 })
 
+/**
+ * Creates your contact
+ *
+ * @param name - Sign up name
+ * @param email - Sign up mail
+ * @param uid - Sign up UID
+ * @param path - Where it should be saved
+ * @param data - Empty if nothing
+ * @returns {Promise<void>} - Is ignored
+ */
 async function createContactSign (name, email, uid, path="contactList/", data={}) {
     let contacts = await theContacts(); let newKey = contacts?.length || 0;
     let newId = generateId(contactList); document.getElementById("sign-sub").disabled = true;
@@ -72,6 +90,11 @@ async function createContactSign (name, email, uid, path="contactList/", data={}
     await response.json();
 }
 
+/**
+ * Sorted contactList
+ *
+ * @returns {Promise<*>}
+ */
 async function theContacts() {
     let response = await fetch(BASE_URL + ".json");
     let json = await response.json();
@@ -79,6 +102,9 @@ async function theContacts() {
     return contactList = json.contactList.sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/**
+ * Waits for message that it worked and redirects to base form login
+ */
 function loginAfter() {
     document.getElementById("sign-success").classList.toggle("d-none");
 
@@ -88,6 +114,14 @@ function loginAfter() {
     }, 2500);
 }
 
+/**
+ * Pushes the registered data into db
+ *
+ * @param userId - UID of your data
+ * @param name - Name of your data
+ * @param email - Mail of your data
+ * @returns {*} - Finishes with pushed data
+ */
 function setUserData(userId, name, email) {
     const db = getDatabase(app);
     const userRef = ref(db, 'join/users/' + userId);
@@ -103,6 +137,11 @@ function setUserData(userId, name, email) {
     });
 }
 
+/**
+ * Set local storage to your data log in
+ *
+ * @param {object} user - User data
+ */
 function setStorage(user) {
     localStorage.setItem("user", JSON.stringify({
         uid: user.uid,
@@ -111,6 +150,9 @@ function setStorage(user) {
     }));
 }
 
+/**
+ * Mark the form inputs where the validation fails
+ */
 function wrongData() {
     let errorMsg = document.getElementById("err-msg");
 
@@ -125,6 +167,11 @@ function wrongData() {
     })
 }
 
+/**
+ * Checks validation for register field
+ *
+ * @returns {boolean}
+ */
 function wrongRegData() {
     const box = document.getElementById("agreement");
     const err = document.querySelector(".signUpError");
@@ -140,6 +187,11 @@ function wrongRegData() {
     if (area.name.value.length < 1) error = showError(err, "upName", "name"); return error;
 }
 
+/**
+ * Times out the error and remove it after
+ *
+ * @param {string} id - Error id
+ */
 function timeout(id) {
     let ids = document.getElementById(`${id}`);
 
@@ -150,12 +202,27 @@ function timeout(id) {
     }, 5000);
 }
 
+/**
+ * Removes the error
+ *
+ * @param {HTMLElement} err - Error area
+ * @param {string} id - Error message
+ */
 function removeError(err, id) {
     setTimeout(() => {
         err.classList.remove(id);
     }, 5000);
 }
 
+/**
+ * Shows error whenever validation fails
+ *
+ * @param {HTMLElement} err - Error area
+ * @param {string} content - Specific error message
+ * @param {string} input - Error input field
+ * @param {string} extra - Variable to check if there is another field
+ * @returns {boolean}
+ */
 function showError(err, content, input, extra) {
     err.classList.add(content);
 

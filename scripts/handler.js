@@ -13,7 +13,14 @@ let editContact = {
 let conErr = document.querySelector("#add-form .input-group:nth-child(3)");
 let ediErr = document.querySelector("#edit-form .input-group:nth-child(3)");
 
-async function createContact (contacts = contactList, path="contactList/", data={}) {
+/**
+ * Creates a contact
+ *
+ * @param {array} contacts - List of contacts
+ * @param {string} path - DB directory
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
+async function createContact (contacts = contactList, path="contactList/") {
     if (wrongConData(addContact, conErr, "add-name", "add-mail", "add-con")) return;
 
     let newKey = contacts?.length || 0; let newId = generateId(contactList);
@@ -27,6 +34,12 @@ async function createContact (contacts = contactList, path="contactList/", data=
     await response.json(); await waitFor(newId); document.getElementById("add-create").disabled = true;
 }
 
+/**
+ * Render contact, display contact, and quit the modal
+ *
+ * @param {string} newId - New ID
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function waitFor(newId) {
     await renderContact();
     await displayContact(newId);
@@ -35,6 +48,12 @@ async function waitFor(newId) {
     successContact("Contact added successfully.");
 }
 
+/**
+ * Changes data of a contact
+ *
+ * @param {*} ID - Identification nummer
+ * @returns {Promise<any>} - Resolves after all steps are complete
+ */
 async function changeContact(ID) {
     let finder = contactList.findIndex((contact) => contact.id === ID); let uID = contactList[finder].uid
     if (wrongConData(editContact, ediErr, "edit-name", "edit-mail", "edit-con")) return;
@@ -50,6 +69,12 @@ async function changeContact(ID) {
     await renderChanges(ID); return response.json();
 }
 
+/**
+ * Render after changes was made
+ *
+ * @param {*} ID - Identification nummer
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function renderChanges(ID) {
     await renderContact();
     await displayContact(ID);
@@ -57,6 +82,12 @@ async function renderChanges(ID) {
     quitModal('yes');
 }
 
+/**
+ * Removes a contact and triggers id arrangement
+ *
+ * @param {*} ID - Identification nummer
+ * @returns {Promise<any>} - Resolves after all steps are complete
+ */
 async function deleteContact (ID) {
     const updatedList = {};
     let response = await fetch(BASE_URL + `contactList/${await findId(ID)}.json`, {
@@ -73,6 +104,12 @@ async function deleteContact (ID) {
     return response.json();
 }
 
+/**
+ * Rearrange the updated list
+ *
+ * @param {object} updatedList - Unordered list
+ * @returns {Promise<*>} - An updated list of ordered contacts
+ */
 async function rearrangeIds(updatedList) {
     let backendList = await updateUl();
 
@@ -85,6 +122,12 @@ async function rearrangeIds(updatedList) {
     return updatedList;
 }
 
+/**
+ * Push the ordered list back
+ *
+ * @param {object} updatedList - Rearranged list
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function pushArranged(updatedList) {
     await fetch(BASE_URL + `contactList.json`, {
         method: "PUT",
@@ -97,6 +140,12 @@ async function pushArranged(updatedList) {
     await renderContact();
 }
 
+/**
+ * Find id position
+ *
+ * @param {*} ID - Identification number
+ * @returns {Promise<number>} - Resolves after all steps are complete
+ */
 async function findId(ID) {
     let ul = await updateUl();
 
@@ -105,6 +154,12 @@ async function findId(ID) {
     }
 }
 
+/**
+ * Generates an unique id
+ *
+ * @param {array} existingContacts - contactList
+ * @returns {number} - Unique id
+ */
 function generateId(existingContacts) {
     let newId;
     let unique = false;
@@ -117,10 +172,21 @@ function generateId(existingContacts) {
     return newId;
 }
 
+/**
+ * Generates a hex color
+ *
+ * @returns {string} - Hex color
+ */
 function generateColor() {
     return `${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
+/**
+ * Changes the first letter to uppercase
+ *
+ * @param {string} name - A name
+ * @returns {string} - A name with uppercases
+ */
 function upperSense(name) {
     return name.toLowerCase()
         .split(' ')
@@ -128,6 +194,16 @@ function upperSense(name) {
         .join(' ');
 }
 
+/**
+ * Check contact validation
+ *
+ * @param {object} contact - Contact object
+ * @param {HTMLElement} err - Error container
+ * @param {string} name - Name
+ * @param {string} mail - Mail
+ * @param {string} con - Phone
+ * @returns {boolean}
+ */
 function wrongConData(contact, err, name, mail, con) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = contact.phone.value.replace(/\D/g, '');
@@ -141,11 +217,25 @@ function wrongConData(contact, err, name, mail, con) {
     return error;
 }
 
+/**
+ * Regex validation for name
+ *
+ * @param {string} a - Name value
+ * @returns {boolean}
+ */
 function regexNum(a) {
     const regexNumEx = /^[A-Za-zÄäÖöÜüß\s'-]+$/;
     return !regexNumEx.test(a);
 }
 
+/**
+ * Shows the error
+ *
+ * @param {HTMLElement} err - Error area
+ * @param {string} content - Class
+ * @param {string} input - Keyword
+ * @returns {boolean}
+ */
 function showConError(err, content, input) {
     err.classList.add(content);
 
@@ -155,12 +245,23 @@ function showConError(err, content, input) {
     return true;
 }
 
+/**
+ * Removes the error
+ *
+ * @param {HTMLElement} err - Error area
+ * @param {string} id - Content class
+ */
 function removeConError(err, id) {
     setTimeout(() => {
         err.classList.remove(id);
     }, 5000);
 }
 
+/**
+ * Time the error and give it styling
+ *
+ * @param {string} id - Keyword for identification
+ */
 function timeItOut(id) {
     let ids = document.getElementById(`${id}`);
 
@@ -171,6 +272,11 @@ function timeItOut(id) {
     }, 5000);
 }
 
+/**
+ * Displays the message
+ *
+ * @param {string} message - Message information
+ */
 function successContact(message) {
     const success = document.getElementById("contact-success");
     success.innerHTML = message;

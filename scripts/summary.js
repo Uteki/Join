@@ -8,6 +8,11 @@ let sumInBoard = document.getElementsByClassName("summary-num")[3];
 let sumInProg = document.getElementsByClassName("summary-num")[4];
 let sumFeed = document.getElementsByClassName("summary-num")[5];
 
+/**
+ * Loads the taskList and makes every button clickable and linkable
+ *
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
 async function summarize() {
     await init();
 
@@ -20,6 +25,9 @@ async function summarize() {
     taskScanner();
 }
 
+/**
+ * Checks the tickets for to do, done, in progress, feedback and counts all tasks
+ */
 function taskScanner() {
     let sumBoard = 0;
 
@@ -35,6 +43,11 @@ function taskScanner() {
     urgScanner();
 }
 
+/**
+ * Check deadline and urgent tasks
+ *
+ * @returns {string} - if it fails to find any date
+ */
 function urgScanner() {
     let checker = true;
     let num = 0;
@@ -52,6 +65,11 @@ function urgScanner() {
     if (!deadline) { return upDate.firstElementChild.innerText = "No Deadline" } changeFormat(deadline);
 }
 
+/**
+ * Changes the date formular to a readable short one
+ *
+ * @param date - Date format element
+ */
 function changeFormat(date) {
     upDate.firstElementChild.innerText = date.toLocaleDateString("en-US", {
         year: "numeric",
