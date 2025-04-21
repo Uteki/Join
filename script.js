@@ -28,12 +28,27 @@ async function connect() {
 }
 
 /**
- * Updates the taskList string
+ * Update the taskList
  *
- * @param {string} successMessage - Toast message
+ * @param successMessage - Message given
+ * @param {*} noToast - Keyword
  * @returns {Promise<void>} - Resolves after all steps are complete
  */
-async function updateTaskList(successMessage) {
+async function updateTaskList(successMessage, noToast) {
+    let response = await pushTaskList()
+    if(noToast){
+        return
+    } else if (successMessage !== null) {
+        response.ok ? createSuccessToast(successMessage || 'Successful Submit') : createErrorToast('An error occured');
+    }
+}
+
+/**
+ * Pushes the taskList
+ *
+ * @returns {Promise<void>} - Resolves after all steps are complete
+ */
+async function pushTaskList(){
     const response = await fetch(BASE_URL + '.json', {
         method: 'PATCH',
         headers: {

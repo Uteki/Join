@@ -100,6 +100,7 @@ async function closeTaskOverlay() {
         });
     } else {
         taskOverviewOverlay.remove()
+        await updateTaskList('', true);
         await renderTasks();
     }
 }
