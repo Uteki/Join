@@ -17,7 +17,16 @@ async function connect() {
     taskList = await JSON.parse(json.tasks);
 }
 
-async function updateTaskList(successMessage) {
+async function updateTaskList(successMessage, noToast) {
+    let response = await pushTaskList()
+    if(noToast){
+        return
+    } else if (successMessage !== null) {
+        response.ok ? createSuccessToast(successMessage || 'Successful Submit') : createErrorToast('An error occured');
+    }
+}
+
+async function pushTaskList(){
     const response = await fetch(BASE_URL + '.json', {
         method: 'PATCH',
         headers: {
@@ -27,9 +36,7 @@ async function updateTaskList(successMessage) {
             tasks: JSON.stringify(taskList),
         })
     });
-    if (successMessage !== null) {
-        response.ok ? createSuccessToast(successMessage || 'Successful Submit') : createErrorToast('An error occured');
-    }
+    return response;
 }
 
 async function updateUl() {
