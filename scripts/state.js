@@ -12,19 +12,19 @@ const userName = document.getElementsByClassName("summary-user-name")[0];
 /**
  * Displays user initials and name if available in local storage
  */
-if (userIn) {
-    let name = userIn.displayName.trim();
-    let abbr = name.indexOf(" ");
-    let initials = name.slice(0, 1);
+document.addEventListener("DOMContentLoaded", () => {
+    if (userIn) {
+        let name = userIn.displayName.trim();
+        let abbr = name.indexOf(" ");
+        let initials = name.slice(0, 1);
 
-    if (abbr !== -1) {
-        initials += name.slice(abbr + 1, abbr + 2);
+        if (abbr !== -1) {
+            initials += name.slice(abbr + 1, abbr + 2);
+        }
+        document.getElementsByClassName("user-initials")[0].textContent = initials;
+        if (userName) userName.textContent = name;
     }
-
-    document.getElementsByClassName("user-initials")[0].textContent = initials;
-
-    if (userName) userName.textContent = name;
-}
+})
 
 /**
  * Handles user logout
