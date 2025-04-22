@@ -11,6 +11,8 @@ const userName = document.getElementsByClassName("summary-user-name")[0];
 
 /**
  * Displays user initials and name if available in local storage
+ *
+ * @param {object} userIn - User object with name etc.
  */
 document.addEventListener("DOMContentLoaded", () => {
     if (userIn) {
