@@ -31,7 +31,7 @@ async function connect() {
  * Update the taskList
  *
  * @param successMessage - Message given
- * @param {*} noToast - Keyword
+ * @param {Boolean} noToast - Keyword
  * @returns {Promise<void>} - Resolves after all steps are complete
  */
 async function updateTaskList(successMessage, noToast) {
