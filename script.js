@@ -45,10 +45,9 @@ async function updateTaskList(successMessage, noToast) {
 
 /**
  * Pushes the taskList
- * @param successMessage - Message given
  * @returns {Promise<void>} - Resolves after all steps are complete
  */
-async function pushTaskList(successMessage){
+async function pushTaskList(){
     const response = await fetch(BASE_URL + '.json', {
         method: 'PATCH',
         headers: {
