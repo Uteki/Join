@@ -12,6 +12,7 @@ const user = JSON.parse(localStorage.getItem("user"));
  * @param {string} uID - Firebase auth code
  * @param {object} editContact - Contact object
  * @returns {Promise<void>} - Completes all steps
+ * @async
  */
 export async function profileUpdater(uID, editContact) {
     if (user && user.uid === uID) {

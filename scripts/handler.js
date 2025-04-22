@@ -16,9 +16,10 @@ let ediErr = document.querySelector("#edit-form .input-group:nth-child(3)");
 /**
  * Creates a contact
  *
- * @param {array} contacts - List of contacts
+ * @param {Object[]} contacts - List of contacts
  * @param {string} path - DB directory
- * @returns {Promise<void>} - Resolves after all steps are complete
+ * @returns {Promise<void>}
+ * @async
  */
 async function createContact (contacts = contactList, path="contactList/") {
     if (wrongConData(addContact, conErr, "add-name", "add-mail", "add-con")) return;
@@ -38,7 +39,8 @@ async function createContact (contacts = contactList, path="contactList/") {
  * Render contact, display contact, and quit the modal
  *
  * @param {string} newId - New ID
- * @returns {Promise<void>} - Resolves after all steps are complete
+ * @returns {Promise<void>}
+ * @async
  */
 async function waitFor(newId) {
     await renderContact();
@@ -51,8 +53,9 @@ async function waitFor(newId) {
 /**
  * Changes data of a contact
  *
- * @param {*} ID - Identification nummer
- * @returns {Promise<any>} - Resolves after all steps are complete
+ * @param {number|string} ID - Identification nummer
+ * @returns {Promise<Object>}
+ * @async
  */
 async function changeContact(ID) {
     let finder = contactList.findIndex((contact) => contact.id === ID); let uID = contactList[finder].uid
@@ -72,8 +75,9 @@ async function changeContact(ID) {
 /**
  * Render after changes was made
  *
- * @param {*} ID - Identification nummer
- * @returns {Promise<void>} - Resolves after all steps are complete
+ * @param {number|string} ID - Identification nummer
+ * @returns {Promise<void>}
+ * @async
  */
 async function renderChanges(ID) {
     await renderContact();
@@ -85,8 +89,9 @@ async function renderChanges(ID) {
 /**
  * Removes a contact and triggers id arrangement
  *
- * @param {*} ID - Identification nummer
- * @returns {Promise<any>} - Resolves after all steps are complete
+ * @param {number|string} ID - Identification nummer
+ * @returns {Promise<Object>}
+ * @async
  */
 async function deleteContact (ID) {
     const updatedList = {};
@@ -107,8 +112,9 @@ async function deleteContact (ID) {
 /**
  * Rearrange the updated list
  *
- * @param {object} updatedList - Unordered list
- * @returns {Promise<*>} - An updated list of ordered contacts
+ * @param {Object} updatedList - Unordered list
+ * @returns {Promise<Object>}
+ * @async
  */
 async function rearrangeIds(updatedList) {
     let backendList = await updateUl();
@@ -125,8 +131,9 @@ async function rearrangeIds(updatedList) {
 /**
  * Push the ordered list back
  *
- * @param {object} updatedList - Rearranged list
- * @returns {Promise<void>} - Resolves after all steps are complete
+ * @param {Object} updatedList - Rearranged list
+ * @returns {Promise<void>}
+ * @async
  */
 async function pushArranged(updatedList) {
     await fetch(BASE_URL + `contactList.json`, {
@@ -143,8 +150,9 @@ async function pushArranged(updatedList) {
 /**
  * Find id position
  *
- * @param {*} ID - Identification number
- * @returns {Promise<number>} - Resolves after all steps are complete
+ * @param {number|string} ID - Identification number
+ * @returns {Promise<number>}
+ * @async
  */
 async function findId(ID) {
     let ul = await updateUl();
@@ -157,8 +165,8 @@ async function findId(ID) {
 /**
  * Generates an unique id
  *
- * @param {array} existingContacts - contactList
- * @returns {number} - Unique id
+ * @param {Object[]} existingContacts - contactList
+ * @returns {number}
  */
 function generateId(existingContacts) {
     let newId;
@@ -175,7 +183,7 @@ function generateId(existingContacts) {
 /**
  * Generates a hex color
  *
- * @returns {string} - Hex color
+ * @returns {string}
  */
 function generateColor() {
     return `${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -185,7 +193,7 @@ function generateColor() {
  * Changes the first letter to uppercase
  *
  * @param {string} name - A name
- * @returns {string} - A name with uppercases
+ * @returns {string}
  */
 function upperSense(name) {
     return name.toLowerCase()
@@ -197,7 +205,7 @@ function upperSense(name) {
 /**
  * Check contact validation
  *
- * @param {object} contact - Contact object
+ * @param {Object} contact - Contact object
  * @param {HTMLElement} err - Error container
  * @param {string} name - Name
  * @param {string} mail - Mail

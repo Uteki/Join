@@ -13,9 +13,9 @@ let defaultTask = {
 };
 
 /**
- * Opens up the add-task form (when in board) and copies the default task to create a new Task.
- * @param {string} column - name of the column
- * @param {string} singleTask - only when funtion gets called in task.html so the form does not get rendered
+ * Opens the add-task form and initializes a new task based on the default structure.
+ * @param {string} column - Name of the column where the task will be added.
+ * @param {string} singleTask - If set, prevents rendering the form (used in task.html).
  */
 function openAddTaskForm(column, singleTask) {
     const body = document.querySelector('body')
@@ -26,7 +26,7 @@ function openAddTaskForm(column, singleTask) {
 }
 
 /**
- * Sets all input values into the newTask variable, pushes it to the taskList and updates it.
+ * Collects input values, creates a new task, adds it to the task list, and updates the UI.
  */
 async function addNewTask() {
     setTitle()
@@ -40,8 +40,8 @@ async function addNewTask() {
 }
 
 /**
- * Calculates a unique id for a task by checking what ids are already in use.
- * @returns {number} - unique task id
+ * Generates a unique task ID based on existing IDs.
+ * @returns {number} Unique task ID.
  */
 function generateNewTaskId() {
     let existingIds = new Set();
@@ -58,7 +58,7 @@ function generateNewTaskId() {
 }
 
 /**
- * Render specific HTML for the add-task form and sets prio to medium and todays date so no date in the past can be selected as due date.
+ * Renders the add-task form and sets initial values like default priority and today's date.
  */
 function renderAddTaskForm() {
     setTaskPriority('medium', 'addTaskFormMediumBtn');
@@ -68,8 +68,8 @@ function renderAddTaskForm() {
 }
 
 /**
- * Render contact input list to the form.
- * @param {number[]} contactsToRender - an array with contact ids
+ * Renders the list of assignable contacts in the form.
+ * @param {number[]} contactsToRender - Array of contact IDs to render.
  */
 function renderAddTaskAssigned(contactsToRender) {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection')
@@ -86,7 +86,7 @@ function renderAddTaskAssigned(contactsToRender) {
 }
 
 /**
- * Render list of assigned contacts user initals.
+ * Renders the list of selected contacts with initials.
  */
 function renderAddTaskAssignedContacts() {
     const boardAddTaskAssignedContacts = document.getElementById('boardAddTaskAssignedContacts')
@@ -122,8 +122,8 @@ function rendertaskOverlayEditorAssignedContacts() {
 }
 
 /**
- * Check if contact has already been selected to a task.
- * @param {*} element 
+ * Highlights the contact if already selected.
+ * @param {Object} element - Contact object.
  */
 function addTaskCheckIfContactIsAssigned(element) {
     const check = newTask.assignedTo.includes(element.id)
@@ -137,7 +137,7 @@ function addTaskCheckIfContactIsAssigned(element) {
 }
 
 /**
- * Select the search query, start searching and then start rendering the filtered contactlist of the add-task form.
+ * Filters the contact list based on the user's input.
  */
 function boardAddTaskFilterContacts() {
     const query = document.getElementById('boardAddTaskContactQueryInput').value
@@ -146,8 +146,8 @@ function boardAddTaskFilterContacts() {
 }
 
 /**
- * Render the list of subtasks to the add-task form.
- * @param {*} subtasks 
+ * Renders the list of subtasks.
+ * @param {Object[]} subtasks - List of subtasks.
  */
 function renderAddTaskSubtasksList(subtasks) {
     const boardAddTaskSubtasksList = document.getElementById('boardAddTaskSubtasksList')
@@ -159,7 +159,7 @@ function renderAddTaskSubtasksList(subtasks) {
 }
 
 /**
- * Close the contact list selection.
+ * Hides the contact assignment list.
  */
 function addTaskCloseAssignedSelection() {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection');
@@ -168,7 +168,7 @@ function addTaskCloseAssignedSelection() {
 }
 
 /**
- * Open up the contact list selection.
+ * Opens up the contact list selection.
  */
 function openBoardAddTaskAssignedSelection() {
     const boardAddTaskAssignedSelection = document.getElementById('boardAddTaskAssignedSelection');
@@ -178,7 +178,7 @@ function openBoardAddTaskAssignedSelection() {
 
 /**
  * Adds or deletes contactID to or from task assigned contacts.
- * @param {*} contactId 
+ * @param {number} contactId 
  */
 function toggleContactToAddTask(contactId) {
     const searchInput = document.getElementById('boardAddTaskContactQueryInput')
@@ -195,7 +195,7 @@ function toggleContactToAddTask(contactId) {
 }
 
 /**
- * Hide category and subtask input for better UI.
+ * Hides category and subtask input for better UI.
  */
 function hideCategoryAndSubtaskInput() {
     const list = ['boardAddTaskCategory', 'boardAddTaskSubtasks'];
@@ -207,7 +207,7 @@ function hideCategoryAndSubtaskInput() {
 }
 
 /**
- * Show category and subtask input after hiding it.
+ * Shows previously hidden category and subtask inputs.
  */
 function showCategoryAndSubtaskInput() {
     const list = ['boardAddTaskCategory', 'boardAddTaskSubtasks'];
@@ -219,7 +219,7 @@ function showCategoryAndSubtaskInput() {
 }
 
 /**
- * Create a new subtask to the created task.
+ * Creates a new subtask and adds it to the new task.
  */
 function createSubtaskToNewTask() {
     if (document.getElementById('addSubtaskInput').value.length >= 1) {
@@ -235,8 +235,8 @@ function createSubtaskToNewTask() {
 }
 
 /**
- * Delete a subtask from the task beeing created.
- * @param {*} subtaskId 
+ * Removes a subtask by its ID.
+ * @param {number} subtaskId - ID of the subtask to be deleted.
  */
 function addTaskDeleteSubtask(subtaskId) {
     const subtaskMatchesId = (element) => element.id === subtaskId;
@@ -247,8 +247,8 @@ function addTaskDeleteSubtask(subtaskId) {
 }
 
 /**
- * Start the editor for editing a subtask in the add-task form.
- * @param {*} subtaskId 
+ * Opens the editor for a subtask.
+ * @param {number} subtaskId - ID of the subtask to edit.
  */
 function addTaskStartSubtaskEditing(subtaskId) {
     const subtaskEditorContainer = document.getElementById('subtaskEditorContainer')
@@ -260,8 +260,8 @@ function addTaskStartSubtaskEditing(subtaskId) {
 }
 
 /**
- * Change the subtask description to the editors input value.
- * @param {*} subtaskId 
+ * Updates the subtask description or deletes it if input is empty.
+ * @param {number} subtaskId - ID of the subtask.
  */
 function addTaskChangeSubtaskDescription(subtaskId) {
     const editSubtaskInput = document.getElementById('editSubtaskInput')
@@ -277,8 +277,8 @@ function addTaskChangeSubtaskDescription(subtaskId) {
 }
 
 /**
- * Get a unique id when creating a new subtask.
- * @returns {number} - unique id for subtask
+ * Generates a unique ID for a subtask.
+ * @returns {number} Unique subtask ID.
  */
 function addTaskSetSubtaskId() {
     let existingIds = new Set();
@@ -293,7 +293,7 @@ function addTaskSetSubtaskId() {
 }
 
 /**
- * Check the validity of the add-task form.
+ * Validates the add-task form.
  */
 function validateForm() {
     let form = document.getElementById("boardAddTaskForm");
@@ -302,37 +302,37 @@ function validateForm() {
 }
 
 /**
- * Set the title input value to the new task.
+ * Sets the task title based on the input value.
  */
 function setTitle() {
     newTask.title = document.getElementById('addTaskTitleInput').value
 }
 
 /**
- * Set the description input value to the new task.
+ * Sets the task description based on the input value.
  */
 function setTaskDescription() {
     newTask.description = document.getElementById('addTaskDescriptionInput').value
 }
 
 /**
- * Set the date input value to the new task.
+ * Sets the task due date based on the input value.
  */
 function setTaskDate() {
     newTask.dueDate = document.getElementById('addTaskDateInput').value
 }
 
 /**
- * Set the category input value to the new task.
+ * Sets the task category based on the input value.
  */
 function setCategory() {
     newTask.category = document.getElementById('boardAddTaskCategoryInput').value
 }
 
 /**
- * Set the priority input value to the new task.
- * @param {string} newPrio 
- * @param {number} buttonID 
+ * Sets the task priority and updates the corresponding UI button.
+ * @param {string} newPrio - Priority level (low, medium, urgent).
+ * @param {string} buttonID - ID of the button to activate.
  */
 function setTaskPriority(newPrio, buttonID) {
     newTask.priority = newPrio;
@@ -344,8 +344,8 @@ function setTaskPriority(newPrio, buttonID) {
 }
 
 /**
- * Get an unique id for the new task thats beeing created.
- * @returns {number}
+ * Calculates a new unique task ID.
+ * @returns {number} New unique task ID.
  */
 function setNewTaskId() {
     let existingIds = new Set();
@@ -362,7 +362,7 @@ function setNewTaskId() {
 }
 
 /**
- * Start the add-task form in task.html.
+ * Initializes and opens the add-task form in task.html.
  */
 async function singleTask() {
     await init();
@@ -370,7 +370,7 @@ async function singleTask() {
 }
 
 /**
- * Add new Task to taskList from task.html.
+ * Adds a task from task.html and redirects to the board.
  */
 async function singleAddNewTask() {
     await addNewTask();
@@ -382,7 +382,7 @@ async function singleAddNewTask() {
 }
 
 /**
- * Clear add-task form.
+ * Clears all input fields and resets the new task form.
  */
 function clearNewTask() {
     newTask.title = document.getElementById('addTaskTitleInput').value ="";

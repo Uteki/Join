@@ -69,12 +69,13 @@ guestLogin.addEventListener("click", function (event) {
 /**
  * Creates your contact
  *
- * @param name - Sign up name
- * @param email - Sign up mail
- * @param uid - Sign up UID
- * @param path - Where it should be saved
- * @param data - Empty if nothing
+ * @param {string} name - Sign up name
+ * @param {string} email - Sign up mail
+ * @param {string} uid - Sign up UID
+ * @param {string} [path="contactList/"] - Where it should be saved
+ * @param {object} [data={}] - Empty if nothing
  * @returns {Promise<void>} - Is ignored
+ * @async
  */
 async function createContactSign (name, email, uid, path="contactList/", data={}) {
     let contacts = await theContacts(); let newKey = contacts?.length || 0;
@@ -93,7 +94,8 @@ async function createContactSign (name, email, uid, path="contactList/", data={}
 /**
  * Sorted contactList
  *
- * @returns {Promise<*>}
+ * @returns {Promise<object[]>} - Sorted contact array
+ * @async
  */
 async function theContacts() {
     let response = await fetch(BASE_URL + ".json");
@@ -117,10 +119,10 @@ function loginAfter() {
 /**
  * Pushes the registered data into db
  *
- * @param userId - UID of your data
- * @param name - Name of your data
- * @param email - Mail of your data
- * @returns {*} - Finishes with pushed data
+ * @param {string} userId - UID of your data
+ * @param {string} name - Name of your data
+ * @param {string} email - Mail of your data
+ * @returns {Promise<void>} - Finishes with pushed data
  */
 function setUserData(userId, name, email) {
     const db = getDatabase(app);
@@ -170,7 +172,7 @@ function wrongData() {
 /**
  * Checks validation for register field
  *
- * @returns {boolean}
+ * @returns {boolean} - True if error exists
  */
 function wrongRegData() {
     const box = document.getElementById("agreement");
@@ -219,9 +221,9 @@ function removeError(err, id) {
  *
  * @param {HTMLElement} err - Error area
  * @param {string} content - Specific error message
- * @param {string} input - Error input field
- * @param {string} extra - Variable to check if there is another field
- * @returns {boolean}
+ * @param {string} [input] - Error input field
+ * @param {string} [extra] - Variable to check if there is another field
+ * @returns {boolean} - True if error triggered
  */
 function showError(err, content, input, extra) {
     err.classList.add(content);

@@ -2,7 +2,7 @@
  * Deletes the contacts that are included in any task on the board
  *
  * @param {number} id - ID number of the contact that got deleted
- * @param {*} fromContact - When deleted on contact page, return it immediately with the successContact
+ * @param {String} fromContact - When deleted on contact page, return it immediately with the successContact
  * @returns {Promise<void>} - Is either awaited or ignored
  */
 async function deleteContactFromTask(id, fromContact) {

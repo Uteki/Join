@@ -4,7 +4,8 @@ let iniColor = document.getElementById("iniModal");
 /**
  * Closes the modal
  *
- * @param e - Event
+ * @param {Event} e - Event
+ * @returns {void}
  */
 function closeModal(e) {
     if (e.target === modal) {
@@ -15,7 +16,8 @@ function closeModal(e) {
 /**
  * Quit the modal with more options
  *
- * @param cancel - Keyword given for clearing the values
+ * @param {string} [cancel] - Keyword given for clearing the values
+ * @returns {void}
  */
 function quitModal(cancel) {
     modal.classList.add('tl-out');
@@ -31,6 +33,8 @@ function quitModal(cancel) {
 
 /**
  * Clears the modal
+ *
+ * @returns {void}
  */
 function clearModal() {
     addContact.name.value = "";
@@ -47,6 +51,8 @@ function clearModal() {
  * @param {string} mail - Contact mail
  * @param {string} phone - Contact number
  * @param {string} color - Contact color
+ * @returns {void}
+ * @async
  */
 function openModal(dialog, id, name, mail, phone, color) {
     if (dialog === "edit") {
@@ -65,6 +71,8 @@ function openModal(dialog, id, name, mail, phone, color) {
 
 /**
  * Opens the mobile small menu on the contact page
+ *
+ * @returns {void}
  */
 function mobileCrudMenu() {
     if (document.querySelector("article") === null) return;

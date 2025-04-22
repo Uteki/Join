@@ -21,7 +21,7 @@ function startDragging(id) {
 
 /**
  * Allow an element to be a valid drop target.
- * @param {DragEvent} event 
+ * @param {DragEvent} event - The drag event.
  */
 function allowDrop(event) {
     event.preventDefault();
@@ -29,7 +29,7 @@ function allowDrop(event) {
 
 /**
  * Handle the drop event and move the task to the target column.
- * @param {DragEvent} event 
+ * @param {DragEvent} event - The drag event.
  * @param {number} targetColumnIndex - The index of the column to move the task to.
  */
 function dropHandler(event, targetColumnIndex) {
@@ -39,6 +39,7 @@ function dropHandler(event, targetColumnIndex) {
 
 /**
  * Move the task to a new column and update the UI.
+ * @async
  * @param {string} taskId - The ID of the task to move.
  * @param {number} targetColumnIndex - The index of the destination column.
  */
@@ -76,7 +77,7 @@ function removeHighlightDropArea(id) {
 
 /**
  * Handle the touch start event to initialize dragging.
- * @param {TouchEvent} e 
+ * @param {TouchEvent} e - The touch start event.
  * @param {string} taskId - The ID of the task being touched.
  * @param {number} columnIndex - The column index of the task.
  */
@@ -97,7 +98,7 @@ function handleTouchStart(e, taskId, columnIndex) {
 
 /**
  * Handle the touch move event during a drag operation.
- * @param {TouchEvent} e 
+ * @param {TouchEvent} e - The touch move event.
  * @param {string} taskId - The ID of the task being dragged.
  * @param {number} columnIndex - The column index of the task.
  */
@@ -117,7 +118,7 @@ function handleTouchMove(e, taskId, columnIndex) {
 
 /**
  * Handle the touch end event, finalize drag or open overlay.
- * @param {TouchEvent} e 
+ * @param {TouchEvent} e - The touch end event.
  * @param {string} taskId - The ID of the task.
  * @param {number} columnIndex - The column index of the task.
  */
@@ -185,7 +186,7 @@ function findDropSectionOnTouchDrag(currentX, currentY) {
 
 /**
  * Scroll the board container when dragging near the screen edges.
- * @param {TouchEvent} e 
+ * @param {TouchEvent} e - The touch event.
  */
 function scrollScreenWhileDrag(e) {
     const touch = e.touches[0];
@@ -212,7 +213,7 @@ function returnOgStylingAfterouchEnd() {
 
 /**
  * Handle dropping a task after the touch ends and determine the target column.
- * @param {TouchEvent} e 
+ * @param {TouchEvent} e - The touch end event.
  * @param {Element} dropTarget - The element under the touch point.
  */
 function dropTaskafterTouchEnd(e, dropTarget) {

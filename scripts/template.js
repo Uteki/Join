@@ -101,8 +101,8 @@ function editButtonTemplate(id) {
 /**
  * Board column template
  *
- * @param {*} column
- * @param {*} index
+ * @param {object} column
+ * @param {number} index
  * @returns {string} - Board column template
  */
 function boardColumnTemplate(column, index) {
@@ -121,8 +121,8 @@ function boardColumnTemplate(column, index) {
 /**
  * Board task template
  *
- * @param {*} task
- * @param {*} columnIndex
+ * @param {Object} task - Task data
+ * @param {number} columnIndex - Column index where the task is placed
  * @returns {string} - Board task template
  */
 function boardTaskTemplate(task, columnIndex) {
@@ -152,7 +152,7 @@ function boardTaskTemplate(task, columnIndex) {
 /**
  * Board task progress template
  *
- * @param {*} subtasks
+ * @param {Array} subtasks - List of subtasks related to the task
  * @returns {string} - Board task progress template
  */
 function boardTaskProgressTemplate(subtasks) {
@@ -173,7 +173,7 @@ function boardTaskProgressTemplate(subtasks) {
 /**
  * Board task initials template
  *
- * @param {*} contact
+ * @param {Object} contact - Contact information
  * @returns {string} - Board task initials template
  */
 function boardTaskInitalsTemplate(contact) {
@@ -185,7 +185,7 @@ function boardTaskInitalsTemplate(contact) {
 /**
  * Board task priority template
  *
- * @param {*} prio
+ * @param {string} prio - Task priority (e.g., 'urgent', 'medium', 'low')
  * @returns {string} - Board task priority template
  */
 function boardTaskPriorityTemplate(prio){
@@ -195,10 +195,10 @@ function boardTaskPriorityTemplate(prio){
 }
 
 /**
- * Board task template
+ * Board task empty template
  *
- * @param {*} columnIndex
- * @returns {string} - Board task template
+ * @param {number} columnIndex - Column index
+ * @returns {string} - Board task empty template
  */
 function boardTaskTemplateEmpty(columnIndex) {
     return `
@@ -211,8 +211,8 @@ function boardTaskTemplateEmpty(columnIndex) {
 /**
  * Board overlay template
  *
- * @param {*} task
- * @param {*} columnIndex
+ * @param {Object} task - Task data
+ * @param {number} columnIndex - Column index where the task is placed
  * @returns {string} - Board overlay template
  */
 function boardOverlayTemplate(task, columnIndex) {
@@ -252,7 +252,7 @@ function boardOverlayTemplate(task, columnIndex) {
 /**
  * Overview assigned template
  *
- * @param {*} contact
+ * @param {Object} contact - Contact information
  * @returns {string} - Overview assigned template
  */
 function overviewAssignedTemplate(contact) {
@@ -264,10 +264,10 @@ function overviewAssignedTemplate(contact) {
 /**
  * Overview subtask template
  *
- * @param {*} subtask
- * @param {*} columnIndex
- * @param {*} taskIndex
- * @param {*} subtaskIndex
+ * @param {Object} subtask - Subtask information
+ * @param {number} columnIndex - Index of the column
+ * @param {number} taskIndex - Index of the task
+ * @param {number} subtaskIndex - Index of the subtask
  * @returns {string} - Overview subtask template
  */
 function overviewSubtaskTemplate(subtask, columnIndex, taskIndex, subtaskIndex) {
@@ -282,8 +282,8 @@ function overviewSubtaskTemplate(subtask, columnIndex, taskIndex, subtaskIndex) 
 /**
  * Board overlay editor template
  *
- * @param {*} task
- * @param {*} columnIndex
+ * @param {Object} task - Task information
+ * @param {number} columnIndex - Index of the column
  * @returns {string} - Board overlay editor template
  */
 function boardOverlayEditorTemplate(task, columnIndex) {
@@ -339,7 +339,7 @@ function boardOverlayEditorTemplate(task, columnIndex) {
 /**
  * Assigned list option template
  *
- * @param {*} contact
+ * @param {Object} contact - Contact information
  * @returns {string} - Assigned list option template
  */
 function assignedListOptionTemplate(contact){
@@ -357,7 +357,7 @@ function assignedListOptionTemplate(contact){
 /**
  * Assigned list template
  *
- * @param {*} contact
+ * @param {Object} contact - Contact information
  * @returns {string} - Assigned list template
  */
 function assignedListTemplate(contact){
@@ -369,7 +369,7 @@ function assignedListTemplate(contact){
 /**
  * Subtask list template
  *
- * @param {*} subtask
+ * @param {Object} subtask - Subtask information
  * @returns {string} - Subtask list template
  */
 function editorSubtaskListTemplate(subtask){
@@ -390,7 +390,7 @@ function editorSubtaskListTemplate(subtask){
 /**
  * Subtask editor template
  *
- * @param {*} subtask
+ * @param {Object} subtask - Subtask information
  * @returns {string} - Subtask editor template
  */
 function editorSubtaskEditorTemplate(subtask){
@@ -486,7 +486,7 @@ function boardAddTaskTemplate() {
 /**
  * Assigned task list option template
  *
- * @param {*} contact
+ * @param {Object} contact - Contact information
  * @returns {string} - Assigned task list option template
  */
 function addTaskAssignedListOptionTemplate(contact){
@@ -503,8 +503,7 @@ function addTaskAssignedListOptionTemplate(contact){
 
 /**
  * Assigned task list template
- *
- * @param {*} contact
+ * @param {Object} contact - Contact information
  * @returns {string} - Assigned list template
  */
 function addTaskAssignedListTemplate(contact){
@@ -516,7 +515,7 @@ function addTaskAssignedListTemplate(contact){
 /**
  * Subtask template
  *
- * @param {*} subtask
+ * @param {Object} subtask - Subtask information
  * @returns {string} - Subtask template
  */
 function addTaskSubtaskListTemplate(subtask){
@@ -537,7 +536,7 @@ function addTaskSubtaskListTemplate(subtask){
 /**
  * Subtask edit template
  *
- * @param {*} subtask
+ * @param {Object} subtask - Subtask information
  * @returns {string} - Subtask edit template
  */
 function addTaskSubtaskEditorTemplate(subtask){
@@ -556,8 +555,8 @@ function addTaskSubtaskEditorTemplate(subtask){
 /**
  * Success notification template
  *
- * @param {string} message - Message given
- * @param {string} type - Type id
+ * @param {string} message - Message to display in the notification
+ * @param {string} type - Notification type (e.g., success, error)
  * @returns {string} - Success notification template
  */
 function successToastNotificationTemplate(message,type){
@@ -572,7 +571,7 @@ function successToastNotificationTemplate(message,type){
 /**
  * Error notification template
  *
- * @param {string} message - Message given
+ * @param {string} message - Message to display in the notification
  * @returns {string} - Error notification template
  */
 function errorToastNotificationTemplate(message){

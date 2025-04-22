@@ -7,7 +7,8 @@ const sidebar = document.getElementById("con-sidebar");
 const dropdownMenu = document.querySelector(".dd-menu");
 
 /**
- * Loads and renders menu list of all of the contatcs.
+ * Loads and renders the full contact list into the sidebar, 
+ * grouped by the first letter of each contact's name.
  */
 async function renderContact() {
     let index;
@@ -24,8 +25,8 @@ async function renderContact() {
 }
 
 /**
- * Display a contact based of a given ID.
- * @param {number} id 
+ * Displays the detailed contact information in the main view for the given contact ID.
+ * @param {number} id - The ID of the contact to display.
  */
 async function displayContact(id) {
     let contact = contactList.find(el => el.id === id); removeActiveContact()
@@ -43,9 +44,10 @@ async function displayContact(id) {
 }
 
 /**
- * Turns the name of contact into his initals.
- * @param {*} contact 
- * @returns {string}
+ * Converts a contact's full name to their initials.
+ * For example, "John Doe" becomes "JD".
+ * @param {string} contact - The full name of the contact.
+ * @returns {string} The initials of the contact.
  */
 async function getIni(contact) {
     let name = contact.trim();
@@ -58,7 +60,7 @@ async function getIni(contact) {
 }
 
 /**
- * Show contact sidebar.
+ * Adjusts the layout to display only the contact sidebar on smaller screens.
  */
 function windowContact() {
     if (window.innerWidth <= 670) {
@@ -68,7 +70,7 @@ function windowContact() {
 }
 
 /**
- * Remove active contact styling of a contact element.
+ * Removes the "active" highlight class from all contact buttons.
  */
 function removeActiveContact() {
     document.querySelectorAll("#con-sidebar output button").forEach((button) => {
